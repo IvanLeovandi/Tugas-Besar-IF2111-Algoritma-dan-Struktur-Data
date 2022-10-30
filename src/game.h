@@ -1,6 +1,6 @@
 // File game.h
 #include <stdio.h>
-#include "mesinkata.h"
+#include "adt/mesinkata.h"
 
 #ifndef GAME_H
 #define GAME_H
