@@ -150,34 +150,6 @@ void TulisIsi (Array T) {
     }
 }
 
-/* ********** OPERATOR ARITMATIKA ********** */
-/* *** Aritmatika tabel : Penjumlahan, pengurangan, perkalian, ... *** */
-Array PlusTab (Array T1, Array T2) {
-/* Prekondisi : T1 dan T2 berukuran sama dan tidak kosong */
-/* Mengirimkan T1 + T2 */
-    // KAMUS LOKAL
-    Array T;
-    // ALGORITMA
-    for (int i = IdxMin; i <= T1.Neff; i++) {
-        T.TI[i] = T1.TI[i] + T2.TI[i];
-    }
-    T.Neff = T1.Neff;
-    return T;
-}
-
-Array MinusTab (Array T1, Array T2) {
-/* Prekondisi : T1 dan T2 berukuran sama dan tidak kosong */
-/* Mengirimkan T1 - T2 */
-    // KAMUS LOKAL
-    Array T;
-    // ALGORITMA
-    for (int i = IdxMin; i <= T1.Neff; i++) {
-        T.TI[i] = T1.TI[i] - T2.TI[i];
-    }
-    T.Neff = T1.Neff;
-    return T;
-}
-
 /* ********** NILAI EKSTREM ********** */
 ElType ValMax (Array T) {
 /* Prekondisi : Tabel T tidak kosong */

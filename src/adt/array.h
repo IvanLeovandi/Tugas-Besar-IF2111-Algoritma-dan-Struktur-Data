@@ -1,5 +1,5 @@
 /* File array.h */
-#include "boolean.h"
+#include "../boolean.h"
 
 #ifndef ARRAY_H
 #define ARRAY_H
@@ -12,7 +12,7 @@
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;
-typedef int ElType;
+typedef char* ElType;
 
 typedef struct
 	{
@@ -102,15 +102,6 @@ void TulisIsi (Array T);
 2:3
 */
 /* Jika T kosong : Hanya menulis "Tabel kosong" */
-
-/* ********** OPERATOR ARITMATIKA ********** */
-/* *** Aritmatika tabel : Penjumlahan, pengurangan, perkalian, ... *** */
-Array PlusTab (Array T1, Array T2);
-/* Prekondisi : T1 dan T2 berukuran sama dan tidak kosong */
-/* Mengirimkan T1 + T2 */
-Array MinusTab (Array T1, Array T2);
-/* Prekondisi : T1 dan T2 berukuran sama dan tidak kosong */
-/* Mengirimkan T1 - T2 */
 
 /* ********** NILAI EKSTREM ********** */
 ElType ValMax (Array T);
