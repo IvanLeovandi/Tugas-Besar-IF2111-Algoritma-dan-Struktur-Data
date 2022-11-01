@@ -1,12 +1,10 @@
 /* File mesinkarakter.c */
 #include "mesinkarakter.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 char currentChar;
 boolean EOP;
-
-static FILE *pita;
-static int retval;
 
 void START() {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
@@ -18,8 +16,7 @@ void START() {
           Jika currentChar = MARK maka EOP akan menyala (true) */
    // KAMUS LOKAL
    // ALGORITMA
-   pita = stdin;
-   ADV();
+   scanf("%c", &currentChar);
 }
 
 void ADV() {
@@ -30,9 +27,14 @@ void ADV() {
           Jika  currentChar = MARK maka EOP akan menyala (true) */
    // KAMUS LOKAL
    // ALGORITMA
-   retval = fscanf(pita, "%c", &currentChar);
-   if (IsEOP()) {
-      fclose(pita);
+   if (!IsEOP()) {
+      scanf("%c", &currentChar);
+   }
+}
+
+void ADVLINE() {
+   while (currentChar != '\0') {
+      scanf("%c", &currentChar);
    }
 }
 
