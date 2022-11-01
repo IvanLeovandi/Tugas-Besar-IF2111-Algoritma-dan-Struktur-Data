@@ -15,7 +15,7 @@ void save(char* filename, Array arrSentence) {
     /* ALGORITMA */
     FILE *fp = fopen(filename, "w+");
 
-    for (int i = 0; i < arrSentence.Neff; i++) {
+    for (int i = 0; i <= arrSentence.Neff; i++) {
         int cnt = 0;
         while (arrSentence.TI[i][cnt] != '\0') {
             cnt++;
@@ -25,54 +25,15 @@ void save(char* filename, Array arrSentence) {
             temp[tempLength] = arrSentence.TI[i][j];
             tempLength++;
         }
-        temp[tempLength] = '\n';
+        temp[tempLength] = 0x0A;
         tempLength++;
     }
 
     fputs(temp, fp);
 
     if (!fp) {
-        printf("Failed.\n");
+        printf("Failed to save.\n");
     }
 
     fclose(fp);
 }
-
-/*
-int main() {
-    char filename[] = "test.txt";
-    Word recentSentence;
-    Array arrSentence;
-    MakeEmpty(&arrSentence);
-    STARTWORD();
-    recentSentence = currentWord;
-    ADVWORD();
-
-
-    while (!EndWord) {
-        int tempSentenceLength = recentSentence.Length;
-        recentSentence.Length += (currentWord.Length + 1);
-        recentSentence.TabWord[tempSentenceLength] = ' '; // add space to the sentence
-        
-        int i, j = 0;
-        for (i = tempSentenceLength+1; i < recentSentence.Length; i++) {
-            recentSentence.TabWord[i] = currentWord.TabWord[j];
-            j++;
-        }
-        ADVWORD();
-    }
-    recentSentence.TabWord[recentSentence.Length] = '\n';
-    arrSentence.TI[arrSentence.Neff] = recentSentence.TabWord;
-    arrSentence.Neff++;
-
-    save(filename, arrSentence);
-    
-    // print array
-    
-    // for (int k = 0; k < arrSentence.Neff; k++) {
-    //     printf("%s", arrSentence.TI[k]);
-    // }
-    
-    return 0;
-}
-*/
