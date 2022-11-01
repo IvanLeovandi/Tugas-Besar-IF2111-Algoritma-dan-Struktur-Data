@@ -1,4 +1,4 @@
-// File game.h
+/* File game.h */
 #include <stdio.h>
 #include "adt/mesinkata.h"
 
