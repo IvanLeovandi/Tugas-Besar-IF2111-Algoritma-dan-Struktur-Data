@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "rng.h"
+#include "random_number.h"
 
 void rng() {
     /*
@@ -10,9 +11,7 @@ void rng() {
     skor berkurang 1 untuk tiap tebakan salah.
     */
 
-    srand(time(NULL)); // mengambil angka random
-    
-    int angka = rand()%301;
+    int angka = randomNumberWithMaxDigit(3); // mengambil angka random
     int tebakan;
     // int score = 30;
 
