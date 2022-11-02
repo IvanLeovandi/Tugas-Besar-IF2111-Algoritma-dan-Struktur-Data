@@ -6,6 +6,9 @@
 char currentChar;
 boolean EOP;
 
+static FILE *pita;
+static int retval;
+
 void START() {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
@@ -16,7 +19,8 @@ void START() {
           Jika currentChar = MARK maka EOP akan menyala (true) */
    // KAMUS LOKAL
    // ALGORITMA
-   scanf("%c", &currentChar);
+   pita = stdin;
+   ADV();
 }
 
 void ADV() {
@@ -27,14 +31,9 @@ void ADV() {
           Jika  currentChar = MARK maka EOP akan menyala (true) */
    // KAMUS LOKAL
    // ALGORITMA
-   if (!IsEOP()) {
-      scanf("%c", &currentChar);
-   }
-}
-
-void ADVLINE() {
-   while (currentChar != '\0') {
-      scanf("%c", &currentChar);
+   retval = fscanf(pita, "%c", &currentChar);
+   if (IsEOP()) {
+      fclose(pita);
    }
 }
 
