@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "adt/mesinkata.h"
 
+#include "random_number.h"
+
 #ifndef GAME_H
 #define GAME_H
 
