@@ -51,13 +51,13 @@ void load(Array *array_game, char *filename) {
 }
 
 /* Akan dibuat ADTnya oleh bang Owen. Sementara gini dulu */
-void IgnoreBlanksLOAD() {
+void IgnoreNewLine() {
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
     // KAMUS LOKAL
     // ALGORITMA
-    while (currentChar == BLANK) {
+    while (currentChar == MARK) {
         ADVLOAD();
     }
 }
@@ -70,8 +70,8 @@ void ADVWORDLOAD() {
    Proses : Akuisisi kata menggunakan procedure SalinWord */
     // KAMUS LOKAL
     // ALGORITMA
-    IgnoreBlanksLOAD();
-    if (currentChar == MARK) {
+    IgnoreNewLine();
+    if (retval < 0) {
         EndWord = true;
     } else {
         CopyWordLOAD();
@@ -87,9 +87,8 @@ void CopyWordLOAD() {
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
     // KAMUS LOKAL
     int i = 0;
-    boolean end = false;
     // ALGORITMA
-    while ((currentChar != BLANK) && (i < NMax)) {
+    while ((currentChar != MARK) && i < NMax && !EOP) {
         currentWord.TabWord[i] = currentChar;
         ADVLOAD();
         i++;
@@ -99,7 +98,7 @@ void CopyWordLOAD() {
 
 void ADVLOAD() {
 	retval = fscanf(tape,"%c",&currentChar);
-	EOP = (currentChar == MARK);
+	EOP = (retval < 0);
 	if (EOP) {
        fclose(tape);
  	}
