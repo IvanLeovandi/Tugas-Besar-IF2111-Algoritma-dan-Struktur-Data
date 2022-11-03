@@ -25,14 +25,13 @@ void STARTWORD() {
     // ALGORITMA
     START();
     IgnoreBlanks();
-    // if (currentChar == MARK) {
-    //     EndWord = true;
-    // } else {
-    //     EndWord = false;
-    
-    CopyWord();
+    if (currentChar == MARK) {
+        EndWord = true;
+    } else {
+        EndWord = false;
+        CopyWord();
     }
-
+}
 
 void ADVWORD() {
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -43,12 +42,12 @@ void ADVWORD() {
     // KAMUS LOKAL
     // ALGORITMA
     IgnoreBlanks();
-    // if (currentChar == MARK) {
-    //     EndWord = true;
-    // } else {
-    CopyWord();
-    IgnoreBlanks();
-    
+    if (currentChar == MARK) {
+        EndWord = true;
+    } else {
+        CopyWord();
+        IgnoreBlanks();
+    }
 }
 
 void CopyWord() {

@@ -6,4 +6,6 @@
 
 void load(Array *array_game, char *filename);
 
+void ADVLOAD(); void CopyWordLOAD(); void ADVWORDLOAD(); void IgnoreBlanksLOAD();
+
 #endif

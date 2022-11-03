@@ -4,7 +4,7 @@
 
 char currentChar;
 boolean EOP;
-static FILE * tape;
+static FILE *tape;
 static int retval;
 
 void START(){
@@ -24,7 +24,8 @@ void ADV(){
 	EOP = (currentChar == MARK);
 	if (EOP) {
        fclose(tape);
- 	}}
+ 	}
+}
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela = currentChar, currentChar != MARK
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
