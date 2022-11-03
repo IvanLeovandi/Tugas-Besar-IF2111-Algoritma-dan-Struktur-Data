@@ -20,23 +20,30 @@ void load(Array *array_game, char *filename) {
 
     ADVLOAD();
     n = currentChar - '0';
+    array_game->Neff = n;
     ADVLOAD();
 
     for (i = 0; i < n; i++) {
         ADVWORDLOAD();
-        array_game->TI[i] = currentWord.TabWord;
+        char *strgame;
+        strgame = (char *)malloc(currentWord.Length * sizeof(char));
+        int idx;
+        for(idx = 0; idx < currentWord.Length; idx++)
+        {
+            *(strgame + idx) = currentWord.TabWord[idx];
+        }
+        *(strgame + currentWord.Length) = '\0';
+        array_game->TI[i] = strgame;
         /* !!!IMPORTANT
         setiap currentWord.TabWord berubah, array_game->TI nya berubah semua. Masih belum solved
         */
-
-        array_game->Neff++;
         
         /* Membuat currenWord.TabWord menjadi string kosong agar saat dibaca selanjutnya, 
         tidak tertimpa oleh karakter pada currentWord.TabWord sebelumnya
         */
-        for (j = 0; j < currentWord.Length; j++) {
-            currentWord.TabWord[j] = '\0';
-        }
+        // for (j = 0; j < currentWord.Length; j++) {
+        //     currentWord.TabWord[j] = '\0';
+        // }
     }
 
     /* Menutup file */    
@@ -98,17 +105,19 @@ void ADVLOAD() {
  	}
 }
 
-// int main()
-// {
-//     Array a;
-//     MakeEmpty(&a);
-//     load(&a, "../data/config.txt");
+int main()
+{
+    Array a;
+    MakeEmpty(&a);
+    load(&a, "../data/config.txt");
 
-//     // printf("Neff: %d\n", a.Neff);
-//     // printf("%s\n", a.TI[0]);
+    printf("Neff: %d\n", a.Neff);
+    int i;
+    for(i = 0; i < a.Neff; i++)
+    printf("%s\n", a.TI[i]);
 
-//     // TulisIsi(a);
+    // TulisIsi(a);
 
-//     return 0;
+    return 0;
 
-// }
+}
