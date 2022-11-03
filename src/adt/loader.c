@@ -1,49 +1,60 @@
-/* File: mesinkata.h */
-/* Definisi Mesin Kata: Model Akuisisi Versi I */
+#include "loader.h"
 
-#ifndef __MESINKATA_H__
-#define __MESINKATA_H__
-
-#include "../boolean.h"
-#include "mesinkarakter.h"
-
-#define NMax 100
-#define BLANK ' '
-
-typedef struct
+void StartLOAD(char *filename)
 {
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-   int Length;
-} Word;
+    tape = fopen(filename, "r");
+    ADVLOAD();
+}
 
-/* State Mesin Kata */
-extern boolean EndWord;
-extern Word currentWord;
-
-void IgnoreBlanks();
+void IgnoreNewLine() {
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+    // KAMUS LOKAL
+    // ALGORITMA
+    while (currentChar == MARK) {
+        ADVLOAD();
+    }
+}
 
-void STARTWORD();
-/* I.S. : currentChar sembarang
-   F.S. : EndWord = true, dan currentChar = MARK;
-          atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
-          currentChar karakter pertama sesudah karakter terakhir kata */
-
-void ADVWORD();
+void ADVWORDLOAD() {
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
           currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
           Jika currentChar = MARK, EndWord = true.
    Proses : Akuisisi kata menggunakan procedure SalinWord */
+    // KAMUS LOKAL
+    // ALGORITMA
+    IgnoreNewLine();
+    if (retval < 0) {
+        EndWord = true;
+    } else {
+        CopyWordLOAD();
+    }
+}
 
-void CopyWord();
+void CopyWordLOAD() {
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
    F.S. : currentWord berisi kata yang sudah diakuisisi;
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+    // KAMUS LOKAL
+    int i = 0;
+    // ALGORITMA
+    while ((currentChar != MARK) && i < NMax && !EOP) {
+        currentWord.TabWord[i] = currentChar; 
+        ADVLOAD();
+        i++;
+    }
+    currentWord.Length = i;
+}
 
-#endif
+void ADVLOAD() {
+	retval = fscanf(tape,"%c",&currentChar);
+	EOP = (retval < 0);
+	if (EOP) {
+       fclose(tape);
+ 	}
+}
