@@ -67,3 +67,37 @@ void CopyWord() {
     }
     currentWord.Length = i;
 }
+
+char* STARTINPUT()
+{
+    char *command;
+    int i, cmdlength;
+    STARTWORD();
+    cmdlength = currentWord.Length; 
+    for(i = 0; i < cmdlength; i++)
+    {
+        *(command + i) = currentWord.TabWord[i];
+    }
+    *(command + cmdlength) = '\0';
+    return command;
+}
+
+boolean compareSTR(char input_command[], char command_comp[])
+{
+    int i = 0;
+    while(input_command[i] == command_comp[i])
+    {
+        if(input_command[i] == '\0' || command_comp[i] == '\0')
+        {
+            break;
+        }
+        i++;
+    }
+    if(input_command[i] == '\0' && command_comp[i] == '\0')
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
