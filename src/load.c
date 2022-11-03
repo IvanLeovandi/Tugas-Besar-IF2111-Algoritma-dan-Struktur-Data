@@ -1,3 +1,4 @@
+/* File load.c */
 #include "adt/array.h"
 #include "adt/mesinkarakter.h"
 #include "adt/mesinkata.h"
@@ -9,37 +10,40 @@
 static FILE *tape;
 static int retval;
 
-void load(Array *array_game, char *filename){
-    // Buka file
+void load(Array *array_game, char *filename) {
+/* Membaca isi file "filename" dan memasukkannya ke dalam array_game */
+    /* KAMUS LOKAL */
+    int i, j, n;
+    /* ALGORITMA */
+    /* Buka file */
     tape = fopen(filename, "r");
-    
-    // STARTWORD();
-    ADVLOAD();
-    // printf("cc= %c\n", currentChar);
-    int n = currentChar - '0';
-    printf("n= %d\n", n);
-    ADVLOAD();
-    for (int i=0; i<n; i++){
 
+    ADVLOAD();
+    n = currentChar - '0';
+    ADVLOAD();
+
+    for (i = 0; i < n; i++) {
         ADVWORDLOAD();
-        // printf("%s\n", currentWord.TabWord);
-
         array_game->TI[i] = currentWord.TabWord;
-        // printf("%d: %s\n", i, array_game->TI[i]);
-        array_game->Neff++;
+        /* !!!IMPORTANT
+        setiap currentWord.TabWord berubah, array_game->TI nya berubah semua. Masih belum solved
+        */
 
-        printf("currenWord.Length: %d\n", currentWord.Length);
-        for (int j = 0; j < currentWord.Length; j++) {
-            currentWord.TabWord[j] = '\0';
-        } /* Ini masih harus pake MARK di config.txt nya, atau isi akhir file ga boleh kosong */
+        array_game->Neff++;
         
+        /* Membuat currenWord.TabWord menjadi string kosong agar saat dibaca selanjutnya, 
+        tidak tertimpa oleh karakter pada currentWord.TabWord sebelumnya
+        */
+        for (j = 0; j < currentWord.Length; j++) {
+            currentWord.TabWord[j] = '\0';
+        }
     }
 
+    /* Menutup file */    
     fclose(tape);
-    
 }
 
-/*AAAAADDDDDTTTTTTT*/
+/* Akan dibuat ADTnya oleh bang Owen. Sementara gini dulu */
 void IgnoreBlanksLOAD() {
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
@@ -64,9 +68,7 @@ void ADVWORDLOAD() {
         EndWord = true;
     } else {
         CopyWordLOAD();
-        IgnoreBlanksLOAD();
     }
-
 }
 
 void CopyWordLOAD() {
@@ -86,10 +88,6 @@ void CopyWordLOAD() {
         i++;
     }
     currentWord.Length = i;
-
-
-
-
 }
 
 void ADVLOAD() {
@@ -100,16 +98,17 @@ void ADVLOAD() {
  	}
 }
 
-int main()
-{
-    Array a;
-    MakeEmpty(&a);
-    load(&a, "../data/config.txt");
+// int main()
+// {
+//     Array a;
+//     MakeEmpty(&a);
+//     load(&a, "../data/config.txt");
 
-    // printf("%d\n", a.Neff);
+//     // printf("Neff: %d\n", a.Neff);
+//     // printf("%s\n", a.TI[0]);
 
-    // TulisIsi(a);
+//     // TulisIsi(a);
 
-    return 0;
+//     return 0;
 
-}
+// }

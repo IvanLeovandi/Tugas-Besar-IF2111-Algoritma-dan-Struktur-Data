@@ -144,7 +144,7 @@ void TulisIsi (Array T) {
     if (IsEmpty(T)) {
         printf("Tabel kosong\n");
     } else {
-        for (int i = IdxMin; i <= T.Neff; i++) {
+        for (int i = 0; i < T.Neff; i++) {
             printf("%d:%s\n", i, T.TI[i]);
         }
     }
