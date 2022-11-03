@@ -3,6 +3,7 @@
 #include "adt/array.h"
 #include "adt/mesinkarakter.h"
 #include "adt/mesinkata.h"
+#include "load.h"
 
 #ifndef START_H
 #define START_H
