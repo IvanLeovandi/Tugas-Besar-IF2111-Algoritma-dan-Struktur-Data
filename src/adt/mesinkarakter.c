@@ -1,15 +1,16 @@
-/* File mesinkarakter.c */
-#include "mesinkarakter.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "mesinkarakter.h"
 
 char currentChar;
 boolean EOP;
-
-static FILE *pita;
+static FILE * tape;
 static int retval;
 
-void START() {
+void START(){
+    tape = stdin;
+    ADV();
+}
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    Pita baca diambil dari stdin.
@@ -17,40 +18,25 @@ void START() {
    F.S. : currentChar adalah karakter pertama pada pita
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
-   // KAMUS LOKAL
-   // ALGORITMA
-   pita = stdin;
-   ADV();
-}
 
-void ADV() {
+void ADV(){
+	retval = fscanf(tape,"%c",&currentChar);
+	EOP = (currentChar == MARK);
+	if (EOP) {
+       fclose(tape);
+ 	}}
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela = currentChar, currentChar != MARK
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
-   // KAMUS LOKAL
-   // ALGORITMA
-   retval = fscanf(pita, "%c", &currentChar);
-   if (IsEOP()) {
-      fclose(pita);
-   }
-}
 
-char GetCC() {
+char GetCC(){
+    return(currentChar);
+}
 /* Mengirimkan currentChar */
-   // KAMUS LOKAL
-   // ALGORITMA
-   return currentChar;
-}
 
-boolean IsEOP() {
-/* Mengirimkan true jika currentChar = MARK */
-   // KAMUS LOKAL
-   // ALGORITMA
-   if (currentChar == MARK) {
-      return true;
-   } else {
-      return false;
-   }
+boolean IsEOP(){
+    return(currentChar==MARK);
 }
+/* Mengirimkan true jika currentChar = MARK */

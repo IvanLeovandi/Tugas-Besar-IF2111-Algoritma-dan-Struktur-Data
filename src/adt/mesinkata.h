@@ -8,7 +8,7 @@
 #include "mesinkarakter.h"
 
 #define NMax 50
-#define BLANK ' '
+#define BLANK 0x0A
 
 typedef struct
 {

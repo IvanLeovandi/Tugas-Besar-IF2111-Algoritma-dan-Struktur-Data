@@ -25,13 +25,14 @@ void STARTWORD() {
     // ALGORITMA
     START();
     IgnoreBlanks();
-    if (currentChar == MARK) {
-        EndWord = true;
-    } else {
-        EndWord = false;
-        CopyWord();
+    // if (currentChar == MARK) {
+    //     EndWord = true;
+    // } else {
+    //     EndWord = false;
+    
+    CopyWord();
     }
-}
+
 
 void ADVWORD() {
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -42,12 +43,12 @@ void ADVWORD() {
     // KAMUS LOKAL
     // ALGORITMA
     IgnoreBlanks();
-    if (currentChar == MARK) {
-        EndWord = true;
-    } else {
-        CopyWord();
-        IgnoreBlanks();
-    }
+    // if (currentChar == MARK) {
+    //     EndWord = true;
+    // } else {
+    CopyWord();
+    IgnoreBlanks();
+    
 }
 
 void CopyWord() {
@@ -60,7 +61,7 @@ void CopyWord() {
     // KAMUS LOKAL
     int i = 0;
     // ALGORITMA
-    while ((currentChar != MARK) && (currentChar != BLANK) && (i < NMax)) {
+    while ((currentChar != BLANK) && (i < NMax)) {
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
