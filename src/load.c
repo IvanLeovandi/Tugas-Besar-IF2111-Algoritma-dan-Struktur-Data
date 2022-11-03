@@ -3,6 +3,7 @@
 #include "adt/mesinkarakter.h"
 #include "adt/mesinkata.h"
 #include "load.h"
+#include "adt/loader.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,9 +17,8 @@ void load(Array *array_game, char *filename) {
     int i, j, n;
     /* ALGORITMA */
     /* Buka file */
-    tape = fopen(filename, "r");
+    StartLOAD(filename);
 
-    ADVLOAD();
     n = currentChar - '0';
     array_game->Neff = n;
     ADVLOAD();
@@ -47,62 +47,62 @@ void load(Array *array_game, char *filename) {
     }
 
     /* Menutup file */    
-    fclose(tape);
+    // fclose(tape);
 }
 
 /* Akan dibuat ADTnya oleh bang Owen. Sementara gini dulu */
-void IgnoreNewLine() {
-/* Mengabaikan satu atau beberapa BLANK
-   I.S. : currentChar sembarang
-   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    // KAMUS LOKAL
-    // ALGORITMA
-    while (currentChar == MARK) {
-        ADVLOAD();
-    }
-}
+// void IgnoreNewLine() {
+// /* Mengabaikan satu atau beberapa BLANK
+//    I.S. : currentChar sembarang
+//    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+//     // KAMUS LOKAL
+//     // ALGORITMA
+//     while (currentChar == MARK) {
+//         ADVLOAD();
+//     }
+// }
 
-void ADVWORDLOAD() {
-/* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
-   F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
-          currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
-          Jika currentChar = MARK, EndWord = true.
-   Proses : Akuisisi kata menggunakan procedure SalinWord */
-    // KAMUS LOKAL
-    // ALGORITMA
-    IgnoreNewLine();
-    if (retval < 0) {
-        EndWord = true;
-    } else {
-        CopyWordLOAD();
-    }
-}
+// void ADVWORDLOAD() {
+// /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
+//    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
+//           currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
+//           Jika currentChar = MARK, EndWord = true.
+//    Proses : Akuisisi kata menggunakan procedure SalinWord */
+//     // KAMUS LOKAL
+//     // ALGORITMA
+//     IgnoreNewLine();
+//     if (retval < 0) {
+//         EndWord = true;
+//     } else {
+//         CopyWordLOAD();
+//     }
+// }
 
-void CopyWordLOAD() {
-/* Mengakuisisi kata, menyimpan dalam currentWord
-   I.S. : currentChar adalah karakter pertama dari kata
-   F.S. : currentWord berisi kata yang sudah diakuisisi;
-          currentChar = BLANK atau currentChar = MARK;
-          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
-          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-    // KAMUS LOKAL
-    int i = 0;
-    // ALGORITMA
-    while ((currentChar != MARK) && i < NMax && !EOP) {
-        currentWord.TabWord[i] = currentChar;
-        ADVLOAD();
-        i++;
-    }
-    currentWord.Length = i;
-}
+// void CopyWordLOAD() {
+// /* Mengakuisisi kata, menyimpan dalam currentWord
+//    I.S. : currentChar adalah karakter pertama dari kata
+//    F.S. : currentWord berisi kata yang sudah diakuisisi;
+//           currentChar = BLANK atau currentChar = MARK;
+//           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
+//           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+//     // KAMUS LOKAL
+//     int i = 0;
+//     // ALGORITMA
+//     while ((currentChar != MARK) && i < NMax && !EOP) {
+//         currentWord.TabWord[i] = currentChar;
+//         ADVLOAD();
+//         i++;
+//     }
+//     currentWord.Length = i;
+// }
 
-void ADVLOAD() {
-	retval = fscanf(tape,"%c",&currentChar);
-	EOP = (retval < 0);
-	if (EOP) {
-       fclose(tape);
- 	}
-}
+// void ADVLOAD() {
+// 	retval = fscanf(tape,"%c",&currentChar);
+// 	EOP = (retval < 0);
+// 	if (EOP) {
+//        fclose(tape);
+//  	}
+// }
 
 int main()
 {
