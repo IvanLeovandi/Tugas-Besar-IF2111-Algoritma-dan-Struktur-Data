@@ -68,6 +68,19 @@ void CopyWord() {
     currentWord.Length = i;
 }
 
+char* KataToSTR(Word currentWord)
+{
+    char *str;
+    int i, strlength;
+    strlength = currentWord.Length; 
+    for(i = 0; i < strlength; i++)
+    {
+        *(str + i) = currentWord.TabWord[i];
+    }
+    *(str + strlength) = '\0';
+    return str;
+}
+
 char* STARTINPUT()
 {
     char *command;
