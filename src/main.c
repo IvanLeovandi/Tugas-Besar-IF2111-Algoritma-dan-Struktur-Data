@@ -14,17 +14,18 @@
 int main()
 {
     printf("Selamat datang di BNMO.\n");
-    printf("Silahkan pilih menu START atau LOAD untuk memulai program\n");
+    printf("Silahkan pilih menu START atau LOAD untuk memulai program\n\n");
     printf("ENTER COMMAND: ");
     // STARTWORD();
     // char *command = KataToSTR(currentWord);
     char *command = STARTINPUT();
+    printf("--------------------------\n");
     boolean end = false;
     boolean loaded = false;
     Array array_game;
     MakeEmpty(&array_game);
     Queue queue_game;
-    if(compareSTR(command, "START"))
+    if (compareSTR(command, "START"))
     {
         STARTGAME(&array_game);
         int i;
@@ -35,8 +36,10 @@ int main()
     
     while(loaded && !end)
     {
-        printf("ENTER COMMAND: ");
+        printf("\nENTER COMMAND: ");
         command = STARTINPUT();
+        printf("--------------------------\n");
+
         if(compareSTR(command, "LISTGAME"))
         {
             listgame(array_game);
@@ -51,7 +54,7 @@ int main()
         } 
         else
         {
-            printf("Command tidak dikenali, silahkan masukkan command yang valid.");
+            printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
             printf("ENTER COMMAND: ");
         }
     }
