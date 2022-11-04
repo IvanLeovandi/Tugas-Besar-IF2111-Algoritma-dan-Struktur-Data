@@ -19,40 +19,40 @@ int main()
     // STARTWORD();
     // char *command = KataToSTR(currentWord);
     char *command = STARTINPUT();
-    printf("1");
-    printf("%s", command);
     boolean end = false;
     boolean loaded = false;
-    Array *array_game;
-    Queue *queue_game;
-    if(compareSTR(command, "STARTGAME"))
+    Array array_game;
+    MakeEmpty(&array_game);
+    Queue queue_game;
+    if(compareSTR(command, "START"))
     {
-        START(array_game);
-        printf("Neff: %d\n", array_game->Neff);
+        STARTGAME(&array_game);
         int i;
-        for(i = 0; i < array_game->Neff; i++)
-        printf("%s\n", array_game->TI[i]);
+        for(i = 0; i < array_game.Neff; i++)
+        printf("%s\n", array_game.TI[i]);
         loaded = true;
     } // load --> ADVWORD buat ngambil nama file
-
+    
     while(loaded && !end)
     {
         printf("ENTER COMMAND: ");
-        STARTWORD();
-        char *command = KataToSTR(currentWord);
+        command = STARTINPUT();
         if(compareSTR(command, "LISTGAME"))
         {
-            listgame(*array_game);
+            listgame(array_game);
         }
         else if(compareSTR(command, "HELP"))
         {
             help();
-        } else
+        } else if(compareSTR(command, "QUIT"))
+        {
+            printf("Terima kasih");
+            end = true;
+        } 
+        else
         {
             printf("Command tidak dikenali, silahkan masukkan command yang valid.");
             printf("ENTER COMMAND: ");
-            STARTWORD();
-            char *command = KataToSTR(currentWord);
         }
     }
     return 0;

@@ -21,7 +21,6 @@ void load(Array *array_game, char *filename) {
     n = currentChar - '0';
     array_game->Neff = n;
     ADVLOAD();
-
     for (i = 0; i < n; i++) {
         ADVWORDLOAD();
         char *strgame;

@@ -1,4 +1,6 @@
 #include "loader.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void StartLOAD(char *filename)
 {
@@ -55,6 +57,6 @@ void ADVLOAD() {
 	retval = fscanf(tape,"%c",&currentChar);
 	EOP = (retval < 0);
 	if (EOP) {
-       fclose(tape);
+        fclose(tape);
  	}
 }
