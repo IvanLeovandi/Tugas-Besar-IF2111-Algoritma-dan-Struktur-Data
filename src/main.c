@@ -18,7 +18,7 @@ int main()
     printf("ENTER COMMAND: ");
     // STARTWORD();
     // char *command = KataToSTR(currentWord);
-    char *command = STARTINPUT();
+    char *command = Input();
     boolean end = false;
     boolean loaded = false;
     Array array_game;
@@ -31,12 +31,23 @@ int main()
         for(i = 0; i < array_game.Neff; i++)
         printf("%s\n", array_game.TI[i]);
         loaded = true;
-    } // load --> ADVWORD buat ngambil nama file
-    
+    } 
+    // else if(compareSTR(command, "LOAD")) // --> ADVWORD buat ngambil nama file
+    // {
+    //     ADVWORD();
+    //     char *filename = KataToSTR(currentWord);
+    //     load(&array_game, filename);
+    //     loaded = true;
+    // }
     while(loaded && !end)
     {
         printf("ENTER COMMAND: ");
-        command = STARTINPUT();
+        command = Input();
+        // if(compareSTR(command, "CREATEGAME"))
+        // {
+            
+        // }
+        // else 
         if(compareSTR(command, "LISTGAME"))
         {
             listgame(array_game);
