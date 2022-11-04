@@ -1,6 +1,8 @@
 /* File mesinkata.c */
 
 #include "mesinkata.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 boolean EndWord;
 Word currentWord;
@@ -46,7 +48,7 @@ void ADVWORD() {
         EndWord = true;
     } else {
         CopyWord();
-        IgnoreBlanks();
+        // IgnoreBlanks();
     }
 }
 
@@ -60,7 +62,7 @@ void CopyWord() {
     // KAMUS LOKAL
     int i = 0;
     // ALGORITMA
-    while ((currentChar != BLANK) && (i < NMax)) {
+    while ((currentChar != MARK) && (i < NMax)) {
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
@@ -71,18 +73,21 @@ void CopyWord() {
 char* STARTINPUT()
 {
     char *command;
+    command = (char*) malloc (10 *sizeof(char));
     int i, cmdlength;
     STARTWORD();
-    cmdlength = currentWord.Length; 
-    for(i = 0; i < cmdlength; i++)
+    cmdlength = currentWord.Length;
+    printf("cmdlength: %d\n", cmdlength); 
+    for (i = 0; i < cmdlength; i++)
     {
         *(command + i) = currentWord.TabWord[i];
     }
-    *(command + cmdlength) = '\0';
+    command[cmdlength] = '\0';
+    // *(command + cmdlength) = '\0';
     return command;
 }
 
-boolean compareSTR(char input_command[], char command_comp[])
+boolean compareSTR(char* input_command, char* command_comp)
 {
     int i = 0;
     while(input_command[i] == command_comp[i])
