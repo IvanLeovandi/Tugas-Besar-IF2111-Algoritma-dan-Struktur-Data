@@ -70,20 +70,21 @@ void CopyWord() {
     currentWord.Length = i;
 }
 
-// char* KataToSTR(Word currentWord)
-// {
-//     char *str;
-//     int i, strlength;
-//     strlength = currentWord.Length; 
-//     for(i = 0; i < strlength; i++)
-//     {
-//         *(str + i) = currentWord.TabWord[i];
-//     }
-//     *(str + strlength) = '\0';
-//     return str;
-// }
+char* KataToSTR(Word currentWord)
+{
+    char *str;
+    str = (char*) malloc(currentWord.Length*sizeof(char));
+    int i, strlength;
+    strlength = currentWord.Length; 
+    for(i = 0; i < strlength; i++)
+    {
+        *(str + i) = currentWord.TabWord[i];
+    }
+    *(str + strlength) = '\0';
+    return str;
+}
 
-char* STARTINPUT()
+char* Input() // with no space
 {
     char *command;
     command = (char*) malloc (10 *sizeof(char));
@@ -98,6 +99,22 @@ char* STARTINPUT()
     // *(command + cmdlength) = '\0';
     return command;
 }
+
+// char* InputWithSpace() // with space
+// {
+//     char *command;
+//     command = (char*) malloc (10 *sizeof(char));
+//     int i, cmdlength;
+//     STARTWORD();
+//     cmdlength = currentWord.Length;
+//     for (i = 0; i < cmdlength; i++)
+//     {
+//         *(command + i) = currentWord.TabWord[i];
+//     }
+//     command[cmdlength] = '\0';
+//     // *(command + cmdlength) = '\0';
+//     return command;
+// }
 
 boolean compareSTR(char* input_command, char* command_comp)
 {
