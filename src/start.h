@@ -8,7 +8,7 @@
 #ifndef START_H
 #define START_H
 
-void (Array *a);
+void STARTGAME(Array *array_game);
 /*
 I.S. ArrayGame a terdefinisi, ArrayGame a kosong;
 F.S. ArrayGame a terisi dengan game yang berada pada file config.txt

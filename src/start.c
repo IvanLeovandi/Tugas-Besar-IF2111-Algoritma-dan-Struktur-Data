@@ -1,10 +1,15 @@
+#include <stdio.h>
+#include "adt/array.h"
 #include "start.h"
 
-void (Array *a)
+
+void STARTGAME(Array *array_game)
 {
+
 /*
-I.S. ArrayGame a terdefinisi, ArrayGame a kosong;
-F.S. ArrayGame a terisi dengan game yang berada pada file config.txt
+I.S. Array array_game terdefinisi, Array array_game kosong;
+F.S. Array array_game terisi dengan game yang berada pada file config.txt
 */
-    load(a, "../data/config.txt");
+    load(array_game, "../data/config.txt");
+    printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.");
 }

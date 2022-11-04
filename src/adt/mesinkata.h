@@ -46,4 +46,10 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+char* STARTINPUT();
+
+char* KataToSTR(Word currentWord);
+
+boolean compareSTR(char input_command[], char command_comp[]);
+
 #endif
