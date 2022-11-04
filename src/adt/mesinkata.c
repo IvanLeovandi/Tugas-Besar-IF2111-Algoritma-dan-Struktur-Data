@@ -48,7 +48,7 @@ void ADVWORD() {
         EndWord = true;
     } else {
         CopyWord();
-        // IgnoreBlanks();
+        IgnoreBlanks();
     }
 }
 
@@ -62,13 +62,26 @@ void CopyWord() {
     // KAMUS LOKAL
     int i = 0;
     // ALGORITMA
-    while ((currentChar != MARK) && (i < NMax)) {
+    while ((currentChar != BLANK) && (i < NMax) && (currentChar != MARK)) {
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
     }
     currentWord.Length = i;
 }
+
+// char* KataToSTR(Word currentWord)
+// {
+//     char *str;
+//     int i, strlength;
+//     strlength = currentWord.Length; 
+//     for(i = 0; i < strlength; i++)
+//     {
+//         *(str + i) = currentWord.TabWord[i];
+//     }
+//     *(str + strlength) = '\0';
+//     return str;
+// }
 
 char* STARTINPUT()
 {
@@ -77,7 +90,6 @@ char* STARTINPUT()
     int i, cmdlength;
     STARTWORD();
     cmdlength = currentWord.Length;
-    printf("cmdlength: %d\n", cmdlength); 
     for (i = 0; i < cmdlength; i++)
     {
         *(command + i) = currentWord.TabWord[i];
