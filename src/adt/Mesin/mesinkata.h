@@ -52,6 +52,14 @@ char* InputWithSpace();
 
 char* KataToSTR(Word currentWord);
 
+int count_space(char *str);
+
+int str_len(char *str);
+
+char *FirstSTR(char *command);
+
+char *SecSTR(char *command);
+
 boolean compareSTR(char* input_command, char* command_comp);
 
 #endif
