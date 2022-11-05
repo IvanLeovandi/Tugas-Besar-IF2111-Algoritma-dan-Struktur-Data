@@ -1,6 +1,6 @@
 /* File game.h */
 #include <stdio.h>
-#include "adt/mesinkata.h"
+#include "../adt/Mesin/mesinkata.h"
 
 #include "random_number.h"
 

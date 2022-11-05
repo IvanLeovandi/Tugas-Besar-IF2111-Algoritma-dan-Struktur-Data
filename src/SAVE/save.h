@@ -1,7 +1,7 @@
 /* File save.h */
 #include "boolean.h"
-#include "adt/mesinkata.h"
-#include "adt/array.h"
+#include "../adt/Mesin/mesinkata.h"
+#include "../adt/Array/array.h"
 
 #ifndef SAVE_H
 #define SAVE_H

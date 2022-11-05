@@ -1,5 +1,5 @@
 /* File array.h */
-#include "../boolean.h"
+#include "../../boolean.h"
 
 #ifndef ARRAY_H
 #define ARRAY_H

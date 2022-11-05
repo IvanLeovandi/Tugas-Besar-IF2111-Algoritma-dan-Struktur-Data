@@ -3,7 +3,7 @@
 #include "skipgame.h"
 
 /* File ADT*/
-#include "adt/queue.h"
+#include "../adt/Queue/queue.h"
 
 void skipgame (Queue *q, int n)
 /* 

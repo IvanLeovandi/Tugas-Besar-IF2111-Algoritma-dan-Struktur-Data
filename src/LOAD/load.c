@@ -1,9 +1,9 @@
 /* File load.c */
-#include "adt/array.h"
-#include "adt/mesinkarakter.h"
-#include "adt/mesinkata.h"
+#include "../adt/Array/array.h"
+#include "../adt/Mesin/mesinkarakter.h"
+#include "../adt/Mesin/mesinkata.h"
 #include "load.h"
-#include "adt/loader.h"
+#include "../adt/Mesin/loader.h"
 
 #include <stdio.h>
 #include <stdlib.h>

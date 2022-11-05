@@ -3,7 +3,7 @@
 #include "queuegame.h"
 
 /* File ADT*/
-#include "adt/queue.h"
+#include "../adt/Queue/queue.h"
 
 void queuegame (Queue *q, Queue list)
 /* 

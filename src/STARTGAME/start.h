@@ -1,9 +1,9 @@
 //File start.h
 #include <stdio.h>
-#include "adt/array.h"
-#include "adt/mesinkarakter.h"
-#include "adt/mesinkata.h"
-#include "load.h"
+#include "../adt/Array/array.h"
+#include "../adt/Mesin/mesinkarakter.h"
+#include "../adt/Mesin/mesinkata.h"
+#include "../LOAD/load.h"
 
 #ifndef START_H
 #define START_H

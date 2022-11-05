@@ -1,11 +1,11 @@
 // File queue.h
 #include <stdio.h>
-#include "adt/queue.h"
+#include "../adt/Queue/queue.h"
 
 #ifndef QUEUEGAME_H
 #define QUEUEGAME_H
 
-void queuegame (Queue *q, int num);
+void queuegame (Queue *q, Queue list);
 /* 
 I.S.: Queue/antrian game terdefinisi, antrian mungkin kosong, antrian tidak mungkin penuh
 F.S.: Program akan melakukan enqueue game ke-num;

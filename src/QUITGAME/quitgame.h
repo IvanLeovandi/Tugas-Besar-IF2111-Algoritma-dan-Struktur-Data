@@ -1,4 +1,4 @@
-#include "adt/queue.h"
+#include "../adt/Queue/queue.h"
 #include <stdio.h>
 
 #ifndef QUITGAME_H

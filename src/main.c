@@ -1,12 +1,11 @@
 #include "main.h"
-#include "adt/array.h"
-#include "adt/mesinkarakter.h"
-#include "adt/mesinkata.h"
-#include "adt/queue.h"
-#include "start.h"
-#include "listgame.h"
-#include "help.h"
-
+#include "./adt/Array/array.h"
+#include "./adt/Mesin/mesinkarakter.h"
+#include "./adt/Mesin/mesinkata.h"
+#include "./adt/Queue/queue.h"
+#include "./STARTGAME/start.h"
+#include "./LISTGAME/listgame.h"
+#include "./HELP/help.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +62,6 @@ int main()
         else
         {
             printf("Command tidak dikenali, silahkan masukkan command yang valid.");
-            printf("ENTER COMMAND: ");
         }
     }
     return 0;

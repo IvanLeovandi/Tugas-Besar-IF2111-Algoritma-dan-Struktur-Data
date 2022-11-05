@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "adt/array.h"
+#include "../adt/Array/array.h"
 #include "start.h"
-#include "load.h"
+#include "../LOAD/load.h"
 
 
 void STARTGAME(Array *array_game)

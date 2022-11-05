@@ -1,6 +1,6 @@
 // File skipgame.h
 #include <stdio.h>
-#include "adt/queue.h"
+#include "../adt/Queue/queue.h"
 
 #ifndef SKIPGAME_H
 #define SKIPGAME_H

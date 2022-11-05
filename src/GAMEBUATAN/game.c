@@ -5,7 +5,7 @@
 #include <time.h>
 
 /* Include ADT */
-#include "adt/mesinkata.h"
+#include "../adt/Mesin/mesinkata.h"
 
 #include "game.h"
 

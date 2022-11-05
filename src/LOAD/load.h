@@ -1,4 +1,4 @@
-#include "adt/array.h"
+#include "../adt/Array/array.h"
 #include <stdio.h>
 
 #ifndef LOAD_H
