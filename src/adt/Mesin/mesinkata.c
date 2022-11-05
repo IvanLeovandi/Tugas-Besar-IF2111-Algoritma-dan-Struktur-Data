@@ -26,7 +26,7 @@ void STARTWORD() {
     // KAMUS LOKAL
     // ALGORITMA
     START();
-    IgnoreBlanks();
+    // IgnoreBlanks();
     if (currentChar == MARK) {
         EndWord = true;
     } else {
@@ -43,12 +43,12 @@ void ADVWORD() {
    Proses : Akuisisi kata menggunakan procedure SalinWord */
     // KAMUS LOKAL
     // ALGORITMA
-    IgnoreBlanks();
+    // IgnoreBlanks();
     if (currentChar == MARK) {
         EndWord = true;
     } else {
         CopyWord();
-        IgnoreBlanks();
+        // IgnoreBlanks();
     }
 }
 
@@ -62,7 +62,7 @@ void CopyWord() {
     // KAMUS LOKAL
     int i = 0;
     // ALGORITMA
-    while ((currentChar != BLANK) && (i < NMax) && (currentChar != MARK)) {
+    while ((i < NMax) && (currentChar != MARK)) { // currentChar != BLANK
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
@@ -73,7 +73,7 @@ void CopyWord() {
 char* KataToSTR(Word currentWord)
 {
     char *str;
-    str = (char*) malloc(currentWord.Length*sizeof(char));
+    str = (char*) malloc((currentWord.Length)*sizeof(char));
     int i, strlength;
     strlength = currentWord.Length; 
     for(i = 0; i < strlength; i++)
@@ -87,16 +87,18 @@ char* KataToSTR(Word currentWord)
 char* Input() // with no space
 {
     char *command;
-    command = (char*) malloc (10 *sizeof(char));
-    int i, cmdlength;
+    // command = (char*) malloc (10 *sizeof(char));
+    // int i, cmdlength;
     STARTWORD();
-    cmdlength = currentWord.Length;
-    for (i = 0; i < cmdlength; i++)
-    {
-        *(command + i) = currentWord.TabWord[i];
-    }
-    command[cmdlength] = '\0';
-    // *(command + cmdlength) = '\0';
+    command = KataToSTR(currentWord);
+    // cmdlength = currentWord.Length;
+    // for (i = 0; i < cmdlength; i++)
+    // {
+    //     *(command + i) = currentWord.TabWord[i];
+    // }
+    // command[cmdlength] = '\0';
+    // // *(command + cmdlength) = '\0';
+    // return command;
     return command;
 }
 
@@ -115,6 +117,66 @@ char* Input() // with no space
 //     // *(command + cmdlength) = '\0';
 //     return command;
 // }
+
+int count_space(char *str)
+{
+    int count = 0;
+    while(*str != '\0')
+    {
+        if(*str == ' ')
+        {
+            count++;
+        }
+        str++;
+    }
+    return count;
+}
+
+int str_len(char *str)
+{
+    int count = 0;
+    while (*str != '\0')
+    {
+        count++;
+        str++;
+    }
+    return count;
+}
+
+char *FirstSTR(char *command)
+{
+    int i = 0;
+    char *firstSTR;
+    firstSTR = (char*) malloc(50*sizeof(char));
+    while(command[i] != BLANK)
+    {
+        *(firstSTR + i) = command[i];
+        i++;
+    }
+    *(firstSTR + i) = '\0';
+    return firstSTR;
+}
+
+char *SecSTR(char *command)
+{
+    int i = 0;
+    int j = 0;
+    char *secSTR;
+    secSTR = (char*) malloc(50*sizeof(char));
+    while(command[i] != BLANK)
+    {
+        i++;
+    }
+    i++;
+    while(command[i] != '\0')
+    {
+        secSTR[j] = command[i];
+        i++;
+        j++;
+    }
+    *(secSTR + j) = '\0';
+    return secSTR;
+}
 
 boolean compareSTR(char* input_command, char* command_comp)
 {
