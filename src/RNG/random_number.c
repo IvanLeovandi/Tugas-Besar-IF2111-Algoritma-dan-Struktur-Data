@@ -18,7 +18,7 @@ unsigned long long int randomNumberWithMaxDigit(int digit) {
     srand(time(NULL));
    
     x = randm(n);
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < n*n*n; i++) {
         randNumber = von(x, n);
         x = randNumber;
     }
@@ -30,7 +30,7 @@ unsigned long long int randomNumberMinMax(int lowerbound, int upperbound) {
     /* KAMUS LOKAL */
     unsigned long long int a;
     /* ALGORITMA */
-    return randomNumber() % (upperbound + 1 - lowerbound) + lowerbound;
+    return randomNumberWithMaxDigit(9) % (upperbound + 1 - lowerbound) + lowerbound;
 }
 
 unsigned long long int randomNumber() {
@@ -44,11 +44,17 @@ unsigned long long int randm(int n) {
 /* Mengembalikan random number dari jumlah digit n yang diinginkan */
     /* KAMUS LOKAL */
     double x;
+    double* u;
     unsigned long long int y;
+    int i;
     /* ALGORITMA */
-    srand(getpid()); /* Membuat seed */
-    x = rand() / (double)RAND_MAX;
-    y = x * pow(10.0, n*1.0);
+    u = (double*) malloc (sizeof(double));
+
+    for (i = 0; i < n*n*n; i++) {
+        srand(time(NULL));
+        x = (rand() + (unsigned long long int) u) / (double)RAND_MAX;
+        y = x * pow(10.0, n*1.0);
+    }
     return y;
 }
 
