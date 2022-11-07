@@ -9,15 +9,8 @@ OBJ = main
 # test.o: test.c
 # 	$(CC) -c test.c
 $(OBJ):
-	$(CC) ../src/main.c ../src/load.c  ../src/start.c ../src/listgame.c ../src/help.c ../src/adt/mesinkarakter.c ../src/adt/mesinkata.c ../src/adt/array.c ../src/adt/loader.c -o main
-#include "main.h"
-#include "adt/array.h"
-#include "adt/mesinkarakter.h"
-#include "adt/mesinkata.h"
-#include "adt/queue.h"
-#include "start.h"
-#include "listgame.h"
-#include "help.h"
+	$(CC) ../src/adt/Mesin/mesinkarakter.c ../src/adt/Mesin/mesinkata.c ../src/adt/Array/array.c ../src/adt/Mesin/loader.c ../src/LOAD/load.c  ../src/STARTGAME/start.c ../src/LISTGAME/listgame.c ../src/HELP/help.c ../src/COMMANDLAIN/commandlain.c ../src/main.c -o main
+# ../src/CREATEGAME/creategame.c ../src/DELETEGAME/deletegame.c ../src/GAMEBUATAN/game.c ../src/PLAYGAME/playgame.c ../src/QUEUEGAME/queuegame.c ../src/QUITGAME/quitgame.c ../src/RNG/random_number.c ../src/RNG/rng.c ../src/SAVE/save.c ../src/SKIPGAME/skipgame.c
 exec:
 	./main
 
