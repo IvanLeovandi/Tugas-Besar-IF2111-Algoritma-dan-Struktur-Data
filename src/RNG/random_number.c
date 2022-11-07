@@ -16,13 +16,21 @@ unsigned long long int randomNumberWithMaxDigit(int digit) {
     int i;
     /* ALGORITMA */
     srand(time(NULL));
-
+   
     x = randm(n);
     for (i = 0; i < n; i++) {
         randNumber = von(x, n);
         x = randNumber;
     }
     return randNumber;
+}
+
+unsigned long long int randomNumberMinMax(int lowerbound, int upperbound) {
+/* Mengembalikan random number dengan masukan batas minimum dan maksimum angka */
+    /* KAMUS LOKAL */
+    unsigned long long int a;
+    /* ALGORITMA */
+    return randomNumber() % (upperbound + 1 - lowerbound) + lowerbound;
 }
 
 unsigned long long int randomNumber() {

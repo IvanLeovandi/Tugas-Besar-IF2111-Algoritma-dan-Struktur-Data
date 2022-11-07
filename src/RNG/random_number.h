@@ -5,6 +5,9 @@
 unsigned long long int randomNumberWithDigit(int digit);
 /* Mengembalikan random number */
 
+unsigned long long int randomNumberMinMax(int min, int max);
+/* Mengembalikan random number dengan masukan minimum dan maksimum angka */
+
 unsigned long long int randomNumber();
 /* Mengembalikan random number tanpa masukan jumlah digit */
 
