@@ -197,3 +197,14 @@ boolean compareSTR(char* input_command, char* command_comp)
         return false;
     }
 }
+
+int StrToInt(char *str)
+{
+    int i = 0, result = 0;
+    while(str[i] != '\0')
+    {
+        result = result * 10 + str[i] - '0';
+        i++;
+    }
+    return result;
+}
