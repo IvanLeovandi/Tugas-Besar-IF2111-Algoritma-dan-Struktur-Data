@@ -1,25 +1,34 @@
 /* File playgame.c */
 #include <stdio.h>
 #include "playgame.h"
+#include "../LISTGAME/listgame.h"
+#include "../RNG/rng.h"
+#include "../DINERDASH/dinerdash.h"
+#include "../GAMEBUATAN/game.h"
 
 /* File ADT*/
 #include "../adt/Queue/queue.h"
+#include "../adt/Array/array.h"
 
-void playgame(Queue* game, char* name)
+void playgame(Queue *game, Array array_game)
 /* 
 I.S.: menerima input queue game 
 F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam name
 */
 {
-    printf("Berikut adalah daftar Game-mu\n");
-    int i = 0;
-    int sum = 0;
-    while (sum < length(*game)){
-        if (i + IDX_HEAD(*game) == CAPACITY){
-            i = 0;
-        }
-        printf("%d. %s\n",i + 1,game->buffer[IDX_HEAD(*game) + i]);
+    ElType val;
+    printf("Berikut adalah daftar Game-mu");
+    displayQueue(*game);
+    dequeue(game, &val);
+    if(val == "RNG")
+    {
+        rng();
+    } else if(val == "Diner DASH")
+    {
+        main();
+    } else if(val == "DINOSAUR IN EARTH" || val == "RISEWOMAN" || val == "EIFFEL TOWER")
+    {
+        printf("Game %s masih dalam maintenance, belum dapat dimainkan.\n", val);
+        printf("Silahkan pilih game lain.");
     }
-    dequeue(game,name);
-
 }

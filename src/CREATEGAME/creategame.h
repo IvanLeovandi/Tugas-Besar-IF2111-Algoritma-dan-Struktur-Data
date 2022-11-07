@@ -4,7 +4,7 @@
 #ifndef CREATEGAME_H
 #define CREATEGAME_H
 
-void create_game(Queue* game);
+void creategame (Array *game);
 /* 
 I.S.: Input nama game
 F.S.: Program menambahkan nama game ke list game
