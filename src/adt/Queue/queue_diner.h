@@ -10,12 +10,15 @@
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
-typedef int* ElType;
-// typedef struct {
-//     ElType buffer[CAPACITY];
-// } Buffer;
 typedef struct {
-	ElType buffer[CAPACITY][CAPACITY]; 
+    int id_makanan;
+	int durasi;
+	int ketahanan;
+	int harga;
+} ElType;
+
+typedef struct {
+	ElType buffer[CAPACITY]; 
 	int idxHead;
 	int idxTail;
 } QueueDiner;
@@ -46,28 +49,15 @@ int length(QueueDiner q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue4(QueueDiner *q, ElType id, ElType durasi, ElType ketahanan, ElType harga);
+void enqueue(QueueDiner *q, ElType val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void enqueue2(QueueDiner *q, ElType id, ElType durasi_tahan);
-/* Proses: Menambahkan val pada q dengan aturan FIFO */
-/* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
-/* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
-
-void dequeue(QueueDiner *q, ElType **val);
+void dequeue(QueueDiner *q, ElType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
-
-void displayQueue4(QueueDiner q);
-/* I.S. q boleh kosong */
-/* F.S. Menuliskan seluruh isi q ke layar */
-
-void displayQueue2(QueueDiner q);
-/* I.S. q boleh kosong */
-/* F.S. Menuliskan seluruh isi q ke layar */
 
 #endif
