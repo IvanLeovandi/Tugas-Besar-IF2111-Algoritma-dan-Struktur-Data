@@ -62,4 +62,6 @@ char *SecSTR(char *command);
 
 boolean compareSTR(char* input_command, char* command_comp);
 
+int StrToInt(char *str);
+
 #endif
