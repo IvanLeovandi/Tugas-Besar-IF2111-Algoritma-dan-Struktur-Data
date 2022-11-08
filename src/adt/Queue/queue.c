@@ -90,29 +90,45 @@ void displayQueue(Queue q) {
     int i;
     // ALGORITMA
     if (isEmpty(q)) {
-        printf("[]\n");
+        printf("Queue kosong\n");
     } else {
-        printf("[");
-        if (q.idxHead <= q.idxTail) {
-            for (i = q.idxHead; i <= q.idxTail; i++) {
-                if (i == q.idxTail) {
-                    printf("%d", q.buffer[i]);
-                } else {
-                    printf("%d,", q.buffer[i]);
-                }
-            }
-        } else {
-            for (i = q.idxHead; i < CAPACITY; i++) {
-                printf("%d,", q.buffer[i]);
-            }
-            for (i = 0; i <= q.idxTail; i++) {
-                if (i == q.idxTail) {
-                    printf("%d", q.buffer[i]);
-                } else {
-                    printf("%d,", q.buffer[i]);
-                }
-            }
+        for (i = q.idxHead; i <= q.idxTail; i++) {
+            printf("%d. %s\n", i+1, q.buffer[i]);
         }
+        // else {
+        //     for (i = q.idxHead; i < CAPACITY; i++) {
+        //         printf("%d,", q.buffer[i]);
+        //     }
+        //     for (i = 0; i <= q.idxTail; i++) {
+        //         if (i == q.idxTail) {
+        //             printf("%d", q.buffer[i]);
+        //         } else {
+        //             printf("%d,", q.buffer[i]);
+        //         }
+        //     }
+        // }
         printf("]\n");
+    }
+}
+
+boolean SearchElmtQueue(Queue q, char *str)
+{
+    if(isEmpty(q))
+    {
+        return false;
+    } else
+    {
+        int i = 1;
+        while(i <= length(q) && q.buffer[i] != str)
+        {
+            i++;
+        }
+        if(i < length(q))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 }
