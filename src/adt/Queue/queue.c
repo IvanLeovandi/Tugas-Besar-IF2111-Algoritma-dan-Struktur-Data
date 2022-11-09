@@ -38,10 +38,8 @@ int length(Queue q) {
     // ALGORITMA
     if (isEmpty(q)) {
         return 0;
-    } else if (q.idxTail >= q.idxHead) {
-        return (q.idxTail - q.idxHead + 1);
     } else {
-        return (CAPACITY - q.idxHead + q.idxTail + 1);
+        return (q.idxTail - q.idxHead + 1);
     }
 }
 
@@ -56,7 +54,7 @@ void enqueue(Queue *q, ElType val) {
         q->idxHead = 0;
         q->idxTail = 0;
     } else {
-        q->idxTail = (q->idxTail + 1) % CAPACITY;
+        q->idxTail = q->idxTail + 1;
     }
     q->buffer[q->idxTail] = val;
 }
@@ -73,7 +71,12 @@ void dequeue(Queue *q, ElType *val) {
         q->idxHead = IDX_UNDEF;
         q->idxTail = IDX_UNDEF;
     } else {
-        q->idxHead = (q->idxHead + 1) % CAPACITY;
+        int i;
+        for(i = 0; i < length(*q); i++)
+        {
+            q->buffer[i] = q->buffer[i+1];
+        }
+        q->idxTail--;
     }
 }
 
@@ -92,7 +95,7 @@ void displayQueue(Queue q) {
     if (isEmpty(q)) {
         printf("Queue kosong\n");
     } else {
-        for (i = q.idxHead; i <= q.idxTail; i++) {
+        for (i = q.idxHead; i < length(q); i++) {
             printf("%d. %s\n", i+1, q.buffer[i]);
         }
         // else {
@@ -107,7 +110,7 @@ void displayQueue(Queue q) {
         //         }
         //     }
         // }
-        printf("]\n");
+        printf("\n");
     }
 }
 
