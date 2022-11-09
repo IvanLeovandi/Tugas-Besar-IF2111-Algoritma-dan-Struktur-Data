@@ -4,11 +4,12 @@
 #include "./adt/Mesin/mesinkata.h"
 #include "./adt/Queue/queue.h"
 #include "./STARTGAME/start.h"
+#include "./SAVE/save.h"
 #include "./CREATEGAME/creategame.h"
 #include "./LISTGAME/listgame.h"
 #include "./DELETEGAME/deletegame.h"
 #include "./QUEUEGAME/queuegame.h"
-// #include "./PLAYGAME/playgame.h"
+#include "./PLAYGAME/playgame.h"
 #include "./SKIPGAME/skipgame.h"
 #include "./QUITGAME/quitgame.h"
 #include "./HELP/help.h"
@@ -28,7 +29,7 @@ int main()
     // Memulai program
     printf("Selamat datang di BNMO.\n");
     printf("Silahkan pilih menu START atau LOAD untuk memulai program\n\n");
-    while(!loaded)
+    while(!loaded && !end)
     {
         printf("ENTER COMMAND: ");
         command = Input();
@@ -39,6 +40,10 @@ int main()
             {
                 STARTGAME(&array_game);
                 loaded = true;
+            } else if (compareSTR(command, "QUIT"))
+            {
+                quitgame(&queue_game);
+                end = true;
             } else
             {
                 command_lain();
@@ -85,15 +90,22 @@ int main()
             } else if(compareSTR(command, "QUEUE GAME"))
             {
                 queuegame(&queue_game, array_game);
+            } else if(compareSTR(command, "PLAY GAME"))
+            {
+                playgame(&queue_game);
             } else if(count_space(command) == 1)
             {
                 char *firstSTR = FirstSTR(command);
                 char *secSTR = SecSTR(command);
-                if(compareSTR(firstSTR,"SKIP"))
+                if(compareSTR(firstSTR,"SKIPGAME"))
                 {
                     int skip_num = StrToInt(secSTR);
                     skipgame(&queue_game, array_game, skip_num);
-                } else
+                } else if(compareSTR(firstSTR, "SAVE"))
+                {
+                    save(secSTR, array_game);
+                }
+                else
                 {
                     command_lain();
                 }

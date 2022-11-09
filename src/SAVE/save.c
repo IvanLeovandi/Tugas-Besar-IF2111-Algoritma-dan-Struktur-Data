@@ -23,18 +23,28 @@ F.S.: State game dan history pemain tersave ke file *.txt
     /* Membuat temp menjadi kosong */
     makeMallocEmpty(temp, tempLength);
 
-    for (i = 0; i <= arrGame.Neff; i++) {
+    temp[tempLength] = arrGame.Neff + '0';
+    temp[tempLength+1] = '\n';
+    tempLength = 2;
+
+    for (i = 0; i < arrGame.Neff; i++) {
         cnt = 0;
         /* Menghitung panjang string */
         while (arrGame.TI[i][cnt] != '\0') {
             cnt++;
         }
+        // printf("arrGame: %s\n", arrGamme.TI[i]);
 
         for (j = 0; j < cnt; j++) {
             temp[tempLength] = arrGame.TI[i][j];
             tempLength++;
         }
 
+        if (i != arrGame.Neff-1) {
+            temp[tempLength] = '\n';
+            tempLength++;
+        }
+        
         if (tempLength >= InitialSize*n) {
             /* buat string hasil malloc menjadi kosong tanpa mengubah isi temp */
             makeMallocEmpty(temp, tempLength);
@@ -43,9 +53,12 @@ F.S.: State game dan history pemain tersave ke file *.txt
     }
     
     fputs(temp, fp);
-
+   
     if (!fp) {
         printf("Failed to save.\n");
+    } else
+    {
+        printf("Save berhasil");
     }
 
     fclose(fp);

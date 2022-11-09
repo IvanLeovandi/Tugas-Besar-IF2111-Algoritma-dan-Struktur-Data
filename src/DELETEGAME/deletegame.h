@@ -1,5 +1,6 @@
 /* File game.h */
 #include "../adt/Array/array.h"
+#include "../adt/Mesin/mesinkata.h"
 #include "../adt/Queue/queue.h"
 
 #ifndef DELETEGAME_H
