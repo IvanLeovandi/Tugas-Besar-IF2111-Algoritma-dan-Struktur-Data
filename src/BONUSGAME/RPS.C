@@ -1,9 +1,10 @@
 #include "../RNG/random_number.h"
 #include "../adt/Mesin/mesinkata.h"
+#include "RPS.H"
 #include <stdio.h>
 
 int Start_RPS()
-{
+{ 
     int n,i, score,angka_bot;
     char *gerakan_pemain;
     char *gerakan_bot;
@@ -13,13 +14,13 @@ int Start_RPS()
     printf("Selamat datang di game Rock Paper Scissor!\n");
     printf("Game akan dimainkan selama 5 ronde\n");
     printf("Score akan diperoleh dengan cara :\n");
-    printf("Menang : 20\nSeri : 10\nKalah : 0");
+    printf("Menang : 20\nSeri : 10\nKalah : 0\n");
     printf("Pemain memberikan masukan 'rock' / 'paper' / 'scissor'\n");
     printf("Input bersifat case sensitive!\n");
     while (i <= 5)
     {
         printf("Round %d!\n",i);
-        printf("Pilih 'rock' / 'paper' / 'scissor' : ");
+        printf("Pilih 'rock' / 'paper' / 'scissor' :");    
         gerakan_pemain = Input();
         valid = CheckValidInput(gerakan_pemain);
         angka_bot = randomNumberMinMax(1,3); //Untuk menentukan gerakan bot
@@ -39,6 +40,7 @@ int Start_RPS()
         {
             int hasil;
             hasil = CheckHasil(gerakan_pemain,gerakan_bot);
+            printf("Bot mengeluarkan %s\n",gerakan_bot);
             if (hasil == 1)
             {
                 printf("Ronde %d seri!\n",i);
@@ -54,11 +56,15 @@ int Start_RPS()
                 printf("Ronde %d dimenangkan oleh bot!\n",i);
             }
             i++;
+            printf("\n");
         }
         else
         {
             printf("Tolong berikan input yang valid!\n");
+            printf("\n");
         }
+        reset_gerakan(gerakan_pemain);
+    }   
     return score;
 }
 
@@ -67,7 +73,7 @@ boolean CheckValidInput(char *gerakan)
     return (compareSTR(gerakan,"scissor") || compareSTR(gerakan,"rock") || compareSTR(gerakan,"paper"));
 }
 
-int CheckHasil (char* gerakan_pemain, char*gerakan_bot);
+int CheckHasil (char* gerakan_pemain, char*gerakan_bot)
 {
     if (compareSTR(gerakan_pemain,"scissor"))
     {
@@ -113,5 +119,15 @@ int CheckHasil (char* gerakan_pemain, char*gerakan_bot);
         {
             return 0;
         }   
+    }
+}
+
+void reset_gerakan(char *gerakan)
+{  
+    gerakan = (char *) malloc (str_len(gerakan) * sizeof (char));
+    int i=0;
+    for (i;i<str_len(gerakan);i++)
+    {
+        gerakan[i] = '\0';
     }
 }

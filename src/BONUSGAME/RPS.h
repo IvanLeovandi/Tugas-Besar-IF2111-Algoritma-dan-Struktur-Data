@@ -16,4 +16,6 @@ int Start_RPS();
 //I.S Game Rock Paper Scissor dimulai
 //F.S Mengemabalikan score yang diperoleh pemain
 
+void reset_gerakan(char *gerakan);
+
 #endif
