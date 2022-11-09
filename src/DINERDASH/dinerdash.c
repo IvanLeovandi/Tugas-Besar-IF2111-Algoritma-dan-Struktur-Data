@@ -4,14 +4,65 @@
 #include <stdlib.h>
 #include "dinerdash.h"
 
-void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, QueueDiner saji, int* saldo) {
+void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
+    int durasi, ketahanan, harga;
+    int lb_durasi = 1, up_durasi = 5, lb_harga = 10, up_harga = 50;
+    ElTypeDiner val;
+
+    (*id)++;
+
+    val.id_makanan = *id;
+    val.durasi = rand()%5 +1;
+    val.ketahanan = rand()%5 +1;
+    val.harga = (rand()%50 +1)*1000;
+
+    enqueueDiner(pesanan, val);
+
+    for (int i=0; i< saji->Neff; i++){
+        saji->TI[i].durasi --;
+        if (saji->TI[i].durasi == 0) {
+            for (int j = i; j < saji->Neff; j++) {
+                    saji->TI[j] = saji->TI[j+1];
+                }
+                masak->Neff--;}
+            }
+
+
+    for (int i=0; i< masak->Neff; i++){
+        masak->TI[i].durasi --;
+        if (masak->TI[i].durasi == 0) {
+            // if (masak.buffer[i].durasi == 0) {
+                /* Delete from array masak */
+                saji->Neff++;
+                saji->TI[saji->Neff].id_makanan = masak->TI[i].id_makanan;
+                saji->TI[saji->Neff].durasi = masak->TI[i].durasi;
+                saji->TI[saji->Neff].ketahanan = masak->TI[i].ketahanan;
+                saji->TI[saji->Neff].harga = masak->TI[i].harga;
+
+                int m = masak->TI[i].id_makanan;
+                printf("Makanan M%d telah selesai dimasak\n\n", m);
+
+                for (int j = i; j < masak->Neff; j++) {
+                    masak->TI[j] = masak->TI[j+1];
+                }
+                masak->Neff--;
+                // dequeueDiner(&masak, &val);
+
+
+            }
+    }
+
+}
+
+void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, int* saldo) {
     /* KAMUS LOKAL */
+    
     int i;
     /* ALGORITMA */
     printf("SALDO: %d\n\nDaftar Pesanan\n", *saldo);
     printf("Makanan | Durasi memasak | Ketahanan | Harga\n");
     printf("----------------------------------------------\n");
-    for (i = 0; i <= IDX_TAIL(pesanan); i++) {
+    for (i = 0; i < lengthDiner(pesanan); i++) {
         printf("M%d     | %d             | %d        | %d\n", pesanan.buffer[i].id_makanan, pesanan.buffer[i].durasi, pesanan.buffer[i].ketahanan, pesanan.buffer[i].harga);
     }
 
@@ -28,58 +79,65 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, QueueDiner saji, in
     printf("\nDaftar Makanan yang dapat disajikan\n");
     printf("Makanan | Sisa ketahanan makanan\n");
     printf("------------------------------\n");
-    if (isEmptyDiner(saji)) printf("        |\n");
+    if (IsEmptyDiner(saji)){ printf("        |\n");}
     else {
-        for (i = 0; i <= IDX_TAIL(saji); i++) {
-            printf("M%d     | %d\n", saji.buffer[i].id_makanan, saji.buffer[i].ketahanan);
+        for (i = 0; i <= NbElmtDiner(saji); i++) {
+            printf("M%d     | %d\n", saji.TI[i].id_makanan, saji.TI[i].ketahanan);
         }
     }
 }
 
 int main() {
     /* KAMUS LOKAL */
-    QueueDiner pesanan, saji;
-    /* pesanan nanti akan diganti jadi ArrayDiner :D rasanya bukan QueueDiner */
-    ArrayDiner masak;
+    QueueDiner pesanan;
+    ArrayDiner masak, saji;
     int saldo = 0, serve = 0, id = 0;
-    ElType val;
+    ElTypeDiner val;
     int i, j, idx;
     int lb_durasi = 1, up_durasi = 5, lb_harga = 10, up_harga = 50;
     int durasi, ketahanan, harga;
     char* perintah, *makanan, *command;
 
+    srand(time(NULL));
+
     boolean cook;
     /* ALGORITMA */
     CreateQueueDiner(&pesanan);
     MakeEmptyDiner(&masak);
-    CreateQueueDiner(&saji);
+    MakeEmptyDiner(&saji);
 
     printf("Selamat Datang di Diner Dash!\n\n");
     
 
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 2; i++) {
+        id = i;
         val.id_makanan = i;
-        val.durasi = (int)randomNumberMinMax(lb_durasi, up_durasi);
-        val.ketahanan = (int)randomNumberMinMax(lb_durasi, up_durasi);
-        val.harga = (int)randomNumberMinMax(lb_harga, up_harga) * 1000;
+        val.durasi = rand()%5 +1;
+        val.ketahanan = rand()%5 +1;
+        val.harga = (rand()%50 +1)*1000;
 
         enqueueDiner(&pesanan, val);
-        id++;
     }
 
-    while (IDX_TAIL(pesanan) <= 7 && serve != 15) {
+    while (lengthDiner(pesanan) <= 7 && serve < 15) {
+        putaran(&id, &pesanan, &masak, &saji);
+
+
         displayQueueDiner(pesanan, masak, saji, &saldo);
         printf("MASUKKAN COMMAND: ");
+
+
 
         command = Input();
         perintah = FirstSTR(command);
         makanan = SecSTR(command);
+
         char m[3] = "M";
         m[2] = '\0';
         if (compareSTR(perintah, "COOK")) {
-            idx = 0;
+            idx = makanan[1] - '0';
             cook = false;
-            while (idx < IDX_TAIL(pesanan) && !cook) {
+            while (idx < lengthDiner(pesanan) && !cook) {
                 m[1] = idx + '0';
 
                 if (compareSTR(makanan, m)) {
@@ -89,7 +147,8 @@ int main() {
                     masak.TI[NbElmtDiner(masak)].ketahanan = pesanan.buffer[idx].ketahanan;
                     masak.TI[NbElmtDiner(masak)].harga = pesanan.buffer[idx].harga;
                     
-                    printf("\nBerhasil memasak %s\n", m);
+                    // enqueueDiner(&masak, pesanan.buffer[idx]);
+                    printf("\nBerhasil memasak M%d\n", idx);
                     cook = true;
                 }
 
@@ -100,57 +159,34 @@ int main() {
         // displayQueueDiner(pesanan, masak, saji, &saldo);
 
         else if (compareSTR(perintah, "SERVE")) {
-            idx = saji.buffer[IDX_HEAD(saji)].id_makanan;
+            idx = makanan[1] - '0';
+            printf("%d", idx);
             m[1] = idx + '0';
 
             if (compareSTR(makanan, m)) {
-                if (idx <= masak.TI[0].id_makanan) {
-                    dequeueDiner(&saji, &val);
-                    dequeueDiner(&pesanan, &val);
+                if (idx == pesanan.buffer[0].id_makanan) {
+                // if (idx < masak.buffer[IDX_HEAD(masak)].id_makanan) {
+                    for (int i= 0; i < NbElmtDiner(saji); i++) {
+                        if (saji.TI[i].id_makanan == idx){
+                            for (int j=i; j<saji.Neff; j++){
+                                saji.TI[j] = saji.TI[j+1];
+                            }
+                        }
+                    }
+                    saji.Neff--;
                     printf("\nBerhasil mengantar %s\n", makanan);
                     serve++;
                     saldo += val.harga;
+
+                    dequeueDiner(&pesanan, &val);
+
                 }
                 else printf("%s belum dapat disajikan karena %s belum selesai\n", makanan);
             }
-        } else if (compareSTR(command, "SKIP")) continue;
+        }
 
         printf("==========================================================\n\n");
-        
-        val.id_makanan = id;
-        val.durasi = (int)randomNumberMinMax(lb_durasi, up_durasi);
-        val.ketahanan = (int)randomNumberMinMax(lb_durasi, up_durasi);
-        val.harga = (int)randomNumberMinMax(lb_harga, up_harga) * 1000;
-        id++;
-        enqueueDiner(&pesanan, val);
-
-        for (i = 0; i <= IDX_TAIL(saji); i++) {
-            saji.buffer[i].ketahanan--;
-            if (saji.buffer[i].ketahanan == 0) {
-                dequeueDiner(&saji, &val);
-                dequeueDiner(&pesanan, &val);
-            }
-        }
-
-        for (i = 0; i <= masak.Neff; i++) {
-            if (masak.TI[i].id_makanan != m[1] - '0') {
-                masak.TI[i].durasi--;
-            }
-            if (masak.TI[i].durasi == 0) {
-                /* Delete from array masak */
-                val.id_makanan = masak.TI[i].id_makanan;
-                val.durasi = masak.TI[i].durasi;
-                val.ketahanan = masak.TI[i].ketahanan;
-                val.harga = masak.TI[i].harga;
-                for (j = i; j <= masak.Neff; j++) {
-                    masak.TI[j] = masak.TI[j+1];
-                }
-                masak.Neff--;
-                enqueueDiner(&saji, val);
-                m[1] = val.id_makanan + '0';
-                printf("Makanan %s telah selesai dimasak\n\n", m);
-            }
-        }
+  
 
     }
 

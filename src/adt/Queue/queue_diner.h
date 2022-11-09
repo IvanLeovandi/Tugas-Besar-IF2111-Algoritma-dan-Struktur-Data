@@ -1,24 +1,19 @@
 /* File : queue_diner.h */
 /* Definisi ADT Queue dengan representasi array secara eksplisit dan alokasi statik */
 
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef QUEUEDINER_H
+#define QUEUEDINER_H
 
 #include "../../boolean.h"
+#include "../Array/array_diner.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
-typedef struct {
-    int id_makanan;
-	int durasi;
-	int ketahanan;
-	int harga;
-} ElType;
 
 typedef struct {
-	ElType buffer[CAPACITY]; 
+	ElTypeDiner buffer[CAPACITY]; 
 	int idxHead;
 	int idxTail;
 } QueueDiner;
@@ -41,6 +36,7 @@ void CreateQueueDiner(QueueDiner *q);
 /* ********* Prototype ********* */
 boolean isEmptyDiner(QueueDiner q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
+
 boolean isFullDiner(QueueDiner q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
@@ -49,12 +45,12 @@ int lengthDiner(QueueDiner q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueueDiner(QueueDiner *q, ElType val);
+void enqueueDiner(QueueDiner *q, ElTypeDiner val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeueDiner(QueueDiner *q, ElType *val);
+void dequeueDiner(QueueDiner *q, ElTypeDiner *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";

@@ -46,7 +46,7 @@ int lengthDiner(QueueDiner q) {
 }
 
 /* *** Primitif Add/Delete *** */
-void enqueueDiner(QueueDiner *q, ElType val) {
+void enqueueDiner(QueueDiner *q, ElTypeDiner val) {
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
@@ -61,7 +61,7 @@ void enqueueDiner(QueueDiner *q, ElType val) {
     q->buffer[q->idxTail] = val;
 }
 
-void dequeueDiner(QueueDiner *q, ElType *val) {
+void dequeueDiner(QueueDiner *q, ElTypeDiner *val) {
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";

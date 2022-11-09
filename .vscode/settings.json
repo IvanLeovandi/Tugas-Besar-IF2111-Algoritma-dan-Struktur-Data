@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "random_number.h": "c",
+        "dinerdash.h": "c",
+        "boolean.h": "c"
+    }
+}
