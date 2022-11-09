@@ -1,7 +1,5 @@
 // File skipgame.h
-#include <stdio.h>
-#include "../adt/Queue/queue.h"
-#include "../adt/Array/array.h"
+#include "../PLAYGAME/playgame.h"
 
 #ifndef SKIPGAME_H
 #define SKIPGAME_H

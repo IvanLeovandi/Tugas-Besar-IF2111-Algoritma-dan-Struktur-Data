@@ -5,7 +5,6 @@
 /* File ADT*/
 #include "../adt/Array/array.h"
 #include "../adt/Mesin/mesinkata.h"
-#include "../adt/Queue/queue.h"
 
 void deletegame(Array* game, Queue queue_game)
 /* 

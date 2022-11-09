@@ -59,6 +59,7 @@ int main()
         {
             command_lain();
         }
+        system("clear");
     }
 
     while(loaded && !end)
@@ -109,6 +110,7 @@ int main()
                 command_lain();
             }
         }
+        system("clear");
     }
     return 0;
 }

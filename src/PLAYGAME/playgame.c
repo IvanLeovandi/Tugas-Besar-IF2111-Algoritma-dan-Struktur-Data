@@ -6,10 +6,6 @@
 #include "../DINERDASH/dinerdash.h"
 #include "../GAMEBUATAN/game.h"
 
-/* File ADT*/
-#include "../adt/Queue/queue.h"
-#include "../adt/Array/array.h"
-
 void playgame(Queue *game, Array array_game)
 /* 
 I.S.: menerima input queue game 
