@@ -76,3 +76,37 @@ F.S.: temp menjadi kosong
         temp[i] = '\0';
     }
 }
+
+// int main() {
+//     char filename[] = "test.txt";
+//     Word recentSentence;
+//     Array arrSentence;
+//     MakeEmpty(&arrSentence);
+   
+//     // for (int num = 0; num < 2; num++) {
+//     STARTWORD();
+//     recentSentence = currentWord;
+//     printf("recentSentence: %s\n\n", recentSentence.TabWord);
+//     int n = recentSentence.TabWord[0] - '0';
+//     // ADVWORD();
+//     for (int i = 0; i < n; i++) {
+//         recentSentence.TabWord[recentSentence.Length] = '\n';
+//         int tempLength = recentSentence.Length+1;
+//         EndWord = false;
+//         // printf("Input: ");
+//         STARTWORD();
+//         int k = 0;
+//         recentSentence.Length += (currentWord.Length + 1);
+//         for (int j = tempLength; j < recentSentence.Length; j++) {
+//             recentSentence.TabWord[j] = currentWord.TabWord[k];
+//             k++;
+//         }
+//         // printf("\n%d\nrecentSentence: %s\n\n", i, recentSentence.TabWord);
+//     }
+    
+//     arrSentence.TI[arrSentence.Neff] = recentSentence.TabWord;
+//     // arrSentence.Neff++;
+//     save(filename, arrSentence);
+    
+//     return 0;
+// }
