@@ -31,8 +31,8 @@ void STARTWORD() {
         EndWord = true;
     } else {
         EndWord = false;
-        CopyWord();
     }
+    CopyWord();
 }
 
 void ADVWORD() {
@@ -168,6 +168,25 @@ char *SecSTR(char *command)
     }
     *(secSTR + j) = '\0';
     return secSTR;
+}
+
+char *concatSTR(char *awal, char *akhir)
+{
+    char *result;
+    result = (char *)malloc(50 * sizeof(char));
+    int i, j;
+    for(i = 0; i < str_len(awal); i++)
+    {
+        *(result + i) = awal[i];
+    }
+    int idx = 0;
+    for(j = i; j < str_len(awal) + str_len(akhir); j++)
+    {
+        *(result + j) = akhir[idx];
+        idx++;
+    }
+    *(result + j) = '\0';
+    return result;
 }
 
 boolean compareSTR(char* input_command, char* command_comp)

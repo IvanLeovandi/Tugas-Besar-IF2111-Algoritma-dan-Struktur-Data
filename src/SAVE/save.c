@@ -13,12 +13,12 @@ F.S.: State game dan history pemain tersave ke file *.txt
 */
     /* KAMUS LOKAL */
     char* temp;
-    temp = (char*) malloc (InitialSize *sizeof(char));
+    temp = (char*) malloc (100 *sizeof(char));
     int tempLength = 0;
     int i, j, cnt;
     int n = 0; /* jumlah sudah berapa kali temp melakukan malloc */
     /* ALGORITMA */
-    FILE *fp = fopen(filename, "w+");
+    FILE *fp = fopen(concatSTR("../data/", filename), "w+");
 
     /* Membuat temp menjadi kosong */
     makeMallocEmpty(temp, tempLength);

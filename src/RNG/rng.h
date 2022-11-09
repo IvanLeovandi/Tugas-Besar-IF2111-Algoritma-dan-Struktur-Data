@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "random_number.h"
+#include "../adt/Mesin/mesinkata.h"
 
 #ifndef RNG_H
 #define RNG_H

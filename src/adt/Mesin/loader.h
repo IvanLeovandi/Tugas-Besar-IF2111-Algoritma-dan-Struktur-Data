@@ -7,7 +7,7 @@ static FILE *tape;
 static int retval;
 
 
-void StartLOAD(char *filename);
+boolean StartLOAD(char *filename);
 
 void IgnoreNewLine();
 /* Mengabaikan satu atau beberapa BLANK

@@ -15,7 +15,7 @@ int fromStr(char *x){
         }
         return hitung;
     }
-    else {return IdxUndef;}
+    else {return IdxUndefDiner;}
 }
 
 void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
@@ -136,7 +136,7 @@ int DinerDash() {
 
         int idx = fromStr(makanan);
 
-        while ((!compareSTR(perintah, "COOK") || SearchIdIn(pesanan, idx)==IdxUndef) && (!compareSTR(perintah, "SERVE") || SearchIdArray(saji, idx)==IdxUndef || idx!=pesanan.buffer[pesanan.idxHead].id_makanan) && (!compareSTR(perintah, "SKIP"))){
+        while ((!compareSTR(perintah, "COOK") || SearchIdIn(pesanan, idx)==IdxUndefDiner) && (!compareSTR(perintah, "SERVE") || SearchIdArray(saji, idx)==IdxUndefDiner || idx!=pesanan.buffer[pesanan.idxHead].id_makanan) && (!compareSTR(perintah, "SKIP"))){
             if (compareSTR(perintah, "SERVE") && idx!=pesanan.buffer[pesanan.idxHead].id_makanan){
                 printf("%s belum dapat disajikan karena M%d belum selesai\n", makanan, pesanan.buffer[pesanan.idxHead].id_makanan);}
 

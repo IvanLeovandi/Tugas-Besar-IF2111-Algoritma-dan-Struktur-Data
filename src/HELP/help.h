@@ -1,7 +1,8 @@
+#include "../boolean.h"
 #ifndef HELP_H
 #define HELP_H
 
-void help();
+void help(boolean loaded);
 /* Prosedur melakukan print perintah-perintah yang dapat dilakukan. */
 
 #endif

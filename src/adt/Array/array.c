@@ -1,5 +1,6 @@
 /* File array.c */
 #include "array.h"
+#include "../Mesin/mesinkata.h"
 #include <stdio.h>
 
 /* ********** KONSTRUKTOR ********** */
@@ -195,4 +196,26 @@ IdxType IdxMinTab (Array T) {
         }
     }
     return indexmin;
+}
+
+boolean IsElmt(Array array_game, char *str_game)
+{
+    if(IsEmpty(array_game))
+    {
+        return false;
+    } else
+    {
+        int i = 0;
+        while(i < NbElmt(array_game) && !compareSTR(array_game.TI[i], str_game))
+        {
+            i++;
+        }
+        if(i < NbElmt(array_game))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
 }

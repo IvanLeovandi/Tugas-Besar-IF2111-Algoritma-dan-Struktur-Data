@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "../boolean.h"
 #include "../adt/Array/array.h"
 #include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/Mesin/mesinkata.h"
@@ -9,7 +9,7 @@
 #ifndef LOAD_H
 #define LOAD_H
 
-void load(Array *array_game, char *filename);
+void load(Array *array_game, char *filename, boolean isStart);
 
 // void ADVLOAD();
 // void CopyWordLOAD();

@@ -2,10 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void StartLOAD(char *filename)
+boolean StartLOAD(char *filename)
 {
     tape = fopen(filename, "r");
-    ADVLOAD();
+    if(tape != NULL)
+    {
+        ADVLOAD();
+        return true;
+    } else
+    {
+        return false;
+    }
 }
 
 void IgnoreNewLine() {
