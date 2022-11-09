@@ -39,14 +39,16 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
                 saji->TI[saji->Neff].ketahanan = masak->TI[i].ketahanan;
                 saji->TI[saji->Neff].harga = masak->TI[i].harga;
 
+                int m = masak->TI[i].id_makanan;
+                printf("Makanan M%d telah selesai dimasak\n\n", m);
+
                 for (int j = i; j < masak->Neff; j++) {
                     masak->TI[j] = masak->TI[j+1];
                 }
                 masak->Neff--;
                 // dequeueDiner(&masak, &val);
 
-                int m = val.id_makanan;
-                printf("Makanan M%02d telah selesai dimasak\n\n", m);
+
             }
     }
 
@@ -61,7 +63,7 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, in
     printf("Makanan | Durasi memasak | Ketahanan | Harga\n");
     printf("----------------------------------------------\n");
     for (i = 0; i < lengthDiner(pesanan); i++) {
-        printf("M%02d     | %d             | %d        | %d\n", pesanan.buffer[i].id_makanan, pesanan.buffer[i].durasi, pesanan.buffer[i].ketahanan, pesanan.buffer[i].harga);
+        printf("M%d     | %d             | %d        | %d\n", pesanan.buffer[i].id_makanan, pesanan.buffer[i].durasi, pesanan.buffer[i].ketahanan, pesanan.buffer[i].harga);
     }
 
     printf("\nDaftar Makanan yang sedang dimasak\n");
@@ -70,7 +72,7 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, in
     if (IsEmptyDiner(masak)) printf("        |\n");
     else {
         for (i = 0; i <= masak.Neff; i++) {
-            printf("M%02d     | %d\n", masak.TI[i].id_makanan, masak.TI[i].durasi);
+            printf("M%d     | %d\n", masak.TI[i].id_makanan, masak.TI[i].durasi);
         }
     }
 
@@ -80,7 +82,7 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, in
     if (IsEmptyDiner(saji)){ printf("        |\n");}
     else {
         for (i = 0; i <= NbElmtDiner(saji); i++) {
-            printf("M%02d     | %d\n", saji.TI[i].id_makanan, saji.TI[i].ketahanan);
+            printf("M%d     | %d\n", saji.TI[i].id_makanan, saji.TI[i].ketahanan);
         }
     }
 }
@@ -146,7 +148,7 @@ int main() {
                     masak.TI[NbElmtDiner(masak)].harga = pesanan.buffer[idx].harga;
                     
                     // enqueueDiner(&masak, pesanan.buffer[idx]);
-                    printf("\nBerhasil memasak %s\n", m);
+                    printf("\nBerhasil memasak M%d\n", idx);
                     cook = true;
                 }
 
