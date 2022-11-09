@@ -8,32 +8,40 @@
 
 /* File ADT*/
 #include "../adt/Queue/queue.h"
-#include "../adt/Array/array.h"
 
-void playgame(Queue *game, Array array_game)
+void playgame(Queue *game)
 /* 
 I.S.: menerima input queue game 
 F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam name
 */
 {
     ElType val;
-    printf("Berikut adalah daftar Game-mu");
+    printf("Berikut adalah daftar Game-mu\n");
     displayQueue(*game);
-    dequeue(game, &val);
-    if(val == "RNG")
+    if(isEmpty(*game))
     {
-        rng();
-    } 
+        printf("Silahkan tambahkan game ke antrian terlebih dahulu");
+    }
     // else if(val == "Diner DASH")
     // {
     //     main();
     // } 
-    else if(val == "DINOSAUR IN EARTH" || val == "RISEWOMAN" || val == "EIFFEL TOWER")
+    else 
     {
-        printf("Game %s masih dalam maintenance, belum dapat dimainkan.\n", val);
-        printf("Silahkan pilih game lain.");
-    } else
-    {
-        game_buatan(val);
+        dequeue(game, &val);
+        if(compareSTR(val, "RNG"))
+        {
+            printf("Loading... %s\n", val);
+            rng();
+        } 
+        else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
+        {
+            printf("Game %s masih dalam maintenance, belum dapat dimainkan.\n", val);
+            printf("Silahkan pilih game lain.");
+        }
+        else
+        {
+            game_buatan(val);
+        }
     }
 }

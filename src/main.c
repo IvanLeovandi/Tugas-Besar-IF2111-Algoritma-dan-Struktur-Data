@@ -9,7 +9,7 @@
 #include "./LISTGAME/listgame.h"
 #include "./DELETEGAME/deletegame.h"
 #include "./QUEUEGAME/queuegame.h"
-// #include "./PLAYGAME/playgame.h"
+#include "./PLAYGAME/playgame.h"
 #include "./SKIPGAME/skipgame.h"
 #include "./QUITGAME/quitgame.h"
 #include "./HELP/help.h"
@@ -89,6 +89,9 @@ int main()
             } else if(compareSTR(command, "QUEUE GAME"))
             {
                 queuegame(&queue_game, array_game);
+            } else if(compareSTR(command, "PLAY GAME"))
+            {
+                playgame(&queue_game);
             } else if(count_space(command) == 1)
             {
                 char *firstSTR = FirstSTR(command);
