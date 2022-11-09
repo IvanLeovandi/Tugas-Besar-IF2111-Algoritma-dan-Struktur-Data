@@ -3,7 +3,6 @@
 #include "creategame.h"
 
 /* File ADT*/
-#include "../adt/Array/array.h"
 #include "../adt/Mesin/mesinkata.h"
 
 void creategame (Array *game)
