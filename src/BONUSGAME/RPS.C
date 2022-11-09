@@ -1,5 +1,3 @@
-#include "../RNG/random_number.h"
-#include "../adt/Mesin/mesinkata.h"
 #include <stdio.h>
 
 int Start_RPS()
