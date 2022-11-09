@@ -6,7 +6,7 @@
 
 #include "save.h"
 
-void save(char* filename, Array arrGame, Array arrHistory) {
+void save(char* filename, Array arrGame) {
 /*
 I.S.: file *.txt kosong atau sudah terisi
 F.S.: State game dan history pemain tersave ke file *.txt
@@ -23,41 +23,28 @@ F.S.: State game dan history pemain tersave ke file *.txt
     /* Membuat temp menjadi kosong */
     makeMallocEmpty(temp, tempLength);
 
-    for (i = 0; i <= arrGame.Neff; i++) {
+    temp[tempLength] = arrGame.Neff + '0';
+    temp[tempLength+1] = '\n';
+    tempLength = 2;
+
+    for (i = 0; i < arrGame.Neff; i++) {
         cnt = 0;
         /* Menghitung panjang string */
         while (arrGame.TI[i][cnt] != '\0') {
             cnt++;
         }
+        // printf("arrGame: %s\n", arrGamme.TI[i]);
 
         for (j = 0; j < cnt; j++) {
             temp[tempLength] = arrGame.TI[i][j];
             tempLength++;
         }
 
-        temp[tempLength] = 0x0A;
-        tempLength++;
-        if (tempLength >= InitialSize*n) {
-            /* buat string hasil malloc menjadi kosong tanpa mengubah isi temp */
-            makeMallocEmpty(temp, tempLength);
-            n++;
-        }
-    }
-    
-    for (i = 0; i <= arrHistory.Neff; i++) {
-        cnt = 0;
-        /* Menghitung panjang string */
-        while (arrHistory.TI[i][cnt] != '\0') {
-            cnt++;
-        }
-
-        for (j = 0; j < cnt; j++) {
-            temp[tempLength] = arrHistory.TI[i][j];
+        if (i != arrGame.Neff-1) {
+            temp[tempLength] = '\n';
             tempLength++;
         }
-
-        temp[tempLength] = 0x0A;
-        tempLength++;
+        
         if (tempLength >= InitialSize*n) {
             /* buat string hasil malloc menjadi kosong tanpa mengubah isi temp */
             makeMallocEmpty(temp, tempLength);
@@ -66,9 +53,12 @@ F.S.: State game dan history pemain tersave ke file *.txt
     }
     
     fputs(temp, fp);
-
+   
     if (!fp) {
         printf("Failed to save.\n");
+    } else
+    {
+        printf("Save berhasil");
     }
 
     fclose(fp);
@@ -86,3 +76,37 @@ F.S.: temp menjadi kosong
         temp[i] = '\0';
     }
 }
+
+// int main() {
+//     char filename[] = "test.txt";
+//     Word recentSentence;
+//     Array arrSentence;
+//     MakeEmpty(&arrSentence);
+   
+//     // for (int num = 0; num < 2; num++) {
+//     STARTWORD();
+//     recentSentence = currentWord;
+//     printf("recentSentence: %s\n\n", recentSentence.TabWord);
+//     int n = recentSentence.TabWord[0] - '0';
+//     // ADVWORD();
+//     for (int i = 0; i < n; i++) {
+//         recentSentence.TabWord[recentSentence.Length] = '\n';
+//         int tempLength = recentSentence.Length+1;
+//         EndWord = false;
+//         // printf("Input: ");
+//         STARTWORD();
+//         int k = 0;
+//         recentSentence.Length += (currentWord.Length + 1);
+//         for (int j = tempLength; j < recentSentence.Length; j++) {
+//             recentSentence.TabWord[j] = currentWord.TabWord[k];
+//             k++;
+//         }
+//         // printf("\n%d\nrecentSentence: %s\n\n", i, recentSentence.TabWord);
+//     }
+    
+//     arrSentence.TI[arrSentence.Neff] = recentSentence.TabWord;
+//     // arrSentence.Neff++;
+//     save(filename, arrSentence);
+    
+//     return 0;
+// }
