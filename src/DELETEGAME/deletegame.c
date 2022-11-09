@@ -2,11 +2,6 @@
 #include <stdio.h>
 #include "deletegame.h"
 
-/* File ADT*/
-#include "../adt/Array/array.h"
-#include "../adt/Mesin/mesinkata.h"
-#include "../adt/Queue/queue.h"
-
 void deletegame(Array* game, Queue queue_game)
 /* 
 I.S.: input list game yang akan dihapus dan nomor dari list tersebut
