@@ -4,6 +4,7 @@
 #include "./adt/Mesin/mesinkata.h"
 #include "./adt/Queue/queue.h"
 #include "./STARTGAME/start.h"
+#include "./SAVE/save.h"
 #include "./CREATEGAME/creategame.h"
 #include "./LISTGAME/listgame.h"
 #include "./DELETEGAME/deletegame.h"
@@ -96,7 +97,11 @@ int main()
                 {
                     int skip_num = StrToInt(secSTR);
                     skipgame(&queue_game, array_game, skip_num);
-                } else
+                } else if(compareSTR(firstSTR, "SAVE"))
+                {
+                    save(secSTR, array_game);
+                }
+                else
                 {
                     command_lain();
                 }

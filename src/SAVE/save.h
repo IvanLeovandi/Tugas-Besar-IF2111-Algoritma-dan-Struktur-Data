@@ -1,5 +1,5 @@
 /* File save.h */
-#include "boolean.h"
+#include "../boolean.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../adt/Array/array.h"
 
@@ -8,10 +8,10 @@
 
 #define InitialSize 10
 
-void save(char* filename, Array arrGame, Array arrHistory);
+void save(char* filename, Array arrGame);
 /*
 I.S.: file *.txt kosong atau sudah terisi
-F.S.: State game dan history pemain tersave ke file *.txt
+F.S.: State game tersave ke file *.txt
 */
 
 void makeMallocEmpty(char* temp, int len);

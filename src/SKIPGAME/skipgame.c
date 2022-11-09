@@ -24,6 +24,6 @@ F.S.: Program akan melakukan dequeue sebanyak n kali dari antrian game yang dima
         {
             dequeue(q, &val);
         }
-        playgame(q, array_game);
+        // playgame(q, array_game);
     }
 }
