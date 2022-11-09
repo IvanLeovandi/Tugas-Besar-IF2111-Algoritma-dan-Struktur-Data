@@ -11,7 +11,10 @@ F.S.: Program akan melakukan dequeue sebanyak n kali dari antrian game yang dima
 {
     if(isEmpty(*q))
     {
-        printf("Tidak ada permainan lagi dalam daftar antrian kamu.");
+        printf("Tidak ada permainan lagi dalam daftar antrian kamu.\n");
+    } else if(n > CAPACITY)
+    {
+        printf("Masukan tidak valid.\n");
     } else
     {
         ElType val;
@@ -20,6 +23,6 @@ F.S.: Program akan melakukan dequeue sebanyak n kali dari antrian game yang dima
         {
             dequeue(q, &val);
         }
-        // playgame(q, array_game);
+        playgame(q);
     }
 }

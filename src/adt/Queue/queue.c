@@ -121,8 +121,8 @@ boolean SearchElmtQueue(Queue q, char *str)
         return false;
     } else
     {
-        int i = 1;
-        while(i <= length(q) && q.buffer[i] != str)
+        int i = 0;
+        while(i < length(q) && q.buffer[i] != str)
         {
             i++;
         }

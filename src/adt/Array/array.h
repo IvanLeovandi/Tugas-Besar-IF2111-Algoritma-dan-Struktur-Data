@@ -122,4 +122,6 @@ IdxType IdxMinTab (Array T);
 /* Mengirimkan indeks i */
 /* dengan elemen ke-i nilai minimum pada tabel */
 
+boolean IsElmt(Array array_game, char *str_game);
+
 #endif

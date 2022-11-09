@@ -13,7 +13,13 @@ F.S.: Program menambahkan nama game ke list game
 {
     printf("Masukkan nama game yang akan ditambahkan: ");
     char* name = Input();
-    SetEl(game, NbElmt(*game), name);
-    SetNeff(game, NbElmt(*game) +1);
-    printf("Game berhasil ditambahkan");
+    if(IsElmt(*game, name))
+    {
+        printf("Game sudah ditambahkan, silahkan masukan nama game yang lain\n");
+    } else
+    {
+        SetEl(game, NbElmt(*game), name);
+        SetNeff(game, NbElmt(*game) +1);
+        printf("Game berhasil ditambahkan\n");
+    }
 }

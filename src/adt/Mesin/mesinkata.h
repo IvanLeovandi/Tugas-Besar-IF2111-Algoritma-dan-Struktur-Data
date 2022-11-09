@@ -68,4 +68,6 @@ boolean isInt(char *str_int);
 
 int StrToInt(char *str);
 
+char *concatSTR(char *awal, char *akhir);
+
 #endif

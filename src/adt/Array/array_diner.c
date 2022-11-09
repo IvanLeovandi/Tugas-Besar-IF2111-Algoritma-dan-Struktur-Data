@@ -6,7 +6,7 @@
 /* Konstruktor : create tabel kosong */
 void MakeEmptyDiner (ArrayDiner *T) {
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMaxDiner-IdxMinDiner+1 */
     // KAMUS LOKAL
     // ALGORITMA
     T->Neff = 0;
@@ -27,7 +27,7 @@ int MaxNbElDiner (ArrayDiner T) {
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
     // KAMUS LOKAL
     // ALGORITMA
-    return IdxMax - IdxMin + 1;
+    return IdxMaxDiner - IdxMinDiner + 1;
 }
 
 /* *** Selektor INDEKS *** */
@@ -36,7 +36,7 @@ IdxType GetFirstIdxDiner (ArrayDiner T) {
 /* Mengirimkan indeks elemen pertama */
     // KAMUS LOKAL
     // ALGORITMA
-    return IdxMin;
+    return IdxMinDiner;
 }
 
 IdxType GetLastIdxDiner (ArrayDiner T) {
@@ -64,7 +64,7 @@ boolean IsIdxValidDiner (ArrayDiner T, IdxType i) {
 /* yaitu antara indeks yang terdefinisi utk container*/
     // KAMUS LOKAL
     // ALGORITMA
-    return (i >= IdxMin && i <= IdxMax);
+    return (i >= IdxMinDiner && i <= IdxMaxDiner);
 }
 
 boolean IsIdxEffDiner (ArrayDiner T, IdxType i) {
@@ -73,7 +73,7 @@ boolean IsIdxEffDiner (ArrayDiner T, IdxType i) {
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
     // KAMUS LOKAL
     // ALGORITMA
-    return (i >= IdxMin && i <= T.Neff);
+    return (i >= IdxMinDiner && i <= T.Neff);
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
@@ -90,7 +90,7 @@ boolean IsFullDiner (ArrayDiner T) {
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
     // KAMUS LOKAL
     // ALGORITMA
-    return T.Neff == IdxMax;
+    return T.Neff == IdxMaxDiner;
 }
 
 void AddEl(ArrayDiner *T, ElTypeDiner val){
@@ -124,5 +124,5 @@ int SearchIdArray(ArrayDiner T, int id){
             return i;
         }
     }
-    return IdxUndef;
+    return IdxUndefDiner;
 }

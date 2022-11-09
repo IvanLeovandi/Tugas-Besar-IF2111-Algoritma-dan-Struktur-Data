@@ -28,22 +28,25 @@ int main()
 
     // Memulai program
     printf("Selamat datang di BNMO.\n");
-    printf("Silahkan pilih menu START atau LOAD untuk memulai program\n\n");
+    printf("Silahkan pilih menu START atau LOAD untuk memulai program\n");
     while(!loaded && !end)
     {
-        printf("ENTER COMMAND: ");
+        printf("\nENTER COMMAND: ");
         command = Input();
         printf("--------------------------\n");
         if(count_space(command) == 0)
         {
             if (compareSTR(command, "START"))
             {
-                STARTGAME(&array_game);
+                STARTGAME(&array_game, true);
                 loaded = true;
             } else if (compareSTR(command, "QUIT"))
             {
                 quitgame(&queue_game);
                 end = true;
+            } else if(compareSTR(command, "HELP"))
+            {
+                help(loaded);
             } else
             {
                 command_lain();
@@ -54,11 +57,14 @@ int main()
             char *secSTR = SecSTR(command);
             if(compareSTR(firstSTR,"LOAD"))
             {
-                load(&array_game, secSTR);
-                loaded = true;
+                load(&array_game, secSTR, false);
+                if(array_game.Neff != 0)
+                {
+                    loaded = true;
+                }
             } else
             {
-                command_lain;
+                command_lain();
             }
         } else
         {
@@ -111,7 +117,7 @@ int main()
             }
             else if(compareSTR(command, "HELP"))
             {
-                help();
+                help(loaded);
             } else if(compareSTR(command, "QUIT"))
             {
                 quitgame(&queue_game);

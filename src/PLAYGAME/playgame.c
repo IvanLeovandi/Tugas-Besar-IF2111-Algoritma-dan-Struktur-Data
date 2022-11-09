@@ -13,12 +13,8 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
     displayQueue(*game);
     if(isEmpty(*game))
     {
-        printf("Silahkan tambahkan game ke antrian terlebih dahulu");
+        printf("Silahkan tambahkan game ke antrian terlebih dahulu.\n");
     }
-    // else if(val == "Diner DASH")
-    // {
-    //     main();
-    // } 
     else 
     {
         dequeue(game, &val);
@@ -26,11 +22,19 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         {
             printf("Loading... %s\n", val);
             rng();
+        } else if(compareSTR(val, "Diner DASH"))
+        {
+            printf("Loading... %s\n", val);
+            DinerDash();
         } 
         else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
         {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan.\n", val);
-            printf("Silahkan pilih game lain.");
+            printf("Silahkan pilih game lain.\n");
+        } else if(compareSTR(val, "RPS"))
+        {
+            printf("Loading... %s\n", val);
+            Start_RPS();
         }
         else
         {

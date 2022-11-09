@@ -6,9 +6,9 @@
 
 /* Kamus Umum */
 
-#define IdxMax 100
-#define IdxMin 0
-#define IdxUndef -1 /* indeks tak terdefinisi*/
+#define IdxMaxDiner 100
+#define IdxMinDiner 0
+#define IdxUndefDiner -1 /* indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;
@@ -21,11 +21,11 @@ typedef struct {
 } ElTypeDiner;
 
 typedef struct {
-    ElTypeDiner TI [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
+    ElTypeDiner TI [IdxMaxDiner-IdxMinDiner+1]; /* memori tempat penyimpan elemen (container) */
     int Neff; /* banyaknya elemen efektif */
 } ArrayDiner;
 
-/* Indeks yang digunakan [IdxMin..IdxMax] */
+/* Indeks yang digunakan [IdxMinDiner..IdxMaxDiner] */
 /* Jika T adalah Array, cara deklarasi dan akses: */
 /* Deklarasi : T : Array */
 /* Maka cara akses:
@@ -41,7 +41,7 @@ typedef struct {
 /* Konstruktor : create tabel kosong */
 void MakeEmptyDiner (ArrayDiner *T);
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMaxDiner-IdxMinDiner+1 */
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */

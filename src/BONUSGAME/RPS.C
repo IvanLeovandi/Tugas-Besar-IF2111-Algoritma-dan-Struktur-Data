@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include "RPS.h"
 
-int Start_RPS()
-{ 
+void Start_RPS()
+{
     int n,i, score,angka_bot;
     char *gerakan_pemain;
     char *gerakan_bot;
@@ -51,6 +52,7 @@ int Start_RPS()
             else if (hasil == 0)
             {
                 printf("Ronde %d dimenangkan oleh bot!\n",i);
+                printf("\n");
             }
             i++;
             printf("\n");
@@ -60,9 +62,8 @@ int Start_RPS()
             printf("Tolong berikan input yang valid!\n");
             printf("\n");
         }
-        reset_gerakan(gerakan_pemain);
-    }   
-    return score;
+    }
+    printf("Score anda : %d", score);
 }
 
 boolean CheckValidInput(char *gerakan)

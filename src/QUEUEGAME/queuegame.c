@@ -18,16 +18,16 @@ F.S.: Program akan melakukan enqueue game ke-num;
 {
     if(isEmpty(*q))
     {
-        printf("Belum ada game yang terdaftar pada antrian.");
+        printf("Belum ada game yang terdaftar pada antrian.\n");
     } else
     {
         displayQueue(*q);
     }
     listgame(array_game);
-    printf("Nomor Game yang mau ditambahkan ke antrian: ");
+    printf("\nNomor Game yang mau ditambahkan ke antrian: ");
     char *strnum = Input();
     int num = StrToInt(strnum);
-    if(num <= NbElmt(array_game))
+    if(num <= NbElmt(array_game) && num > 0)
     {
         enqueue(q, array_game.TI[num-1]);
         printf("Game berhasil ditambahkan kedalam daftar antrian");
