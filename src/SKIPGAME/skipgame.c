@@ -1,11 +1,7 @@
 /* File skipgame.c */
 #include <stdio.h>
 #include "skipgame.h"
-#include "../PLAYGAME/playgame.h"
 
-/* File ADT*/
-#include "../adt/Queue/queue.h"
-#include "../adt/Array/array.h"
 
 void skipgame (Queue *q, Array array_game, int n)
 /* 
