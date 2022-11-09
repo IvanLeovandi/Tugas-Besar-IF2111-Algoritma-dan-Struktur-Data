@@ -20,7 +20,7 @@ int Start_RPS()
     while (i <= 5)
     {
         printf("Round %d!\n",i);
-        printf("Pilih 'rock' / 'paper' / 'scissor' :");    
+        printf("Pilih 'rock' / 'paper' / 'scissor' : ");    
         gerakan_pemain = Input();
         valid = CheckValidInput(gerakan_pemain);
         angka_bot = randomNumberMinMax(1,3); //Untuk menentukan gerakan bot

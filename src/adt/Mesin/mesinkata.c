@@ -31,8 +31,8 @@ void STARTWORD() {
         EndWord = true;
     } else {
         EndWord = false;
-        CopyWord();
     }
+    CopyWord();
 }
 
 void ADVWORD() {
