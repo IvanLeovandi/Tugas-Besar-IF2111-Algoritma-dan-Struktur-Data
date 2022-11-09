@@ -1,12 +1,8 @@
 /* File load.c */
-#include "../adt/Array/array.h"
-#include "../adt/Mesin/mesinkarakter.h"
-#include "../adt/Mesin/mesinkata.h"
-#include "load.h"
-#include "../adt/Mesin/loader.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+#include "load.h"
+
 
 static FILE *tape;
 static int retval;
@@ -35,19 +31,3 @@ void load(Array *array_game, char *filename) {
     }
 }
 
-// int main()
-// {
-//     Array a;
-//     MakeEmpty(&a);
-//     load(&a, "../data/config.txt");
-
-//     printf("Neff: %d\n", a.Neff);
-//     int i;
-//     for(i = 0; i < a.Neff; i++)
-//     printf("%s\n", a.TI[i]);
-
-//     // TulisIsi(a);
-
-//     return 0;
-
-// }
