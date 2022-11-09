@@ -93,7 +93,7 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, in
     }
 }
 
-int main() {
+int DinerDash() {
     /* KAMUS LOKAL */
     QueueDiner pesanan;
     ArrayDiner masak, saji;
