@@ -4,87 +4,183 @@
 #include <stdlib.h>
 #include "dinerdash.h"
 
-int main() {
-    /* KAMUS LOKAL */
-    QueueDiner pesanan, masak, saji;
-    int saldo = 0;
-    ElType id;
-    ElType **val;
-    int i, idx;
-    int lb_durasi = 1, up_durasi = 5, lb_harga = 10000, up_harga = 50000;
-    int durasi, ketahanan, harga;
-    char* perintah, *makanan, *command;
-    /* ALGORITMA */
-    CreateQueue(&pesanan);
-    CreateQueue(&masak);
-    CreateQueue(&saji);
+int fromStr(char *x){
+    if (x[0]=='M'){
+        int i=1;
+        int hitung = 0;
+        while (x[i]!= '\0'){
+            hitung *= 10;
+            hitung += x[i] - '0';
+            i++;
+        }
+        return hitung;
+    }
+    else {return IdxUndef;}
+}
 
-    printf("Selamat Datang di Diner Dash!\n\n");
-    printf("SALDO: %d\n\nDaftar Pesanan\n", saldo);
+void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
+    int durasi, ketahanan, harga;
+    int lb_durasi = 1, up_durasi = 5, lb_harga = 10, up_harga = 50;
+    ElTypeDiner val;
+
+    (*id)++;
+
+    val.id_makanan = *id;
+    val.durasi = rand()%5 +1;
+    val.ketahanan = rand()%5 +1;
+    val.harga = (rand()%50 +1)*1000;
+
+    enqueueDiner(pesanan, val);
+
+    for (int i=0; i< saji->Neff; i++){
+        saji->TI[i].durasi --;
+        if (saji->TI[i].durasi == 0) {
+            DelEl(saji, &val, i);
+            i--; 
+            }
+    }
+
+
+    for (int i=0; i< masak->Neff; i++){
+        masak->TI[i].durasi --;
+        if (masak->TI[i].durasi == 0) {
+
+                AddEl(saji, masak->TI[i]);
+                DelEl(masak, &val, i);
+
+                i--;
+
+                int m = val.id_makanan;
+                printf("Makanan M%d telah selesai dimasak\n\n", m);
+
+            }
+    }
+
+}
+
+void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, int* saldo) {
+    /* KAMUS LOKAL */
+    
+    int i;
+    /* ALGORITMA */
+    printf("SALDO: %d\n\nDaftar Pesanan\n", *saldo);
     printf("Makanan | Durasi memasak | Ketahanan | Harga\n");
     printf("----------------------------------------------\n");
-
-    for (i = 0; i < 3; i++) {
-        id = i;
-        durasi = (int)randomNumberMinMax(lb_durasi, up_durasi);
-        ketahanan = (int)randomNumberMinMax(lb_durasi, up_durasi);
-        harga = (int)randomNumberMinMax(lb_harga, up_harga);
-
-        enqueue4(&pesanan, id, durasi, ketahanan, harga);
+    for (i = 0; i < lengthDiner(pesanan); i++) {
+        int j = pesanan.idxHead+i % CAPACITY;
+        printf("M%d     | %d             | %d        | %d\n", pesanan.buffer[j].id_makanan, pesanan.buffer[j].durasi, pesanan.buffer[j].ketahanan, pesanan.buffer[j].harga);
     }
-    displayQueue4(pesanan);
 
     printf("\nDaftar Makanan yang sedang dimasak\n");
     printf("Makanan | Sisa durasi memasak\n");
     printf("------------------------------\n");
-    displayQueue2(masak);
+    
+    if (IsEmptyDiner(masak)) printf("        |\n");
+    else {
+        for (i = 0; i < NbElmtDiner(masak); i++) {
+            printf("M%d     | %d\n", masak.TI[i].id_makanan, masak.TI[i].durasi);
+        }
+    }
 
     printf("\nDaftar Makanan yang dapat disajikan\n");
     printf("Makanan | Sisa ketahanan makanan\n");
     printf("------------------------------\n");
-    displayQueue2(saji);
-    
-    printf("MASUKKAN COMMAND: ");
-
-    command = Input();
-    perintah = FirstSTR(command);
-    makanan = SecSTR(command);
-    char m[2] = "M";
-    if (compareSTR(perintah, "COOK")) {
-        idx = pesanan.buffer[IDX_HEAD(pesanan)][0];
-        m[1] = idx + '0';
-        
-        if (compareSTR(makanan, m)) {
-            enqueue2(&masak, idx, pesanan.buffer[idx][1]);
-            printf("\nBerhasil memasak %s\n", m);
-        }
-        else printf("%s belum dapat dimasak karena %s belum selesai\n", makanan, m);
-
-    } else if (compareSTR(perintah, "SERVE")) {
-        idx = IDX_HEAD(saji);
-        m[1] = idx + '0';
-
-        if (compareSTR(makanan, m)) {
-            dequeue(&saji, val);
-            dequeue(&pesanan, val);
-            printf("\nBerhasil mengantar %s\n", m);
-
-            // Belum selesai
-            idx = pesanan.buffer[IDX_HEAD(pesanan)][0];
-            enqueue2(&masak, idx, pesanan.buffer[idx][1]);
-            m[1] = pesanan.buffer[IDX_HEAD(pesanan)][0] + '0';
-            printf("Berhasil memasak %s\n", m);
+    if (IsEmptyDiner(saji)){ printf("        |\n");}
+    else {
+        for (i = 0; i < NbElmtDiner(saji); i++) {
+            printf("M%d     | %d\n", saji.TI[i].id_makanan, saji.TI[i].ketahanan);
         }
     }
+}
 
-    printf("==========================================================\n\n");
+int main() {
+    /* KAMUS LOKAL */
+    QueueDiner pesanan;
+    ArrayDiner masak, saji;
+    int saldo = 0, serve = 0, idpesanan = 0;
+    ElTypeDiner val;
+    int i, j, idx;
+    int lb_durasi = 1, up_durasi = 5, lb_harga = 10, up_harga = 50;
+    int durasi, ketahanan, harga;
+    char* perintah, *makanan, *command;
 
-    // /* Hanya buat cek isi queue */
-    // for (i = 0; i <= IDX_TAIL(pesanan); i++) {
-    //     for (int j = 0; j < 4; j++) {
-    //         printf("%d ", pesanan.buffer[i][j]);
-    //     }
-    // }
+    srand(time(NULL));
+
+    boolean cook;
+    /* ALGORITMA */
+    CreateQueueDiner(&pesanan);
+    MakeEmptyDiner(&masak);
+    MakeEmptyDiner(&saji);
+
+    printf("Selamat Datang di Diner Dash!\n\n");
+    
+
+    for (i = 0; i < 3; i++) {
+        idpesanan = i;
+        val.id_makanan = i;
+        val.durasi = rand()%5 +1;
+        val.ketahanan = rand()%5 +1;
+        val.harga = (rand()%50 +1)*1000;
+
+        enqueueDiner(&pesanan, val);
+    }
+
+    while (lengthDiner(pesanan) <= 7 && serve < 15) {
+        displayQueueDiner(pesanan, masak, saji, &saldo);
+        
+        printf("MASUKKAN COMMAND: ");
+
+        command = Input();
+        perintah = FirstSTR(command);
+        makanan = SecSTR(command);
+
+        int idx = fromStr(makanan);
+
+        while ((!compareSTR(perintah, "COOK") || SearchIdIn(pesanan, idx)==IdxUndef) && (!compareSTR(perintah, "SERVE") || SearchIdArray(saji, idx)==IdxUndef || idx!=pesanan.buffer[pesanan.idxHead].id_makanan) && (!compareSTR(perintah, "SKIP"))){
+            if (compareSTR(perintah, "SERVE") && idx!=pesanan.buffer[pesanan.idxHead].id_makanan){
+                printf("%s belum dapat disajikan karena M%d belum selesai\n", makanan, pesanan.buffer[pesanan.idxHead].id_makanan);}
+
+            else{
+            printf("\nMasukan tidak valid. Silahkan coba lagi.\n");}
+            printf("MASUKKAN COMMAND: ");
+
+
+            command = Input();
+            perintah = FirstSTR(command);
+            makanan = SecSTR(command);
+        }
+
+        putaran(&idpesanan, &pesanan, &masak, &saji);
+
+
+        if (compareSTR(perintah, "COOK")) {
+                AddEl(&masak, pesanan.buffer[SearchIdIn(pesanan, idx)]);
+                    
+                printf("\nBerhasil memasak %s\n", makanan);              
+            
+        }
+
+        // displayQueueDiner(pesanan, masak, saji, &saldo);
+
+        else if (compareSTR(perintah, "SERVE")) {
+
+            DelEl(&saji, &val, SearchIdArray(saji, idx));
+            printf("\nBerhasil mengantar %s\n", makanan);
+            serve++;
+            saldo += val.harga;
+            dequeueDiner(&pesanan, &val);
+            
+        }
+
+        else if (compareSTR(perintah, "SKIP")){
+            printf("\nSkip berhasil\n");
+        }
+
+        printf("==========================================================\n\n");
+  
+    }
+
+    printf("GAME OVER!!!\n\nSkor akhir: %d\n\n", saldo);
 
     return 0;
 }

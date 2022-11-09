@@ -139,7 +139,7 @@ char *FirstSTR(char *command)
     int i = 0;
     char *firstSTR;
     firstSTR = (char*) malloc(50*sizeof(char));
-    while(command[i] != BLANK)
+    while(command[i] != BLANK && command[i]!= '\0')
     {
         *(firstSTR + i) = command[i];
         i++;
@@ -154,11 +154,12 @@ char *SecSTR(char *command)
     int j = 0;
     char *secSTR;
     secSTR = (char*) malloc(50*sizeof(char));
-    while(command[i] != BLANK)
+    while(command[i] != BLANK && command[i] != '\0')
     {
         i++;
     }
-    i++;
+    while(command[i] == BLANK) {i++;}
+
     while(command[i] != '\0')
     {
         secSTR[j] = command[i];
