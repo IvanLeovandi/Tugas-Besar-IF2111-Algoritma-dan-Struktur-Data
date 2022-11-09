@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "random_number.h"
 
 #ifndef RNG_H
 #define RNG_H
