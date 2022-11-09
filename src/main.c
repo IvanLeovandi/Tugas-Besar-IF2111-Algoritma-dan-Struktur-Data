@@ -28,7 +28,7 @@ int main()
     // Memulai program
     printf("Selamat datang di BNMO.\n");
     printf("Silahkan pilih menu START atau LOAD untuk memulai program\n\n");
-    while(!loaded)
+    while(!loaded && !end)
     {
         printf("ENTER COMMAND: ");
         command = Input();
@@ -39,6 +39,10 @@ int main()
             {
                 STARTGAME(&array_game);
                 loaded = true;
+            } else if (compareSTR(command, "QUIT"))
+            {
+                quitgame(&queue_game);
+                end = true;
             } else
             {
                 command_lain();
@@ -88,7 +92,7 @@ int main()
             {
                 char *firstSTR = FirstSTR(command);
                 char *secSTR = SecSTR(command);
-                if(compareSTR(firstSTR,"SKIP"))
+                if(compareSTR(firstSTR,"SKIPGAME"))
                 {
                     int skip_num = StrToInt(secSTR);
                     skipgame(&queue_game, array_game, skip_num);

@@ -102,21 +102,12 @@ char* Input() // with no space
     return command;
 }
 
-// char* InputWithSpace() // with space
-// {
-//     char *command;
-//     command = (char*) malloc (10 *sizeof(char));
-//     int i, cmdlength;
-//     STARTWORD();
-//     cmdlength = currentWord.Length;
-//     for (i = 0; i < cmdlength; i++)
-//     {
-//         *(command + i) = currentWord.TabWord[i];
-//     }
-//     command[cmdlength] = '\0';
-//     // *(command + cmdlength) = '\0';
-//     return command;
-// }
+int InputInt()
+{
+    char *str = Input();
+    int integer = StrToInt(str);
+    return integer;
+}
 
 int count_space(char *str)
 {
@@ -198,13 +189,32 @@ boolean compareSTR(char* input_command, char* command_comp)
     }
 }
 
+boolean isInt(char *str_int)
+{
+    if(count_space(str_int) == 0)
+    {
+        return true;
+    } else
+    {
+        false;
+    }
+}
+
 int StrToInt(char *str)
 {
     int i = 0, result = 0;
-    while(str[i] != '\0')
+    if(isInt(str))
     {
-        result = result * 10 + str[i] - '0';
-        i++;
+        while(str[i] != '\0')
+        {
+            result = result * 10 + str[i] - '0';
+            i++;
+        }
+        return result;
     }
-    return result;
+    else
+    {
+        result = -9999;
+        return result;
+    }
 }

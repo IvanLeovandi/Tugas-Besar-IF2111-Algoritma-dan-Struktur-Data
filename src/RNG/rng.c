@@ -3,6 +3,7 @@
 #include <time.h>
 #include "rng.h"
 #include "random_number.h"
+#include "../adt/Mesin/mesinkata.h"
 
 void rng() {
     /*
@@ -18,7 +19,8 @@ void rng() {
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
 
     printf("Tebakan: "); // mengambil masukan tebakan
-    scanf("%d", &tebakan);
+    tebakan = InputInt();
+    // scanf("%d", &tebakan);
 
     while (tebakan != angka){  // iterasi hingga input benar
         if (tebakan>angka){printf("Lebih kecil\n");} //memberitahu tebakan lebih kecil atau lebih besar dari angka
@@ -27,7 +29,8 @@ void rng() {
         // if (score>1) {score --;} // mengurangi skor untuk tiap tebakan salah
 
         printf("Tebakan: ");  // tebakan berikutnya
-        scanf("%d", &tebakan);
+        tebakan = InputInt();
+        // scanf("%d", &tebakan);
     }
 
     printf("Ya, X adalah %d.\n", angka); // output berhasil

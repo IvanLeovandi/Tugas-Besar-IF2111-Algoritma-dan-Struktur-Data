@@ -48,6 +48,8 @@ void CopyWord();
 
 char* Input();
 
+int InputInt();
+
 char* InputWithSpace();
 
 char* KataToSTR(Word currentWord);
@@ -61,6 +63,8 @@ char *FirstSTR(char *command);
 char *SecSTR(char *command);
 
 boolean compareSTR(char* input_command, char* command_comp);
+
+boolean isInt(char *str_int);
 
 int StrToInt(char *str);
 
