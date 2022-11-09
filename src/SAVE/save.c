@@ -35,8 +35,6 @@ F.S.: State game dan history pemain tersave ke file *.txt
             tempLength++;
         }
 
-        temp[tempLength] = 0x0A;
-        tempLength++;
         if (tempLength >= InitialSize*n) {
             /* buat string hasil malloc menjadi kosong tanpa mengubah isi temp */
             makeMallocEmpty(temp, tempLength);
