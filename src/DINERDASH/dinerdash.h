@@ -8,8 +8,9 @@
 #ifndef DINER_DASH_H
 #define DINER_DASH_H
 
+int fromStr(char *x);
 void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji);
 void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, int* saldo);
-
+int DinerDash();
 
 #endif

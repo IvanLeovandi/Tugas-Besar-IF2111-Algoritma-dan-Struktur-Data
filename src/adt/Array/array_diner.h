@@ -84,4 +84,13 @@ boolean IsEmptyDiner (ArrayDiner T);
 boolean IsFullDiner (ArrayDiner T);
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 
+void AddEl(ArrayDiner *T, ElTypeDiner val);
+// Menambahkan elemen baru dengan value val
+
+void DelEl(ArrayDiner *T, ElTypeDiner *val, int x);
+//Menghapus suatu elemen dalam array
+
+int SearchIdArray(ArrayDiner T, int id);
+//Mengembalikan indeks pada array T dengan id_makanan idx
+
 #endif

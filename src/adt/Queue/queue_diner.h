@@ -56,4 +56,7 @@ void dequeueDiner(QueueDiner *q, ElTypeDiner *val);
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
+int SearchIdIn(QueueDiner q, int id);
+// Mengembalikan true jika terdapat id_ pesanan id dalam q 
+
 #endif
