@@ -6,7 +6,7 @@
 #include "../DINERDASH/dinerdash.h"
 #include "../GAMEBUATAN/game.h"
 
-void playgame(Queue *game, Array array_game)
+void playgame(Queue *game)
 /* 
 I.S.: menerima input queue game 
 F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam name
