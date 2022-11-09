@@ -35,7 +35,6 @@ boolean isFullDiner(QueueDiner q) {
 int lengthDiner(QueueDiner q) {
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
     // KAMUS LOKAL
-    // ALGORITMA
     if (isEmptyDiner(q)) {
         return 0;
     } else if (q.idxTail >= q.idxHead) {
@@ -75,4 +74,13 @@ void dequeueDiner(QueueDiner *q, ElTypeDiner *val) {
     } else {
         q->idxHead = (q->idxHead + 1) % CAPACITY;
     }
+}
+
+int SearchIdIn(QueueDiner q, int id){
+    for (int i=0; i<lengthDiner(q); i++){
+        if (q.buffer[IdxMin+i%CAPACITY].id_makanan == id){
+            return i;
+        }
+    }
+    return IdxUndef;
 }
