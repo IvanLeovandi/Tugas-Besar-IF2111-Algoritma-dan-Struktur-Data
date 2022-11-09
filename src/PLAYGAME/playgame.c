@@ -1,11 +1,6 @@
 /* File playgame.c */
 #include <stdio.h>
 #include "playgame.h"
-#include "../LISTGAME/listgame.h"
-#include "../RNG/rng.h"
-#include "../DINERDASH/dinerdash.h"
-#include "../GAMEBUATAN/game.h"
-#include "../BONUSGAME/RPS.h"
 
 void playgame(Queue *game)
 /* 

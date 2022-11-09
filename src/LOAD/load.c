@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "load.h"
 
-
 static FILE *tape;
 static int retval;
 
