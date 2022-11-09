@@ -1,5 +1,5 @@
 /* File creategame.h */
-#include "../adt/Queue/queue.h"
+#include "../adt/Array/array.h"
 
 #ifndef CREATEGAME_H
 #define CREATEGAME_H

@@ -9,7 +9,7 @@
 
 #include "game.h"
 
-void game_buatan(Word game) {
+void game_buatan(char *game) {
 /* 
 I.S.: Pemain membuat game buatan dengan menggunakan command CREATE GAME
 F.S.: Program langsung menghentikan game dan mengeluarkan skor akhir berupa random integer.
@@ -17,7 +17,7 @@ F.S.: Program langsung menghentikan game dan mengeluarkan skor akhir berupa rand
 */
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    printf("Selamat datang di %s!\n\n", game.TabWord);
+    printf("Selamat datang di %s!\n\n", game);
     printf("Permainan selesai!\n\n");
     printf("Skor Anda: %lld\n", randomNumber());
 }

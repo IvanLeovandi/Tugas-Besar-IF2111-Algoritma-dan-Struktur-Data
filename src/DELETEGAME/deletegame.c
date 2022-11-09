@@ -31,15 +31,16 @@ F.S.: Program menghapus nama game dengan nomor padalist tersebut
         printf("Game gagal dihapus");
         } else
         {
-            if(SearchElmtQueue(queue_game, game->TI[number]))
+            if(SearchElmtQueue(queue_game, game->TI[number-1]))
             {
                 printf("Game gagal dihapus");
             } else
             {
                 int j;
-                for(j = number; j<game->Neff -1; j++){
+                for(j = number-1; j<game->Neff; j++){
                     game->TI[j] = game->TI[j+1];
                 }
+                game->Neff--;
                 printf("Game berhasil dihapus");
             }
         }
