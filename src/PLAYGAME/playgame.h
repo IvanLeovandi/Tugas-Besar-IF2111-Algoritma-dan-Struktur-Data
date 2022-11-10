@@ -5,6 +5,7 @@
 #include "../RNG/rng.h"
 #include "../DINERDASH/dinerdash.h"
 #include "../GAMEBUATAN/game.h"
+#include "../BONUSGAME/RPS.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H
