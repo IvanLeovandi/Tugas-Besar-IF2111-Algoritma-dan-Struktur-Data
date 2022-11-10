@@ -9,7 +9,7 @@ Tugas dibuat oleh kelompok 2:
 4. Ivan Leovandi (18221129)
 5. Gabriel P. Halomoan Panjaitan (18221159)
 
-How to run
+Cara memulai program BNMO : 
 
 cd ./bin
 
