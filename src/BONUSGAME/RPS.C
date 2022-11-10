@@ -34,7 +34,7 @@ void Start_RPS()
         }
         else if (angka_bot == 3)
         {
-            gerakan_bot == "scissor";
+            gerakan_bot = "scissor";
         }
         if (valid)
         {
