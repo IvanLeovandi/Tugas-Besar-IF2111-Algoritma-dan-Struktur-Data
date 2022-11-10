@@ -1,19 +1,4 @@
 #include "main.h"
-#include "./adt/Array/array.h"
-#include "./adt/Mesin/mesinkarakter.h"
-#include "./adt/Mesin/mesinkata.h"
-#include "./adt/Queue/queue.h"
-#include "./STARTGAME/start.h"
-#include "./SAVE/save.h"
-#include "./CREATEGAME/creategame.h"
-#include "./LISTGAME/listgame.h"
-#include "./DELETEGAME/deletegame.h"
-#include "./QUEUEGAME/queuegame.h"
-#include "./PLAYGAME/playgame.h"
-#include "./SKIPGAME/skipgame.h"
-#include "./QUITGAME/quitgame.h"
-#include "./HELP/help.h"
-#include "./COMMANDLAIN/commandlain.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,6 +18,9 @@ int main()
     {
         printf("\nENTER COMMAND: ");
         command = Input();
+        system("CLS");
+
+        printf("ENTER COMMAND: %s\n", command);
         printf("--------------------------\n");
         if(count_space(command) == 0)
         {
@@ -76,6 +64,10 @@ int main()
     {
         printf("\nENTER COMMAND: ");
         command = Input();
+        
+        system("CLS");
+
+        printf("ENTER COMMAND: %s\n", command);
         printf("--------------------------\n");
         if(count_space(command) > 1)
         {
