@@ -20,7 +20,6 @@ int main()
         command = Input();
         system("CLS");
 
-        printf("ENTER COMMAND: %s\n", command);
         printf("--------------------------\n");
         if(count_space(command) == 0)
         {
@@ -67,7 +66,6 @@ int main()
         
         system("CLS");
 
-        printf("ENTER COMMAND: %s\n", command);
         printf("--------------------------\n");
         if(count_space(command) > 1)
         {
