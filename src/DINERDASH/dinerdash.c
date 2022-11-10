@@ -23,6 +23,7 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
     int durasi, ketahanan, harga;
     int lb_durasi = 1, up_durasi = 5, lb_harga = 10, up_harga = 50;
     ElTypeDiner val;
+    int n;
 
     (*id)++;
 
@@ -33,23 +34,28 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
 
     enqueueDiner(pesanan, val);
 
+
+    n = NbElmtDiner(*saji);
     for (int i=0; i< NbElmtDiner(*saji); i++){
         saji->TI[i].ketahanan --;
         if (saji->TI[i].ketahanan == 0) {
             DelEl(saji, &val, i);
             i--; 
+            n--;
             }
     }
 
+    n = NbElmtDiner(*masak);
 
-    for (int i=0; i< NbElmtDiner(*masak); i++){
+    for (int i=0; i< n; i++){
         masak->TI[i].durasi --;
         if (masak->TI[i].durasi == 0) {
 
-                AddEl(saji, masak->TI[i]);
                 DelEl(masak, &val, i);
+                AddEl(saji, val);
 
                 i--;
+                n--;
 
                 int m = val.id_makanan;
                 printf("Makanan M%d telah selesai dimasak\n\n", m);
@@ -116,7 +122,7 @@ int DinerDash() {
 
     for (i = 0; i < 3; i++) {
         idpesanan = i;
-        val.id_makanan = i;
+        val.id_makanan = idpesanan;
         val.durasi = rand()%5 +1;
         val.ketahanan = rand()%5 +1;
         val.harga = (rand()%50 +1)*1000;
