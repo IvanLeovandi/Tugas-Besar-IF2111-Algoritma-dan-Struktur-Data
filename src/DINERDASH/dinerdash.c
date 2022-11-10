@@ -27,9 +27,12 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
     (*id)++;
 
     val.id_makanan = *id;
-    val.durasi = rand()%5 +1;
-    val.ketahanan = rand()%5 +1;
-    val.harga = (rand()%50 +1)*1000;
+    val.durasi = randomNumberMinMax(lb_durasi, up_durasi);
+    val.ketahanan = randomNumberMinMax(lb_durasi, up_durasi);
+    val.harga = randomNumberMinMax(lb_harga, up_harga) * 1000;
+    // val.durasi = rand()%5 +1;
+    // val.ketahanan = rand()%5 +1;
+    // val.harga = (rand()%50 +1)*1000;
 
     enqueueDiner(pesanan, val);
 
@@ -166,7 +169,6 @@ void DinerDash() {
 
 
         else if (compareSTR(perintah, "SERVE")) {
-
             DelEl(&saji, &val, SearchIdArray(saji, idx));
             printf("\nBerhasil mengantar %s\n", makanan);
             serve++;
