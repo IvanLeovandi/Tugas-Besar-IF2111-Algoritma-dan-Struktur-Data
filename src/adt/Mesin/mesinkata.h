@@ -46,28 +46,37 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+char* KataToSTR(Word currentWord);
+/* Menerima masukan bertipe Word lalu mengkonversikannya menjadi sebuah nilai string yang dikembalikan.*/
+
 char* Input();
+/* Menerima input dari terminal dengan membaca pita = stdin yang bertipe Word lalu mengembalikan nilai dalam bentuk string. String yang diterima mengikutsertakan spasi*/
 
 int InputInt();
-
-char* InputWithSpace();
-
-char* KataToSTR(Word currentWord);
+/* Menerima masukan seperti fungsi input, namun mengubahnya dari tipe string menjadi tipe integer.*/
 
 int count_space(char *str);
+/* Sebuah fungsi yang mengembalikan nilai banyaknya nilai spasi.*/
 
 int str_len(char *str);
+/* Sebuah fungsi yang mengembalikan nilai panjangnya string.*/
 
 char *FirstSTR(char *command);
+/* Sebuah fungsi yang memisahkan sebuah string yang memiliki spasi sebanyak 1. String yang diakuisisi adalah kata pertama sebelum spasi.*/
 
 char *SecSTR(char *command);
-
-boolean compareSTR(char* input_command, char* command_comp);
-
-boolean isInt(char *str_int);
-
-int StrToInt(char *str);
+/* Sebuah fungsi yang memisahkan sebuah string yang memiliki spasi sebanyak 1. String yang diakuisisi adalah kata kedua setelah spasi.*/
 
 char *concatSTR(char *awal, char *akhir);
+/* Sebuah fungsi yang menggabungkan dua buah string dan mengembalikan string baru hasil gabungan kedua string.*/
+
+boolean compareSTR(char* input_command, char* command_comp);
+/* Sebuah fungsi yang membandingkan string dan mengembalikan nilai bertipe boolean.*/
+
+boolean isInt(char *str_int);
+/* Sebuah fungsi yang digunakan untuk mengecek apakah sebuah string dapat dikonversi menjadi nilai integer dengan memerhatikan jumlah spasi pada string tersebut.*/
+
+int StrToInt(char *str);
+/* Sebuah fungsi yang mengkonversi tipe data string menjadi integer.*/
 
 #endif

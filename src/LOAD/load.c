@@ -12,7 +12,6 @@ void load(Array *array_game, char *filename, boolean isStart) {
     int i, j, n;
     boolean valid;
     /* ALGORITMA */
-    /* Buka file */
     /* Mengecek apakah melakukan load pada file konfigurasi atau bukan*/
     if(isStart)
     {
@@ -31,13 +30,19 @@ void load(Array *array_game, char *filename, boolean isStart) {
             ADVWORDLOAD();
             char *strgame;
             strgame = (char *)malloc(currentWord.Length * sizeof(char));
-            int idx;
-            for(idx = 0; idx < currentWord.Length; idx++)
+            if(strgame == NULL)
             {
-                *(strgame + idx) = currentWord.TabWord[idx];
+                printf("File tidak ditemukan, mohon masukan nama file yang valid.\n");
+            } else
+            {
+                int idx;
+                for(idx = 0; idx < currentWord.Length; idx++)
+                {
+                    *(strgame + idx) = currentWord.TabWord[idx];
+                }
+                *(strgame + currentWord.Length) = '\0';
+                array_game->TI[i] = strgame;
             }
-            *(strgame + currentWord.Length) = '\0';
-            array_game->TI[i] = strgame;
         }
         if(!isStart)
         {

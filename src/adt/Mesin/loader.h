@@ -8,6 +8,7 @@ static int retval;
 
 
 boolean StartLOAD(char *filename);
+/* Sebuah fungsi yang mengecek apakah suatu file ada untuk diload atau tidak.*/
 
 void IgnoreNewLine();
 /* Mengabaikan satu atau beberapa BLANK
@@ -32,3 +33,8 @@ void CopyWordLOAD();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 void ADVLOAD();
+/* Pita dimajukan satu karakter.
+   I.S. : Karakter pada jendela = currentChar, currentChar != MARK
+   F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
+          currentChar mungkin = MARK
+          Jika tidak ada hal yang dapat dibaca lagi (retval < 0) maka EOP akan menyala (true) */
