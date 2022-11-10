@@ -23,31 +23,6 @@ int NbElmt (Array T) {
     return T.Neff;
 }
 
-/* *** Daya tampung container *** */
-int MaxNbEl (Array T) {
-/* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return IdxMax - IdxMin + 1;
-}
-
-/* *** Selektor INDEKS *** */
-IdxType GetFirstIdx (Array T) {
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks elemen pertama */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return IdxMin;
-}
-
-IdxType GetLastIdx (Array T) {
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks elemen terakhir */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return T.Neff;
-}
-
 /* *** Menghasilkan sebuah elemen *** */
 ElType GetElmt (Array T, IdxType i) {
 /* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
@@ -57,20 +32,6 @@ ElType GetElmt (Array T, IdxType i) {
     return T.TI[i];
 }
 
-/* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
-/* Untuk type private/limited private pada bahasa tertentu */
-void SetTab (Array Tin, Array *Tout) {
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
-    // KAMUS LOKAL
-    // ALGORITMA
-    MakeEmpty(Tout);
-    for (int i = IdxMin; i <= Tin.Neff; i++) {
-        Tout->TI[i] = Tin.TI[i];
-    }
-    Tout->Neff = Tin.Neff;
-}
 
 void SetEl (Array *T, IdxType i, ElType v) {
 /* I.S. T terdefinisi, sembarang */
@@ -111,6 +72,7 @@ boolean IsFull (Array T) {
 }
 
 boolean IsElmt(Array array_game, char *str_game)
+/* Mengirimkan true jika sebuah string merupakan element dari array*/
 {
     if(IsEmpty(array_game))
     {

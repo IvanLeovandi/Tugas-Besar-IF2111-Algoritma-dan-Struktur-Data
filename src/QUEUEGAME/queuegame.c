@@ -29,7 +29,7 @@ F.S.: Program akan melakukan enqueue game ke-num;
     int num = StrToInt(strnum);
     if(num <= NbElmt(array_game) && num > 0)
     {
-        enqueue(q, array_game.TI[num-1]);
+        enqueue(q, GetElmt(array_game, num-1));
         printf("Game berhasil ditambahkan kedalam daftar antrian");
     } else
     {

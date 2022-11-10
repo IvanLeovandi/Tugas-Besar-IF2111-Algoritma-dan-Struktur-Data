@@ -26,7 +26,6 @@ void STARTWORD() {
     // KAMUS LOKAL
     // ALGORITMA
     START();
-    // IgnoreBlanks();
     if (currentChar == MARK) {
         EndWord = true;
     } else {
@@ -43,12 +42,10 @@ void ADVWORD() {
    Proses : Akuisisi kata menggunakan procedure SalinWord */
     // KAMUS LOKAL
     // ALGORITMA
-    // IgnoreBlanks();
     if (currentChar == MARK) {
         EndWord = true;
     } else {
         CopyWord();
-        // IgnoreBlanks();
     }
 }
 
