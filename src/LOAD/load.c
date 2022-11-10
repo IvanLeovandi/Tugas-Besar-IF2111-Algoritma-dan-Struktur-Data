@@ -23,7 +23,7 @@ void load(Array *array_game, char *filename, boolean isStart) {
 
     if(valid)
     {
-        n = currentChar - '0';
+        n = StrToInt(KataToSTR(currentWord));
         array_game->Neff = n;
         ADVLOAD();
         for (i = 0; i < n; i++) {
