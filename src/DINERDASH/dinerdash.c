@@ -30,9 +30,6 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
     val.durasi = randomNumberMinMax(lb_durasi, up_durasi);
     val.ketahanan = randomNumberMinMax(lb_durasi, up_durasi);
     val.harga = randomNumberMinMax(lb_harga, up_harga) * 1000;
-    // val.durasi = rand()%5 +1;
-    // val.ketahanan = rand()%5 +1;
-    // val.harga = (rand()%50 +1)*1000;
 
     enqueueDiner(pesanan, val);
 
@@ -56,15 +53,12 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
 
                 int m = val.id_makanan;
                 printf("Makanan M%d telah selesai dimasak\n\n", m);
-
             }
     }
-
 }
 
 void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, int* saldo) {
-    /* KAMUS LOKAL */
-    
+    /* KAMUS LOKAL */    
     int i;
     /* ALGORITMA */
     printf("SALDO: %d\n\nDaftar Pesanan\n", *saldo);
@@ -116,7 +110,6 @@ void DinerDash() {
 
     printf("Selamat Datang di Diner Dash!\n\n");
     
-
     for (i = 0; i < 3; i++) {
         idpesanan = i;
         val.id_makanan = i;
@@ -128,43 +121,33 @@ void DinerDash() {
     }
 
     while (lengthDiner(pesanan) <= 7 && serve < 15) {
-        displayQueueDiner(pesanan, masak, saji, &saldo);
-        
+        displayQueueDiner(pesanan, masak, saji, &saldo);     
         printf("MASUKKAN COMMAND: ");
 
         command = Input();
         perintah = FirstSTR(command);
         makanan = SecSTR(command);
-
         idx = fromStr(makanan);
 
         while ((!compareSTR(perintah, "COOK") || SearchIdIn(pesanan, idx)==IdxUndefDiner) && (!compareSTR(perintah, "SERVE") || SearchIdArray(saji, idx)==IdxUndefDiner || idx!=pesanan.buffer[pesanan.idxHead].id_makanan) && (!compareSTR(perintah, "SKIP"))){
             if (compareSTR(perintah, "SERVE") && idx!=pesanan.buffer[pesanan.idxHead].id_makanan){
                 printf("%s belum dapat disajikan karena M%d belum selesai\n", makanan, pesanan.buffer[pesanan.idxHead].id_makanan);}
-
             else{
             printf("\nMasukan tidak valid. Silahkan coba lagi.\n");}
             printf("MASUKKAN COMMAND: ");
 
-
             command = Input();
             perintah = FirstSTR(command);
             makanan = SecSTR(command);
-
             idx = fromStr(makanan);
-
         }
 
         putaran(&idpesanan, &pesanan, &masak, &saji);
-
         system("CLS");
 
-
         if (compareSTR(perintah, "COOK")) {
-                AddEl(&masak, pesanan.buffer[SearchIdIn(pesanan, idx)]);
-                    
-                printf("\nBerhasil memasak %s\n", makanan);              
-            
+                AddEl(&masak, pesanan.buffer[SearchIdIn(pesanan, idx)]);       
+                printf("\nBerhasil memasak %s\n", makanan);                         
         }
 
 
@@ -173,17 +156,13 @@ void DinerDash() {
             printf("\nBerhasil mengantar %s\n", makanan);
             serve++;
             saldo += val.harga;
-            dequeueDiner(&pesanan, &val);
-            
+            dequeueDiner(&pesanan, &val);            
         }
 
         else if (compareSTR(perintah, "SKIP")){
             printf("\nSkip berhasil\n");
         }
-
         printf("==========================================================\n\n");
-  
     }
-
     printf("GAME OVER!!!\n\nSkor akhir: %d\n\n", saldo);
 }
