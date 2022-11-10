@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "RPS.h"
 
 void Start_RPS()
@@ -17,6 +18,7 @@ void Start_RPS()
     printf("Input bersifat case sensitive!\n");
     while (i <= 5)
     {
+        srand(time(NULL));
         printf("Round %d!\n",i);
         printf("Pilih 'rock' / 'paper' / 'scissor' : ");    
         gerakan_pemain = Input();
