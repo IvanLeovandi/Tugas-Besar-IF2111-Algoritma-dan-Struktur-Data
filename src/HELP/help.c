@@ -3,12 +3,12 @@
 
 void help(boolean loaded){
     /* Prosedur melakukan print perintah-perintah yang dapat dilakukan. */
-    printf("^.^ Anda sedang menggunakan game console BNMO ^.^\n\n");
+    printf("\n^.^ Anda sedang menggunakan game console BNMO ^.^\n\n");
     printf("Berikut daftar command yang dapat Anda gunakan serta fungsinya!\n");
     if(loaded == false)
     {
         printf("START          : Melakukan set up game console BNMO\n");
-        printf("LOAD <filename>: Membaca list dan histori dari file masukan\n");
+        printf("LOAD <filename>: Melakukan set up game dari file masukan\n");
         printf("QUIT           : Keluar dari game console\n");
         printf("HELP           : Menampilkan daftar command\n\n");
     } else
