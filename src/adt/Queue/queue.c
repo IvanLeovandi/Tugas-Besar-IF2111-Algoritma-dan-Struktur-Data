@@ -98,23 +98,12 @@ void displayQueue(Queue q) {
         for (i = q.idxHead; i < length(q); i++) {
             printf("%d. %s\n", i+1, q.buffer[i]);
         }
-        // else {
-        //     for (i = q.idxHead; i < CAPACITY; i++) {
-        //         printf("%d,", q.buffer[i]);
-        //     }
-        //     for (i = 0; i <= q.idxTail; i++) {
-        //         if (i == q.idxTail) {
-        //             printf("%d", q.buffer[i]);
-        //         } else {
-        //             printf("%d,", q.buffer[i]);
-        //         }
-        //     }
-        // }
         printf("\n");
     }
 }
 
 boolean SearchElmtQueue(Queue q, char *str)
+/* Sebuah fungsi yang mengembalikan tipe boolean apakah sebuah elemen ada pada queue atau tidak.*/
 {
     if(isEmpty(q))
     {

@@ -93,25 +93,6 @@ void SetNeff (Array *T, IdxType N) {
     T->Neff = N;
 }
 
-/* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid (Array T, IdxType i) {
-/* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
-/* yaitu antara indeks yang terdefinisi utk container*/
-    // KAMUS LOKAL
-    // ALGORITMA
-    return (i >= IdxMin && i <= IdxMax);
-}
-
-boolean IsIdxEff (Array T, IdxType i) {
-/* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
-/* yaitu antara FirstIdx(T)..LastIdx(T) */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return (i >= IdxMin && i <= T.Neff);
-}
-
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test tabel kosong *** */
 boolean IsEmpty (Array T) {
@@ -127,75 +108,6 @@ boolean IsFull (Array T) {
     // KAMUS LOKAL
     // ALGORITMA
     return T.Neff == IdxMax;
-}
-
-/* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-void TulisIsi (Array T) {
-/* Proses : Menuliskan isi tabel dengan traversal */
-/* I.S. T boleh kosong */
-/* F.S. Jika T tidak kosong : indeks dan elemen tabel ditulis berderet ke bawah */
-/* Jika isi tabel [1,2,3] maka akan diprint
-0:1
-1:2
-2:3
-*/
-/* Jika T kosong : Hanya menulis "Tabel kosong" */
-    // KAMUS LOKAL
-    // ALGORITMA
-    if (IsEmpty(T)) {
-        printf("Tabel kosong\n");
-    } else {
-        for (int i = 0; i < T.Neff; i++) {
-            printf("%d:%s\n", i, T.TI[i]);
-        }
-    }
-}
-
-/* ********** NILAI EKSTREM ********** */
-ElType ValMax (Array T) {
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan nilai maksimum tabel */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return T.TI[IdxMaxTab(T)];
-}
-
-ElType ValMin (Array T) {
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan nilai minimum tabel */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return T.TI[IdxMinTab(T)];
-}
-
-/* *** Mengirimkan indeks elemen bernilai ekstrem *** */
-IdxType IdxMaxTab (Array T) {
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks i dengan elemen ke-i adalah nilai maksimum pada tabel */
-    // KAMUS LOKAL
-    int indexmax = IdxMin;
-    // ALGORITMA
-    for (int i = IdxMin+1; i <= T.Neff; i++) {
-        if (T.TI[i] > T.TI[indexmax]) {
-            indexmax = i;
-        }
-    }
-    return indexmax;
-}
-
-IdxType IdxMinTab (Array T) {
-/* Prekondisi : Tabel tidak kosong */
-/* Mengirimkan indeks i */
-/* dengan elemen ke-i nilai minimum pada tabel */
-    // KAMUS LOKAL
-    int indexmin = IdxMin;
-    // ALGORITMA
-    for (int i = IdxMin+1; i <= T.Neff; i++) {
-        if (T.TI[i] < T.TI[indexmin]) {
-            indexmin = i;
-        }
-    }
-    return indexmin;
 }
 
 boolean IsElmt(Array array_game, char *str_game)

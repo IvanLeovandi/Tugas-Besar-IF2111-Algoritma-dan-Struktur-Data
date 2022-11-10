@@ -11,8 +11,12 @@ F.S.: Program akan melakukan dequeue sebanyak n kali dari antrian game yang dima
 {
     if(isEmpty(*q))
     {
-        printf("Tidak ada permainan lagi dalam daftar antrian kamu.\n");
-    } else if(n > CAPACITY)
+        printf("Tidak ada permainan dalam daftar antrian kamu.\n");
+    } else if(n > CAPACITY || n == 0)
+    {
+        printf("Tidak dapat melakukan skip sebanyak %d kali.\n", n);
+        printf("Masukan tidak valid.\n");
+    } else if(n < 0)
     {
         printf("Masukan tidak valid.\n");
     } else

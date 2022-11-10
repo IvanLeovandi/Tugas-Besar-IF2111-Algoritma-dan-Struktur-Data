@@ -65,5 +65,6 @@ void displayQueue(Queue q);
 /* Jika Queue kosong : menulis [] */
 
 boolean SearchElmtQueue(Queue q, char *str);
+/* Sebuah fungsi yang mengembalikan tipe boolean apakah sebuah elemen ada pada queue atau tidak.*/
 
 #endif
