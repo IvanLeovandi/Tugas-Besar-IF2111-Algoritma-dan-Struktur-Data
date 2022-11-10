@@ -119,9 +119,9 @@ void DinerDash() {
     for (i = 0; i < 3; i++) {
         idpesanan = i;
         val.id_makanan = idpesanan;
-        val.durasi = rand()%5 +1;
-        val.ketahanan = rand()%5 +1;
-        val.harga = (rand()%50 +1)*1000;
+        val.durasi = randomNumberMinMax(lb_durasi, up_durasi);
+        val.ketahanan = randomNumberMinMax(lb_durasi, up_durasi);
+        val.harga = randomNumberMinMax(lb_harga, up_harga) * 1000;
 
         enqueueDiner(&pesanan, val);
     }
@@ -134,7 +134,7 @@ void DinerDash() {
         perintah = FirstSTR(command);
         makanan = SecSTR(command);
         idx = fromStr(makanan);
-
+        
         while ((!compareSTR(perintah, "COOK") || SearchIdIn(pesanan, idx)==IdxUndefDiner) && (!compareSTR(perintah, "SERVE") || SearchIdArray(saji, idx)==IdxUndefDiner || idx!=pesanan.buffer[pesanan.idxHead].id_makanan) && (!compareSTR(perintah, "SKIP"))){
             if (compareSTR(perintah, "SERVE") && idx!=pesanan.buffer[pesanan.idxHead].id_makanan){
                 printf("%s belum dapat disajikan karena M%d belum selesai\n", makanan, pesanan.buffer[pesanan.idxHead].id_makanan);}

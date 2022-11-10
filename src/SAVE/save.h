@@ -6,7 +6,7 @@
 #ifndef SAVE_H
 #define SAVE_H
 
-#define InitialSize 10
+#define InitialSize 1000
 
 void save(char* filename, Array arrGame);
 /*
