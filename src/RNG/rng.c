@@ -10,7 +10,7 @@ void rng() {
     skor berkurang 1 untuk tiap tebakan salah.
     */
 
-    int angka = randomNumberWithMaxDigit(3); // mengambil angka random
+    int angka = rand()%301; // mengambil angka random
     int tebakan;
     int score = 20;
 
