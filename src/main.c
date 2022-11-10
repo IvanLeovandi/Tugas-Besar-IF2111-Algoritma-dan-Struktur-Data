@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main()
 {
@@ -10,6 +11,8 @@ int main()
     char *command, *secondCommand;
     Array array_game; MakeEmpty(&array_game);
     Queue queue_game; CreateQueue(&queue_game);
+
+    srand(time(NULL));
 
     // Memulai program
     printf("Selamat datang di BNMO.\n");
