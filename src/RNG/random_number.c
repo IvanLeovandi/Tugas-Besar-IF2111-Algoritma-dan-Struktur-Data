@@ -14,9 +14,7 @@ unsigned long long int randomNumberWithMaxDigit(int digit) {
     unsigned long long int x, randNumber;
     int n = digit; /* jumlah digit random number yang diinginkan */
     int i;
-    /* ALGORITMA */
-    // srand(time(NULL));
-   
+    /* ALGORITMA */   
     x = randm(n);
     for (i = 0; i < n*n*n; i++) {
         randNumber = von(x, n);
@@ -51,7 +49,7 @@ unsigned long long int randm(int n) {
     u = (double*) malloc (sizeof(double));
 
     for (i = 0; i < n*n*n; i++) {
-        // srand(time(NULL));
+        srand(time(NULL));
         x = (rand() + (unsigned long long int) u) / (double)RAND_MAX;
         y = x * pow(10.0, n*1.0);
     }
