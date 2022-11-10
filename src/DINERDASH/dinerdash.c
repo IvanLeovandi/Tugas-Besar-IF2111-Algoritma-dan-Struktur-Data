@@ -133,7 +133,7 @@ void DinerDash() {
         perintah = FirstSTR(command);
         makanan = SecSTR(command);
 
-        int idx = fromStr(makanan);
+        idx = fromStr(makanan);
 
         while ((!compareSTR(perintah, "COOK") || SearchIdIn(pesanan, idx)==IdxUndefDiner) && (!compareSTR(perintah, "SERVE") || SearchIdArray(saji, idx)==IdxUndefDiner || idx!=pesanan.buffer[pesanan.idxHead].id_makanan) && (!compareSTR(perintah, "SKIP"))){
             if (compareSTR(perintah, "SERVE") && idx!=pesanan.buffer[pesanan.idxHead].id_makanan){
@@ -148,7 +148,7 @@ void DinerDash() {
             perintah = FirstSTR(command);
             makanan = SecSTR(command);
 
-            int idx = fromStr(makanan);
+            idx = fromStr(makanan);
 
         }
 

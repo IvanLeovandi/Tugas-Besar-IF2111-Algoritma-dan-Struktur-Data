@@ -78,8 +78,8 @@ void dequeueDiner(QueueDiner *q, ElTypeDiner *val) {
 
 int SearchIdIn(QueueDiner q, int id){
     for (int i=0; i<lengthDiner(q); i++){
-        if (q.buffer[IdxMinDiner+i%CAPACITY].id_makanan == id){
-            return i;
+        if (q.buffer[(q.idxHead)+i%CAPACITY].id_makanan == id){
+            return (q.idxHead)+i%CAPACITY;
         }
     }
     return IdxUndefDiner;
