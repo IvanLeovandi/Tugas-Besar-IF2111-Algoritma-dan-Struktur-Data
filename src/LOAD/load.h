@@ -10,10 +10,6 @@
 #define LOAD_H
 
 void load(Array *array_game, char *filename, boolean isStart);
-
-// void ADVLOAD();
-// void CopyWordLOAD();
-// void ADVWORDLOAD();
-// void IgnoreBlanksLOAD();
+/* Membaca isi file "filename" dan memasukkannya ke dalam array_game */
 
 #endif

@@ -71,9 +71,10 @@ void CopyWord() {
 }
 
 char* KataToSTR(Word currentWord)
+/* Menerima masukan bertipe Word lalu mengkonversikannya menjadi sebuah nilai string yang dikembalikan.*/
 {
     char *str;
-    str = (char*) malloc((currentWord.Length)*sizeof(char));
+    str = (char*) malloc((currentWord.Length*2)*sizeof(char));
     int i, strlength;
     strlength = currentWord.Length; 
     for(i = 0; i < strlength; i++)
@@ -84,25 +85,17 @@ char* KataToSTR(Word currentWord)
     return str;
 }
 
-char* Input() // with no space
+char* Input()
+/* Menerima input dari terminal dengan membaca pita = stdin yang bertipe Word lalu mengembalikan nilai dalam bentuk string. String yang diterima mengikutsertakan spasi*/
 {
     char *command;
-    // command = (char*) malloc (10 *sizeof(char));
-    // int i, cmdlength;
     STARTWORD();
     command = KataToSTR(currentWord);
-    // cmdlength = currentWord.Length;
-    // for (i = 0; i < cmdlength; i++)
-    // {
-    //     *(command + i) = currentWord.TabWord[i];
-    // }
-    // command[cmdlength] = '\0';
-    // // *(command + cmdlength) = '\0';
-    // return command;
     return command;
 }
 
 int InputInt()
+/* Menerima masukan seperti fungsi input, namun mengubahnya dari tipe string menjadi tipe integer.*/
 {
     char *str = Input();
     int integer = StrToInt(str);
@@ -110,6 +103,7 @@ int InputInt()
 }
 
 int count_space(char *str)
+/* Sebuah fungsi yang mengembalikan nilai banyaknya nilai spasi.*/
 {
     int count = 0;
     while(*str != '\0')
@@ -124,6 +118,7 @@ int count_space(char *str)
 }
 
 int str_len(char *str)
+/* Sebuah fungsi yang mengembalikan nilai panjangnya string.*/
 {
     int count = 0;
     while (*str != '\0')
@@ -135,6 +130,7 @@ int str_len(char *str)
 }
 
 char *FirstSTR(char *command)
+/* Sebuah fungsi yang memisahkan sebuah string yang memiliki spasi sebanyak 1. String yang diakuisisi adalah kata pertama sebelum spasi.*/
 {
     int i = 0;
     char *firstSTR;
@@ -149,6 +145,7 @@ char *FirstSTR(char *command)
 }
 
 char *SecSTR(char *command)
+/* Sebuah fungsi yang memisahkan sebuah string yang memiliki spasi sebanyak 1. String yang diakuisisi adalah kata kedua setelah spasi.*/
 {
     int i = 0;
     int j = 0;
@@ -171,6 +168,7 @@ char *SecSTR(char *command)
 }
 
 char *concatSTR(char *awal, char *akhir)
+/* Sebuah fungsi yang menggabungkan dua buah string dan mengembalikan string baru hasil gabungan kedua string.*/
 {
     char *result;
     result = (char *)malloc(50 * sizeof(char));
@@ -190,6 +188,7 @@ char *concatSTR(char *awal, char *akhir)
 }
 
 boolean compareSTR(char* input_command, char* command_comp)
+/* Sebuah fungsi yang membandingkan string dan mengembalikan nilai bertipe boolean.*/
 {
     int i = 0;
     while(input_command[i] == command_comp[i])
@@ -210,6 +209,7 @@ boolean compareSTR(char* input_command, char* command_comp)
 }
 
 boolean isInt(char *str_int)
+/* Sebuah fungsi yang digunakan untuk mengecek apakah sebuah string dapat dikonversi menjadi nilai integer dengan memerhatikan jumlah spasi pada string tersebut.*/
 {
     if(count_space(str_int) == 0)
     {
@@ -221,6 +221,7 @@ boolean isInt(char *str_int)
 }
 
 int StrToInt(char *str)
+/* Sebuah fungsi yang mengkonversi tipe data string menjadi integer.*/
 {
     int i = 0, result = 0;
     if(isInt(str))

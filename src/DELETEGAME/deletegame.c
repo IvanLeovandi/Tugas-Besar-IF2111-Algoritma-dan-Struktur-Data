@@ -14,7 +14,7 @@ F.S.: Program menghapus nama game dengan nomor padalist tersebut
         printf("%d. %s\n",i+1,game->TI[i]);
     }
     char *strnumber;
-    printf("Masukkan nomor game yang akan dihapus:");
+    printf("Masukkan nomor game yang akan dihapus: ");
     strnumber = Input();
     if(count_space(strnumber) > 0)
     {
@@ -24,11 +24,14 @@ F.S.: Program menghapus nama game dengan nomor padalist tersebut
         int number = StrToInt(strnumber);
         if (number < 6){
         printf("Game gagal dihapus");
+        } else if (number > game->Neff)
+        {
+                printf("Tidak ada game yang dapat dihapus");
         } else
         {
             if(SearchElmtQueue(queue_game, game->TI[number-1]))
             {
-                printf("Game gagal dihapus");
+                printf("Game gagal dihapus karena sedang ada dalam antrian");
             } else
             {
                 int j;

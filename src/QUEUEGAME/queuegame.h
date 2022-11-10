@@ -10,7 +10,7 @@ void queuegame (Queue *q, Array array_game);
 /* 
 I.S.: Queue/antrian game terdefinisi, antrian mungkin kosong, antrian tidak mungkin penuh
 F.S.: Program akan melakukan enqueue game ke-num;
-      Jika num memiliki nilai yang lebih besar dari jumlah list game yang tersedia
+      Jika num memiliki nilai diluar dari list game yang tersedia
       maka program tidak beroperasi dan menampilkan pesan error
 */
 
