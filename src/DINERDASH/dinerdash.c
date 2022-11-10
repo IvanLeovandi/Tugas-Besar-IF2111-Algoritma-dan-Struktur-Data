@@ -6,6 +6,7 @@
 
 int fromStr(char *x){
     if (x[0]=='M'){
+        if (x[1]!='\0'){
         int i=1;
         int hitung = 0;
         while (x[i]!= '\0'){
@@ -13,9 +14,9 @@ int fromStr(char *x){
             hitung += x[i] - '0';
             i++;
         }
-        return hitung;
+        return hitung;}
     }
-    else {return IdxUndefDiner;}
+    return IdxUndefDiner;
 }
 
 void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
@@ -32,16 +33,16 @@ void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji){
 
     enqueueDiner(pesanan, val);
 
-    for (int i=0; i< saji->Neff; i++){
-        saji->TI[i].durasi --;
-        if (saji->TI[i].durasi == 0) {
+    for (int i=0; i< NbElmtDiner(*saji); i++){
+        saji->TI[i].ketahanan --;
+        if (saji->TI[i].ketahanan == 0) {
             DelEl(saji, &val, i);
             i--; 
             }
     }
 
 
-    for (int i=0; i< masak->Neff; i++){
+    for (int i=0; i< NbElmtDiner(*masak); i++){
         masak->TI[i].durasi --;
         if (masak->TI[i].durasi == 0) {
 
@@ -104,8 +105,6 @@ void DinerDash() {
     int durasi, ketahanan, harga;
     char* perintah, *makanan, *command;
 
-    srand(time(NULL));
-
     boolean cook;
     /* ALGORITMA */
     CreateQueueDiner(&pesanan);
@@ -148,9 +147,14 @@ void DinerDash() {
             command = Input();
             perintah = FirstSTR(command);
             makanan = SecSTR(command);
+
+            int idx = fromStr(makanan);
+
         }
 
         putaran(&idpesanan, &pesanan, &masak, &saji);
+
+        system("CLS");
 
 
         if (compareSTR(perintah, "COOK")) {
@@ -160,7 +164,6 @@ void DinerDash() {
             
         }
 
-        // displayQueueDiner(pesanan, masak, saji, &saldo);
 
         else if (compareSTR(perintah, "SERVE")) {
 
