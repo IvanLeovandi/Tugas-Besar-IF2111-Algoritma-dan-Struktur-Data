@@ -7,7 +7,7 @@ boolean StartLOAD(char *filename)
     tape = fopen(filename, "r");
     if(tape != NULL)
     {
-        ADVLOAD();
+        ADVWORDLOAD();
         return true;
     } else
     {
