@@ -52,13 +52,16 @@ F.S.: State game dan history pemain tersave ke file *.txt
         }
     }
     
-    fputs(temp, fp);
+    if (temp != NULL) fputs(temp, fp);
+    else {
+        printf("Save gagal.\n");
+    }
    
     if (!fp) {
-        printf("Failed to save.\n");
+        printf("Save gagal.\n");
     } else
     {
-        printf("Save berhasil");
+        printf("Save berhasil\n");
     }
 
     fclose(fp);
