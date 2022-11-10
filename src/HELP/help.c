@@ -15,7 +15,7 @@ void help(boolean loaded){
     {
         printf("SAVE <filename>: Menyimpan keadaan game ke dalam file\n");
         printf("CREATE GAME    : Menambahkan game baru pada daftar game\n");
-        printf("LIST GAME      : Menampilkan daftar game yang ada");
+        printf("LIST GAME      : Menampilkan daftar game yang ada\n");
         printf("DELETE GAME    : Menghapus sebuah game dari daftar game\n");
         printf("                 Game yang dapat dihapus hanyalah game yang sedang tidak ada di queue \n");
         printf("                 dan bukan merupakan 5 game pertama pada file konfigurasi.\n");

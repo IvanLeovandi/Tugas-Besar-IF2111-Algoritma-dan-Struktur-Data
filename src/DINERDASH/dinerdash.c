@@ -93,7 +93,7 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, in
     }
 }
 
-int DinerDash() {
+void DinerDash() {
     /* KAMUS LOKAL */
     QueueDiner pesanan;
     ArrayDiner masak, saji;
@@ -181,6 +181,4 @@ int DinerDash() {
     }
 
     printf("GAME OVER!!!\n\nSkor akhir: %d\n\n", saldo);
-
-    return 0;
 }

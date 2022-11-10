@@ -11,6 +11,6 @@
 int fromStr(char *x);
 void putaran(int *id, QueueDiner *pesanan, ArrayDiner *masak, ArrayDiner *saji);
 void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, int* saldo);
-int DinerDash();
+void DinerDash();
 
 #endif
