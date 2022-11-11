@@ -44,26 +44,13 @@ int NbElmt (Array T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
-int MaxNbEl (Array T);
-/* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
-/* *** Selektor INDEKS *** */
-IdxType GetFirstIdx (Array T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks elemen pertama */
-IdxType GetLastIdx (Array T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks elemen terakhir */
-/* *** Menghasilkan sebuah elemen *** */
+
 ElType GetElmt (Array T, IdxType i);
 /* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen tabel yang ke-i */
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
 /* Untuk type private/limited private pada bahasa tertentu */
-void SetTab (Array Tin, Array *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
 void SetEl (Array *T, IdxType i, ElType v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
@@ -81,18 +68,7 @@ boolean IsEmpty (Array T);
 boolean IsFull (Array T);
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 
-/* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-void TulisIsi (Array T);
-/* Proses : Menuliskan isi tabel dengan traversal */
-/* I.S. T boleh kosong */
-/* F.S. Jika T tidak kosong : indeks dan elemen tabel ditulis berderet ke bawah */
-/* Jika isi tabel [1,2,3] maka akan diprint
-0:1
-1:2
-2:3
-*/
-/* Jika T kosong : Hanya menulis "Tabel kosong" */
-
 boolean IsElmt(Array array_game, char *str_game);
+/* Mengirimkan true jika sebuah string merupakan element dari array*/
 
 #endif
