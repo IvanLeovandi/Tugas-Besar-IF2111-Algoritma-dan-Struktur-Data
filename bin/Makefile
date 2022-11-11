@@ -1,5 +1,3 @@
-# makefile (template, will be updated soon)
-
 CC = gcc
 OBJ = main
 
@@ -16,6 +14,3 @@ exec:
 
 clean:
 	rm main *.o
-
-
-# how to makefile with source file in different directory : mingw32-make -C ../src
