@@ -44,7 +44,7 @@ IdxType GetLastIdxDiner (ArrayDiner T) {
 /* Mengirimkan indeks elemen terakhir */
     // KAMUS LOKAL
     // ALGORITMA
-    return T.Neff;
+    return T.Neff - 1;
 }
 
 /* *** Menghasilkan sebuah elemen *** */
@@ -55,25 +55,6 @@ void SetNeffDiner (ArrayDiner *T, IdxType N) {
     // KAMUS LOKAL
     // ALGORITMA
     T->Neff = N;
-}
-
-/* ********** Test Indeks yang valid ********** */
-boolean IsIdxValidDiner (ArrayDiner T, IdxType i) {
-/* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
-/* yaitu antara indeks yang terdefinisi utk container*/
-    // KAMUS LOKAL
-    // ALGORITMA
-    return (i >= IdxMinDiner && i <= IdxMaxDiner);
-}
-
-boolean IsIdxEffDiner (ArrayDiner T, IdxType i) {
-/* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
-/* yaitu antara FirstIdx(T)..LastIdx(T) */
-    // KAMUS LOKAL
-    // ALGORITMA
-    return (i >= IdxMinDiner && i <= T.Neff);
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
@@ -102,14 +83,14 @@ void AddEl(ArrayDiner *T, ElTypeDiner val){
     T->Neff ++;
 }
 
-void DelEl(ArrayDiner *T, ElTypeDiner *val, int x){
+void DelEl(ArrayDiner *T, ElTypeDiner *val, int idx){
     //Menghapus suatu elemen dalam array
-    val->id_makanan = T->TI[x].id_makanan;
-    val->durasi = T->TI[x].durasi;
-    val->ketahanan = T->TI[x].ketahanan;
-    val->harga = T->TI[x].harga;
+    val->id_makanan = T->TI[idx].id_makanan;
+    val->durasi = T->TI[idx].durasi;
+    val->ketahanan = T->TI[idx].ketahanan;
+    val->harga = T->TI[idx].harga;
 
-    for (int j=x; j<NbElmtDiner(*T); j++){
+    for (int j = idx; j < NbElmtDiner(*T); j++){
         T->TI[j].id_makanan = T->TI[j+1].id_makanan;
         T->TI[j].durasi = T->TI[j+1].durasi;
         T->TI[j].ketahanan = T->TI[j+1].ketahanan;
@@ -125,4 +106,17 @@ int SearchIdArray(ArrayDiner T, int id){
         }
     }
     return IdxUndefDiner;
+}
+
+void TulisArrayDiner(ArrayDiner T) {
+/* Menuliskan T ke layar */
+    /* KAMUS LOKAL */
+    int i;
+    /* ALGORITMA */
+    printf("[");
+    for (i = 0; i < NbElmtDiner(T); i++) {
+        printf("[%d,%d,%d,%d]", T.TI[i].id_makanan, T.TI[i].durasi, T.TI[i].ketahanan, T.TI[i].harga);
+        if (i != NbElmtDiner(T)-1) printf(",");
+    }
+    printf("]\n");
 }
