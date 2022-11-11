@@ -148,11 +148,11 @@ void DinerDash() {
             idx = fromStr(makanan);
         }
 
-        putaran(&idpesanan, &pesanan, &masak, &saji);
         system("CLS");
 
         if (compareSTR(perintah, "COOK")) {
-                AddEl(&masak, pesanan.buffer[SearchIdIn(pesanan, idx)]);       
+                AddEl(&masak, pesanan.buffer[SearchIdIn(pesanan, idx)]);
+                masak.TI[SearchIdArray(masak, idx)].durasi ++;       
                 printf("\nBerhasil memasak %s\n", makanan);                         
         }
 
@@ -168,6 +168,9 @@ void DinerDash() {
         else if (compareSTR(perintah, "SKIP")){
             printf("\nSkip berhasil\n");
         }
+
+        putaran(&idpesanan, &pesanan, &masak, &saji);
+
         printf("==========================================================\n\n");
     }
     printf("GAME OVER!!!\n\nSkor akhir: %d\n\n", saldo);
