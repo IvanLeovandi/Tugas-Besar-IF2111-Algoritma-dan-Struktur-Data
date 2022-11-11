@@ -3,11 +3,13 @@ Tubes 1 IF2111 Kelompok 2
 Program dibuat dengan menggunakan bahasa C menggunakan ADT Array, Queue, Mesin Karakter, dan Mesin Kata yang sudah dipelajari di kelas IF2111 Algoritma dan Struktur Data. Pada awal permainan, user akan diminta untuk melakukan input command START / LOAD terlebih dahulu. Setelah melakukan command awal pemain dapat melakukan input CREATE GAME, LIST GAME, DELETE GAME, QUEUE GAME, PLAY GAME, SKIP GAME, SAVE, HELP, dan QUIT. Dalam BNMO ini terdapat 3 game yang sudah bisa dimainkan yaitu RNG, Diner Dash, dan RPS (Rock, Paper, Scissor).
 
 Tugas dibuat oleh kelompok 2:
-1. Frendy Sanusi (18221041)
-2. Nadira Rahmananda Arifandi (18221059)
-3. Nicolas Owen Halim (18221095)
-4. Ivan Leovandi (18221129)
-5. Gabriel P. Halomoan Panjaitan (18221159)
+| Nama                          |  NIM     | 
+| :---------------------------: | :------: |
+| Frendy Sanusi                 | 18221041 |
+| Nadira Rahmananda Arifandi    | 18221059 |
+| Nicolas Owen Halim            | 18221095 |
+| Ivan Leovandi                 | 18221129 | 
+| Gabriel P. Halomoan Panjaitan | 18221159 |
 
 Cara memulai program BNMO : 
 
