@@ -16,9 +16,9 @@ unsigned long long int randomNumberWithMaxDigit(int digit) {
     int i;
     /* ALGORITMA */   
     x = randm(n);
-    for (i = 0; i < n*n*n; i++) {
+    for (i = 0; i < n*n; i++) {
         randNumber = von(x, n);
-        x = randNumber;
+        x = randNumber + (randNumber+1)*von(randm(n), n); /* lakukan LCG */
     }
     return randNumber;
 }
@@ -42,14 +42,14 @@ unsigned long long int randm(int n) {
 /* Mengembalikan random number dari jumlah digit n yang diinginkan */
     /* KAMUS LOKAL */
     double x;
-    double* u;
+    long long int seed;
     unsigned long long int y;
     int i;
     /* ALGORITMA */
-    u = (double*) malloc (sizeof(double));
+    // u = (double*) malloc (sizeof(double));
 
     for (i = 0; i < n*n*n; i++) {
-        x = (rand() + (unsigned long long int) u) / (double)RAND_MAX;
+        x = (rand() + seed) / (double)RAND_MAX;
         y = x * pow(10.0, n*1.0);
     }
     return y;

@@ -5,7 +5,6 @@
 #define ARRAY_DINER_H
 
 /* Kamus Umum */
-
 #define IdxMaxDiner 100
 #define IdxMinDiner 0
 #define IdxUndefDiner -1 /* indeks tak terdefinisi*/
@@ -66,16 +65,6 @@ void SetNeffDiner (ArrayDiner *T, IdxType N);
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
 
-/* ********** Test Indeks yang valid ********** */
-boolean IsIdxValidDiner (ArrayDiner T, IdxType i);
-/* Prekondisi : i sembarang */
-/* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
-/* yaitu antara indeks yang terdefinisi utk container*/
-boolean IsIdxEffDiner (ArrayDiner T, IdxType i);
-/* Prekondisi : i sembarang*/
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
-/* yaitu antara FirstIdx(T)..LastIdx(T) */
-
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test tabel kosong *** */
 boolean IsEmptyDiner (ArrayDiner T);
@@ -85,12 +74,15 @@ boolean IsFullDiner (ArrayDiner T);
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 
 void AddEl(ArrayDiner *T, ElTypeDiner val);
-// Menambahkan elemen baru dengan value val
+/* Menambahkan elemen baru dengan value val */
 
-void DelEl(ArrayDiner *T, ElTypeDiner *val, int x);
-//Menghapus suatu elemen dalam array
+void DelEl(ArrayDiner *T, ElTypeDiner *val, int idx);
+/* Menghapus suatu elemen dalam array */
 
 int SearchIdArray(ArrayDiner T, int id);
-//Mengembalikan indeks pada array T dengan id_makanan idx
+/* Mengembalikan indeks pada array T dengan id_makanan idx */
+
+void TulisArrayDiner(ArrayDiner T);
+/* Menuliskan T ke layar */
 
 #endif
