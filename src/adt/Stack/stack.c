@@ -1,3 +1,4 @@
+/* File stack.c */
 #include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,6 +53,9 @@ void Pop(Stack * S, infotype* X) {
 }
 
 void InversStack(Stack *S) {
+/* Membalikkan Stack S */
+/* I.S. S terdefinisi */
+/* F.S. Urutan elemen pada S menjadi terbalik */
     /* KAMUS LOKAL */
     Stack CopyS1, CopyS2;
     int X;
@@ -76,6 +80,7 @@ void InversStack(Stack *S) {
 }
 
 void TulisStack(Stack S) {
+/* Menuliskan seluruh elemen Stack S ke layar */
     /* KAMUS LOKAL */
     int i;
     /* ALGORITMA */

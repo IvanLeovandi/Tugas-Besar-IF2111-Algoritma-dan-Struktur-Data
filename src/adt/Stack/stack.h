@@ -57,11 +57,11 @@ void Pop(Stack * S, infotype* X);
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
 void InversStack(Stack *S);
+/* Membalikkan Stack S */
+/* I.S. S terdefinisi */
+/* F.S. Urutan elemen pada S menjadi terbalik */
 
 void TulisStack(Stack S);
-
-void CopyString(char* str, char* output);
-
-void makeStringEmpty(char* str);
+/* Menuliskan seluruh elemen Stack S ke layar */
 
 #endif
