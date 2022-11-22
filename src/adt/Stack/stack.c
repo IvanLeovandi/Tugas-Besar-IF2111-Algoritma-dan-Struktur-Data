@@ -46,57 +46,32 @@ void Pop(Stack * S, infotype* X) {
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
     /* KAMUS LOKAL */
-    int cnt = 0;
     /* ALGORITMA */
-    while (InfoTop(*S)[cnt] != '\0') {
-        *(*X + cnt) = InfoTop(*S)[cnt];
-        cnt++;
-    }
+    *X = InfoTop(*S);
     Top(*S)--;
 }
 
 void InversStack(Stack *S) {
     /* KAMUS LOKAL */
     Stack CopyS1, CopyS2;
-    char *X;
+    int X;
     /* ALGORITMA */
-    X = (char*) malloc (10 *sizeof(char));
-    /* Make X empty */
-
     CreateEmpty(&CopyS1);
     CreateEmpty(&CopyS2);
 
     while (!IsEmptyStack(*S)) {
-        makeStringEmpty(X);
-        char* CopyX;
-        CopyX = (char*) malloc (10 *sizeof(char));
-        makeStringEmpty(CopyX);
-
         Pop(S, &X);
-        CopyString(X, CopyX);
-        Push(&CopyS1, CopyX);
+        Push(&CopyS1, X);
     }
 
     while (!IsEmptyStack(CopyS1)) {
-        makeStringEmpty(X);
-        char* CopyX;
-        CopyX = (char*) malloc (10 *sizeof(char));
-        makeStringEmpty(CopyX);
-
         Pop(&CopyS1, &X);
-        CopyString(X, CopyX);
-        Push(&CopyS2, CopyX);
+        Push(&CopyS2, X);
     }
 
-    while (!IsEmptyStack(CopyS2)) {
-        makeStringEmpty(X);
-        char* CopyX;
-        CopyX = (char*) malloc (10 *sizeof(char));
-        makeStringEmpty(CopyX);
-        
+    while (!IsEmptyStack(CopyS2)) {        
         Pop(&CopyS2, &X);
-        CopyString(X, CopyX);
-        Push(S, CopyX);
+        Push(S, X);
     }
 }
 
@@ -105,25 +80,6 @@ void TulisStack(Stack S) {
     int i;
     /* ALGORITMA */
     for (i = Top(S); i >= 0; i--) {
-        printf("%s\n", S.T[i]);
-    }
-}
-
-void CopyString(char* str, char* output) {
-    /* KAMUS LOKAL */
-    int i = 0;
-    /* ALGORITMA */
-    while (str[i] != '\0') {
-        output[i] = str[i];
-        i++;
-    }
-}
-
-void makeStringEmpty(char* str) {
-    /* KAMUS LOKAL */
-    int k;
-    /* ALGORITMA */
-    for (k = 0; k < 10; k++) {
-        str[k] = '\0';
+        printf("%d\n", S.T[i]);
     }
 }

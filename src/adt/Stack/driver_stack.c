@@ -5,19 +5,13 @@
 int main() {
     /* KAMUS LOKAL */
     Stack S;
-    char *X;
+    int X;
     /* ALGORITMA */
-    X = (char*) malloc (10 *sizeof(char));
-    /* Make X empty */
-    for (int k = 0; k < 10; k++) {
-        X[k] = '\0';
-    }
-
     CreateEmpty(&S);
-    Push(&S, "stack1");
-    Push(&S, "stack2");
-    Push(&S, "stack3");
-    Push(&S, "stack4");
+    Push(&S, 1);
+    Push(&S, 2);
+    Push(&S, 3);
+    Push(&S, 4);
     printf("S sebelum di pop:\n");
     TulisStack(S);
 

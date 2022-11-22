@@ -11,7 +11,7 @@
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef char* infotype;
+typedef int infotype;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */

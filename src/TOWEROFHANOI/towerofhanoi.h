@@ -8,4 +8,12 @@
 
 void towerOfHanoi();
 
+void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC);
+
+char* ConvertToStar(int num);
+
+void MoveTop(Stack *awal, Stack *tujuan);
+
+boolean Win(Stack S);
+
 #endif
