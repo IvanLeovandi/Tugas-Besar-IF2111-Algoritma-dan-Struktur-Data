@@ -49,7 +49,7 @@ piringan yang ada di atasnya.
         asal = StrToInt(Input()) + '0';
         printf("TIANG TUJUAN: ");
         tujuan = StrToInt(Input()) + '0';
-        system("cls");
+        ClearScreen();
         printf("\nMemindahkan piringan ke %c...\n\n", tujuan);
 
         if (asal == 'A' && tujuan == 'B') MoveTop(&StackA, &StackB, &langkah);

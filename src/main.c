@@ -34,7 +34,7 @@ int main()
     {
         printf("\nENTER COMMAND: ");
         command = Input();
-        system("CLS");
+        ClearScreen();
 
         printf("ENTER COMMAND: %s\n", command);
         printf("--------------------------\n");
@@ -81,7 +81,7 @@ int main()
         printf("\nENTER COMMAND: ");
         command = Input();
         
-        system("CLS");
+        ClearScreen();
 
         printf("ENTER COMMAND: %s\n", command);
         printf("--------------------------\n");

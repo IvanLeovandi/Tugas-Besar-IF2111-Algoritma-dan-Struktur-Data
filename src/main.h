@@ -14,6 +14,7 @@
 #include "./QUITGAME/quitgame.h"
 #include "./HELP/help.h"
 #include "./COMMANDLAIN/commandlain.h"
+#include "../src/clear.h"
 
 #ifndef MAIN_H
 #define MAIN_H

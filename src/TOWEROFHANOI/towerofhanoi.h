@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "../adt/Stack/stack.h"
 #include "../adt/Mesin/mesinkata.h"
+#include "../clear.h"
 
 #ifndef TOWER_OF_HANOI_H
 #define TOWER_OF_HANOI_H
