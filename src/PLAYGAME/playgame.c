@@ -35,6 +35,10 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         {
             printf("Loading %s ...\n", val);
             Start_RPS();
+        } else if(compareSTR(val, "TOWER OF HANOI"))
+        {
+            printf("Loading %s ...\n", val);
+            towerOfHanoi();
         }
         else
         {
