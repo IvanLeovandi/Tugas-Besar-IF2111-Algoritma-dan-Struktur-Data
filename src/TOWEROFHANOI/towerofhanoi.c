@@ -11,7 +11,7 @@ piringan yang ada di atasnya.
 */
     /* KAMUS LOKAL */
     Stack StackA, StackB, StackC;
-    int i, score, langkah = 0, opsi, piringan;
+    int i, score, langkah = 0, opsi, piringan, optimal;
     char asal, tujuan;
     boolean win = false, valid = false;
     /* ALGORITMA */
@@ -24,18 +24,27 @@ piringan yang ada di atasnya.
 
     while (!valid) {
         printf("Terdapat 3 pilihan opsi:\n");
-        printf("1. Jumlah piringan ada 4.\n2. Jumlah piringan ada 5.\n3. Jumlah piringan ada 6.\n\n");
+        printf("1. Jumlah piringan ada 4.\n2. Jumlah piringan ada 5.\n3. Jumlah piringan ada 6.\n4. Jumlah piringan custom.\n\n");
         printf("Masukkan nomor opsi: ");
         opsi = StrToInt(Input());
-        printf("\n\n");
+        printf("\n");
 
-        if (opsi == 1 || opsi == 2 || opsi == 3) valid = true;
+        if (opsi == 1 || opsi == 2 || opsi == 3 || opsi == 4) valid = true;
         else printf("Masukkan tidak valid, silakan input kembali...\n\n");   
     }
 
     if (opsi == 1) piringan = 4;
     else if (opsi == 2) piringan = 5;
     else if (opsi == 3) piringan = 6;
+    else if (opsi == 4) {
+        printf("Masukkan jumlah piringan yang diinginkan: ");
+        piringan = StrToInt(Input());
+        printf("\n");
+    }
+
+    optimal = langkahTower(piringan, 'A', 'C', 'B');
+    printf("Langkah optimal untuk memenangkan game adalah %d.\n\n", optimal);
+    printf("Skor maksimal: %d\n\n", optimal/3);
 
     for (i = 1; i <= piringan; i++) {
         Push(&StackA, 2*i-1);
@@ -66,18 +75,8 @@ piringan yang ada di atasnya.
         langkah++;
         printf("Kamu telah melakukan %d langkah.\n\n", langkah);
 
-        if (piringan == 4) {
-            if (langkah == 15) score = 7; /* langkah optimal = 15 */
-            else if (langkah > 15) score--;
-        }
-        else if (piringan == 5) {
-            if (langkah == 31) score = 10; /* langkah optimal = 31 */
-            else if (langkah > 31) score--;
-        }
-        else if (piringan == 6) {
-            if (langkah == 63) score = 20; /* langkah optimal = 63 */
-            else if (langkah > 63) score--;
-        }
+        if (langkah == optimal) score = optimal/3;
+        else if (langkah > optimal) score--;
 
         Tulis3Stack(StackA, StackB, StackC, piringan);
         win = Win(StackC, piringan);
@@ -221,4 +220,15 @@ boolean Win(Stack S, int piringan) {
         if (i != piringan) win = false;
     }
     return win;
+}
+
+int langkahTower(int piringan, char awal, char tujuan, char additional) {
+/* Menghitung langkah optimal dari permainan Tower of Hanoi */
+	/* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (piringan == 1) {
+        return 1;
+    } else {
+        return 1 + langkahTower(piringan-1, awal, additional, tujuan) + langkahTower(piringan-1, additional, tujuan, awal);
+    }
 }
