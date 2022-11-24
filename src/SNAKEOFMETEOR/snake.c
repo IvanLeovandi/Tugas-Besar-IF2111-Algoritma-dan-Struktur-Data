@@ -1,6 +1,5 @@
 #include "snake.h"
 
-
 void Snake(){
 
     printf("Selamat datang di snake on meteor!\n\n");

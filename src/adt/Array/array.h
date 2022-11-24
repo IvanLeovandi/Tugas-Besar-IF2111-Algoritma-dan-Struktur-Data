@@ -16,6 +16,7 @@ typedef char* ElType;
 
 typedef struct
 	{
+		// ElType TI[IdxMax - IdxMin + 1];
 		ElType TI [6];
 		int Neff;
 	} Array;
