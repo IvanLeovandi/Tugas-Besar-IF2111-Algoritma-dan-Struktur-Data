@@ -9,7 +9,7 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-void Snake();
+void SnakeOnMeteor();
 void Move (char command, snakeList *L, point* food, boolean* game, point* meteor, int* turn);
 void Food (snakeList *L, point *food);
 void Meteor (snakeList *L, boolean *game, point* meteor, point food);

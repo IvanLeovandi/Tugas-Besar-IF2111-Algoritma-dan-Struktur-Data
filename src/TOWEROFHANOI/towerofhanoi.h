@@ -36,4 +36,6 @@ boolean Win(Stack S, int piringan);
 int langkahTower(int piringan, char awal, char tujuan, char additional);
 /* Menghitung langkah optimal dari permainan Tower of Hanoi */
 
+void TulisBase(Stack S, long long int max);
+
 #endif
