@@ -11,7 +11,7 @@ piringan yang ada di atasnya.
 */
     /* KAMUS LOKAL */
     Stack StackA, StackB, StackC;
-    int i, score, langkah = 0, opsi, piringan;
+    int i, score, langkah = 0, opsi, piringan, optimal;
     char asal, tujuan;
     boolean win = false, valid = false;
     /* ALGORITMA */
@@ -23,19 +23,28 @@ piringan yang ada di atasnya.
     CreateEmpty(&StackC);
 
     while (!valid) {
-        printf("Terdapat 3 pilihan opsi:\n");
-        printf("1. Jumlah piringan ada 4.\n2. Jumlah piringan ada 5.\n3. Jumlah piringan ada 6.\n\n");
+        printf("Terdapat 4 pilihan opsi:\n");
+        printf("1. Jumlah piringan ada 4.\n2. Jumlah piringan ada 5.\n3. Jumlah piringan ada 6.\n4. Jumlah piringan custom.\n\n");
         printf("Masukkan nomor opsi: ");
         opsi = StrToInt(Input());
-        printf("\n\n");
+        printf("\n");
 
-        if (opsi == 1 || opsi == 2 || opsi == 3) valid = true;
+        if (opsi == 1 || opsi == 2 || opsi == 3 || opsi == 4) valid = true;
         else printf("Masukkan tidak valid, silakan input kembali...\n\n");   
     }
 
     if (opsi == 1) piringan = 4;
     else if (opsi == 2) piringan = 5;
     else if (opsi == 3) piringan = 6;
+    else if (opsi == 4) {
+        printf("Masukkan jumlah piringan yang diinginkan: ");
+        piringan = StrToInt(Input());
+        printf("\n");
+    }
+
+    optimal = langkahTower(piringan, 'A', 'C', 'B');
+    printf("Langkah optimal untuk memenangkan game adalah %d.\n\n", optimal);
+    printf("Skor maksimal: %d\n\n", optimal/3);
 
     for (i = 1; i <= piringan; i++) {
         Push(&StackA, 2*i-1);
@@ -66,18 +75,8 @@ piringan yang ada di atasnya.
         langkah++;
         printf("Kamu telah melakukan %d langkah.\n\n", langkah);
 
-        if (piringan == 4) {
-            if (langkah == 15) score = 7; /* langkah optimal = 15 */
-            else if (langkah > 15) score--;
-        }
-        else if (piringan == 5) {
-            if (langkah == 31) score = 10; /* langkah optimal = 31 */
-            else if (langkah > 31) score--;
-        }
-        else if (piringan == 6) {
-            if (langkah == 63) score = 20; /* langkah optimal = 63 */
-            else if (langkah > 63) score--;
-        }
+        if (langkah == optimal) score = optimal/3;
+        else if (langkah > optimal) score--;
 
         Tulis3Stack(StackA, StackB, StackC, piringan);
         win = Win(StackC, piringan);
@@ -94,7 +93,8 @@ piringan yang ada di atasnya.
 void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
 /* Menulis StackA, StackB, dan StackC ke layar */
     /* KAMUS LOKAL */
-    int i, j, max;
+    int i, j;
+    long long int max;
     /* ALGORITMA */
     max = 2*piringan - 1;
     for (i = piringan-1; i >= 0; i--) {
@@ -108,6 +108,7 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
             }
         }
         else printf("%s", ConvertToStar(StackA.T[i], max));
+        printf("%c", '\t');
 
         if (i > Top(StackB)) {
             for (j = 0; j < piringan-1; j++) {
@@ -119,6 +120,7 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
             }
         }
         else printf("%s", ConvertToStar(StackB.T[i], max));
+        printf("%c", '\t');
 
         if (i > Top(StackC)) {
             for (j = 0; j < piringan-1; j++) {
@@ -133,13 +135,9 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
         else printf("%s\n", ConvertToStar(StackC.T[i], max));
     }
 
-    for (j = 0; j < 3; j++) {
-        printf(" ");
-        for (i = 0; i < max-2; i++) {
-            printf("-");
-        }
-        printf(" ");
-    }
+    TulisBase(StackA, max);
+    TulisBase(StackB, max);
+    TulisBase(StackC, max);
     printf("\n");
 
     for (j = 0; j < 3; j++) {
@@ -154,6 +152,7 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
         for (i = 0; i < piringan-1; i++) {
             printf(" ");
         }
+        printf("%c", '\t');
     }
     printf("\n\n");
 }
@@ -169,7 +168,7 @@ char* ConvertToStar(int num, int max) {
         star[i] = ' ';
     }
     for (i = 0; i < num; i++) {
-        star[(max-num)/2 + i] = '*';
+        star[(max-num)/2 + i] = 176;
     }
     star[max] = '\0';
     return star;
@@ -221,4 +220,39 @@ boolean Win(Stack S, int piringan) {
         if (i != piringan) win = false;
     }
     return win;
+}
+
+int langkahTower(int piringan, char awal, char tujuan, char additional) {
+/* Menghitung langkah optimal dari permainan Tower of Hanoi */
+	/* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (piringan == 1) {
+        return 1;
+    } else {
+        return 1 + langkahTower(piringan-1, awal, additional, tujuan) + langkahTower(piringan-1, additional, tujuan, awal);
+    }
+}
+
+void TulisBase(Stack S, long long int max) {
+    /* KAMUS LOKAL */
+    int i, j;
+    /* ALGORITMA */
+    if (IsEmptyStack(S)) {
+        for (i = 0; i < max/2-1; i++) {
+            printf(" ");
+        }
+        for (i = 0; i < 3; i++) {
+            printf("%c", 205);
+        }
+        for (i = 0; i < max/2-1; i++) {
+            printf(" ");
+        }
+    } else {
+        printf(" ");
+        for (i = 0; i < max-2; i++) {
+            printf("%c", 205);
+        }
+        printf(" ");
+    }
+    printf("%c", '\t');
 }

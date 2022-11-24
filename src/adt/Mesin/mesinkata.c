@@ -73,7 +73,7 @@ char* KataToSTR(Word currentWord)
     char *str;
     str = (char*) malloc((currentWord.Length*2)*sizeof(char));
     int i, strlength;
-    strlength = currentWord.Length; 
+    strlength = currentWord.Length;
     for(i = 0; i < strlength; i++)
     {
         *(str + i) = currentWord.TabWord[i];

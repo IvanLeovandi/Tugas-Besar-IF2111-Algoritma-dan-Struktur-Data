@@ -16,8 +16,8 @@ typedef char* ElType;
 
 typedef struct
 	{
-		ElType TI [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
-		int Neff; /* banyaknya elemen efektif */
+		ElType TI[IdxMax - IdxMin + 1];
+		int Neff;
 	} Array;
 
 /* Indeks yang digunakan [IdxMin..IdxMax] */
