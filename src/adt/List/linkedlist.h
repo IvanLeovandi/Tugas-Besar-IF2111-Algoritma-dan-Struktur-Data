@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../boolean.h"
+#include "../../RNG/random_number.h"
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
@@ -50,11 +51,11 @@ typedef struct
 
 /* PROTOTYPE */
 /****************** TEST Snake KOSONG ******************/
-boolean IsEmpty (snakeList L);
+boolean IsSnakeEmpty (snakeList L);
 /* Mengirim true jika Snake kosong */
 
 /****************** PEMBUATAN Snake KOSONG ******************/
-void CreateEmpty (snakeList *L);
+void CreateEmptySnake (snakeList *L);
 
 void CreatePeta (snakeList *L, point* food);
 
@@ -83,6 +84,8 @@ adrSnake Search (snakeList L, int X, int Y);
 /* Mencari apakah ada elemen Snake dengan info(P)= X */
 /* Jika ada, mengirimkan adrSnake elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
+
+void SetNext (snakeList *L, int X, int Y, char prev);
 
 
 /****************** PROSES SEMUA ELEMEN Snake ******************/

@@ -1,7 +1,6 @@
 #include "snake.h"
 
-
-void Snake(){
+void SnakeOnMeteor(){
 
     printf("Selamat datang di snake on meteor!\n\n");
     printf("Mengenerate peta, snake dan makanan . . .\n\n");

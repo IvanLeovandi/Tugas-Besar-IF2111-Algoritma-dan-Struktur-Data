@@ -7,6 +7,7 @@
 #include "../GAMEBUATAN/game.h"
 #include "../BONUSGAME/RPS.h"
 #include "../TOWEROFHANOI/towerofhanoi.h"
+#include "../SNAKEONMETEOR/snake.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H

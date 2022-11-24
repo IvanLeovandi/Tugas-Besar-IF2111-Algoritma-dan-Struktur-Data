@@ -3,6 +3,7 @@
 #include "./adt/Mesin/mesinkarakter.h"
 #include "./adt/Mesin/mesinkata.h"
 #include "./adt/Queue/queue.h"
+#include "./adt/List/linkedlist.h"
 #include "./STARTGAME/start.h"
 #include "./SAVE/save.h"
 #include "./CREATEGAME/creategame.h"
