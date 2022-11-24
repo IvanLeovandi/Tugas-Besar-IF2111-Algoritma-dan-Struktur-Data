@@ -2,19 +2,19 @@
 
 /* PROTOTYPE */
 /****************** TEST Snake KOSONG ******************/
-boolean IsEmpty (snakeList L){
+boolean IsSnakeEmpty (snakeList L){
     return (Head(L) == Nil && Tail(L)==Nil);
 }
 /* Mengirim true jika Snake kosong */
 
 /****************** PEMBUATAN Snake KOSONG ******************/
-void CreateEmpty (snakeList *L){
+void CreateEmptySnake (snakeList *L){
     Head(*L) = Nil;
     Tail(*L) = Nil;
 }
 
 void CreatePeta (snakeList *L, point* food){
-    CreateEmpty(L);
+    CreateEmptySnake(L);
     int X = randomNumberMinMax(0, 4);
     int Y = randomNumberMinMax(0, 4);
 
