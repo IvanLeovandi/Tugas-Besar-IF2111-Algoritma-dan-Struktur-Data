@@ -14,10 +14,10 @@
 typedef int IdxType;
 typedef char* ElType;
 
-typedef struct
+typedef struct tArray
 	{
-		ElType TI [6];
-		int Neff;
+		ElType TI[IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
+		int Neff; /* banyaknya elemen efektif */
 	} Array;
 
 /* Indeks yang digunakan [IdxMin..IdxMax] */
