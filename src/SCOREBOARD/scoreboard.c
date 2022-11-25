@@ -162,13 +162,22 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
         }
         else if (number == 0)
         {
-            int i;
-            for (i=0;i<scoreboard_game.Neff;i++)
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL?\n");
+            printf("YA/TIDAK? ");
+            yakin =Input();
+            if (compareSTR(yakin,"YA"))
             {
-                CreateEmptyMap((*scoreboard_game).TI[i]);
-                CreateEmptySet((*nama_pemain).TI[i]);
+                for (i=0;i<scoreboard_game.Neff;i++)
+                {
+                    CreateEmptyMap((*scoreboard_game).TI[i]);
+                    CreateEmptySet((*nama_pemain).TI[i]);
+                }
             }
-            else
+        else
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
+            printf("YA/TIDAK? ");
+            yakin =Input();
+            if (compareSTR(yakin,"YA"))
             {
                 CreateEmptyMap((*scoreboard_game).TI[number-1]);
                 CreateEmptySet((*scoreboard_game).TI[number-1]);
