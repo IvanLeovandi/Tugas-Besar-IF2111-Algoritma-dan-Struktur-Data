@@ -116,7 +116,7 @@ void SetElArrSet (ArraySet *T, IdxType i, ElType v) {
     }
 }
 
-void SetNeffArrSet (Array *T, IdxType N) {
+void SetNeffArrSet (ArraySet *T, IdxType N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
