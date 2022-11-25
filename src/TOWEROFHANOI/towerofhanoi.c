@@ -11,38 +11,24 @@ piringan yang ada di atasnya.
 */
     /* KAMUS LOKAL */
     Stack StackA, StackB, StackC;
-    int i, score, langkah = 0, opsi, piringan, optimal;
+    int i, score, score_optimal, langkah = 0, piringan, optimal;
     char asal, tujuan;
-    boolean win = false, valid = false;
+    boolean win = false;
     /* ALGORITMA */
     printf("Selamat datang di Tower of Hanoi!\n\n");
     printf("Permainan dimulai.\n\n");
 
-    CreateEmpty(&StackA);
-    CreateEmpty(&StackB);
-    CreateEmpty(&StackC);
+    CreateEmptyStack(&StackA);
+    CreateEmptyStack(&StackB);
+    CreateEmptyStack(&StackC);
 
-    while (!valid) {
-        printf("Terdapat 4 pilihan opsi:\n");
-        printf("1. Jumlah piringan ada 4.\n2. Jumlah piringan ada 5.\n3. Jumlah piringan ada 6.\n4. Jumlah piringan custom.\n\n");
-        printf("Masukkan nomor opsi: ");
-        opsi = StrToInt(Input());
-        printf("\n");
-
-        if (opsi == 1 || opsi == 2 || opsi == 3 || opsi == 4) valid = true;
-        else printf("Masukkan tidak valid, silakan input kembali...\n\n");   
-    }
-
-    if (opsi == 1) piringan = 4;
-    else if (opsi == 2) piringan = 5;
-    else if (opsi == 3) piringan = 6;
-    else if (opsi == 4) {
-        printf("Masukkan jumlah piringan yang diinginkan: ");
-        piringan = StrToInt(Input());
-        printf("\n");
-    }
+    // while (!valid) {
+    printf("Masukkan jumlah piringan yang diinginkan: ");
+    piringan = StrToInt(Input());
+    printf("\n");
 
     optimal = langkahTower(piringan, 'A', 'C', 'B');
+    score_optimal = optimal/3;
     printf("Langkah optimal untuk memenangkan game adalah %d.\n\n", optimal);
     printf("Skor maksimal: %d\n\n", optimal/3);
 
@@ -51,7 +37,7 @@ piringan yang ada di atasnya.
     }
 
     InversStack(&StackA);
-    Tulis3Stack(StackA, StackB, StackC, piringan);
+    Tulis3Stack(&StackA, &StackB, &StackC, piringan);
 
     while (!win) {
         printf("TIANG ASAL: ");
@@ -75,10 +61,10 @@ piringan yang ada di atasnya.
         langkah++;
         printf("Kamu telah melakukan %d langkah.\n\n", langkah);
 
-        if (langkah == optimal) score = optimal/3;
+        if (langkah == optimal) score = score_optimal;
         else if (langkah > optimal) score--;
 
-        Tulis3Stack(StackA, StackB, StackC, piringan);
+        Tulis3Stack(&StackA, &StackB, &StackC, piringan);
         win = Win(StackC, piringan);
 
         if (score == 0) win = true;
@@ -90,15 +76,19 @@ piringan yang ada di atasnya.
     printf("Skor didapatkan: %d\n", score);
 }
 
-void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
+void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
 /* Menulis StackA, StackB, dan StackC ke layar */
     /* KAMUS LOKAL */
-    int i, j;
+    int i, j, X;
+    Stack tempA, tempB, tempC;
     long long int max;
     /* ALGORITMA */
+    CreateEmptyStack(&tempA);
+    CreateEmptyStack(&tempB);
+    CreateEmptyStack(&tempC);
     max = 2*piringan - 1;
     for (i = piringan-1; i >= 0; i--) {
-        if (i > Top(StackA)) {
+        if (i > Top(*StackA)) {
             for (j = 0; j < piringan-1; j++) {
                 printf(" ");
             }
@@ -107,10 +97,14 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
                 printf(" ");
             }
         }
-        else printf("%s", ConvertToStar(StackA.T[i], max));
+        else {
+            Pop(StackA, &X);
+            Push(&tempA, X);
+            printf("%s", ConvertToStar(X, max));
+        }
         printf("%c", '\t');
 
-        if (i > Top(StackB)) {
+        if (i > Top(*StackB)) {
             for (j = 0; j < piringan-1; j++) {
                 printf(" ");
             }
@@ -119,10 +113,14 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
                 printf(" ");
             }
         }
-        else printf("%s", ConvertToStar(StackB.T[i], max));
+        else {
+            Pop(StackB, &X);
+            Push(&tempB, X);
+            printf("%s", ConvertToStar(X, max));
+        }
         printf("%c", '\t');
 
-        if (i > Top(StackC)) {
+        if (i > Top(*StackC)) {
             for (j = 0; j < piringan-1; j++) {
                 printf(" ");
             }
@@ -132,12 +130,32 @@ void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan) {
             }
             printf("\n");
         }
-        else printf("%s\n", ConvertToStar(StackC.T[i], max));
+        else {
+            Pop(StackC, &X);
+            Push(&tempC, X);
+            printf("%s", ConvertToStar(X, max));
+            printf("\n");
+        };
+    }
+    
+    while (!IsEmptyStack(tempA)) {
+        Pop(&tempA, &X);
+        Push(StackA, X);
     }
 
-    TulisBase(StackA, max);
-    TulisBase(StackB, max);
-    TulisBase(StackC, max);
+    while (!IsEmptyStack(tempB)) {
+        Pop(&tempB, &X);
+        Push(StackB, X);
+    }
+
+    while (!IsEmptyStack(tempC)) {
+        Pop(&tempC, &X);
+        Push(StackC, X);
+    }
+
+    TulisBase(*StackA, max);
+    TulisBase(*StackB, max);
+    TulisBase(*StackC, max);
     printf("\n");
 
     for (j = 0; j < 3; j++) {

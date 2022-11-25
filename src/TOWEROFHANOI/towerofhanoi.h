@@ -17,7 +17,7 @@ peraturannya adalah piringan yang di bawah tidak boleh lebih kecil daripada
 piringan yang ada di atasnya.
 */
 
-void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan);
+void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan);
 /* Menulis StackA, StackB, dan StackC ke layar */
 
 char* ConvertToStar(int num, int max);

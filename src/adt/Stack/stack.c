@@ -5,7 +5,7 @@
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Stack *S) {
+void CreateEmptyStack(Stack *S) {
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 0.. MaxEl */
@@ -60,8 +60,8 @@ void InversStack(Stack *S) {
     Stack CopyS1, CopyS2;
     int X;
     /* ALGORITMA */
-    CreateEmpty(&CopyS1);
-    CreateEmpty(&CopyS2);
+    CreateEmptyStack(&CopyS1);
+    CreateEmptyStack(&CopyS2);
 
     while (!IsEmptyStack(*S)) {
         Pop(S, &X);
