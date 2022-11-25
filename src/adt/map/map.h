@@ -89,7 +89,7 @@ int NbElmtArrMap (ArrayMap T);
 void SetElArrMap (ArrayMap *T, IdxType i, Set v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
-/* Mengeset nilai elemen array yang ke-i dengan set v*/
+/* Mengeset nilai elemen arxray yang ke-i dengan set v*/
 
 void SetNeffArrMap (ArrayMap *T, IdxType N);
 /* I.S. T terdefinisi, sembarang */
