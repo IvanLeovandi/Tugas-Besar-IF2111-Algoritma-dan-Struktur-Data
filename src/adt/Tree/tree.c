@@ -154,12 +154,10 @@ boolean searchBaseOne(BinTree p, ElType X) {
 /* Basis 1 */
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    if (!isTreeOneElmt(p)) {
-        if (ROOT(p) == X) return true;
-        else {
-            if (searchBaseOne(LEFT(p), X)) return true;
-            else return searchBaseOne(RIGHT(p), X);
-        }
+    if (ROOT(p) == X) return true;
+    else if (!isTreeOneElmt(p)) {
+        if (searchBaseOne(LEFT(p), X)) return true;
+        else return searchBaseOne(RIGHT(p), X);
     } else {
         return false;
     }
