@@ -173,7 +173,9 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
                     CreateEmptySet((*nama_pemain).TI[i]);
                 }
             }
+        }
         else
+        {
             printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
             printf("YA/TIDAK? ");
             yakin =Input();
