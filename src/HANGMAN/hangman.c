@@ -1,10 +1,5 @@
 /* File hangman.c */
 #include "hangman.h"
-#include "array.c"
-#include "mesinkarakter.c"
-#include "mesinkata.c"
-#include "queue.c"
-#include "random_number.c"
 
 void Hangman(Array *Kamus){
 /* 
@@ -95,7 +90,7 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
                 }
                 if(IsWin(Penanda)){
                     score += str_len(Kata);
-                    printf("/n Wow Bagus, Lanjut Kata Selanjutnya!!!");
+                    printf("\nWow Bagus, Lanjut Kata Selanjutnya!!!\n");
                     printf("\nScore sementara anda adalah %d\n", score);
                     CreateQueue(&huruftebakan);
                 }
@@ -211,17 +206,4 @@ boolean IsWin(Array Penanda){
         i += 1;
     }
     return found;
-}
-
-int main(){
-    Array Kamus;
-    MakeEmpty(&Kamus);
-    Kamus.TI[0] = "MAKAN";
-    Kamus.TI[1] = "MINUM";
-    Kamus.TI[2] = "MATA";
-    Kamus.TI[3] = "KEREN";
-    Kamus.TI[4] = "HEBAT";
-    Kamus.Neff = 5;
-    Hangman(&Kamus);
-    return 0;
 }

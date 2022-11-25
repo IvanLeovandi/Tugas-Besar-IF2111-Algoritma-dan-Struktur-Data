@@ -5,7 +5,7 @@
 #include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../RNG/random_number.h"
-#include "queue.h"
+#include "queuehangman.h"
 
 #ifndef HANGMAN
 #define HANGMAN
