@@ -19,6 +19,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 typedef int keytype;
 typedef int valuetype;
 typedef int address;
+typedef int IdxType;
 
 typedef struct {
 	keytype Key;
