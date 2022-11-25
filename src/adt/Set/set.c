@@ -16,7 +16,7 @@ boolean IsEmptySet(Set S)
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 {
-	return S.Count ==z Nil;
+	return S.Count == Nil;
 }
 
 boolean IsFullSet(Set S)

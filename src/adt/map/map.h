@@ -1,6 +1,7 @@
 #ifndef map_H
 #define map_H
 #include <stdio.h>
+#include "../Set/set.h"
 #include "../../boolean.h"
 
 /* MODUL Map
@@ -86,17 +87,17 @@ int NbElmtArrMap (ArrayMap T);
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
 
-void SetElArrMap (ArrayMap *T, IdxType i, Set v);
+void SetElArrMap (ArrayMap *T, int i, Set v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen array yang ke-i dengan set v*/
 
-void SetNeffArrMap (ArrayMap *T, IdxType N);
+void SetNeffArrMap (ArrayMap *T, int N);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
 
-void DelArrMap (ArrayMap *T, IdxType i);
+void DelArrMap (ArrayMap *T, int i);
 /* I.S. T Terdefinisi, sembarang*/
 /* F.S. Set T pada index i akan dihapus*/
 

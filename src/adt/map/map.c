@@ -122,7 +122,7 @@ int NbElmtArrMap (ArrayMap T) {
     return T.Neff;
 }
 
-void SetElArrMap (ArrayMap *T, IdxType i, ElType v) {
+void SetElArrMap (ArrayMap *T, IdxType i, Set v) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
@@ -134,7 +134,7 @@ void SetElArrMap (ArrayMap *T, IdxType i, ElType v) {
     }
 }
 
-void SetNeffArrMap (Array *T, IdxType N) {
+void SetNeffArrMap (ArrayMap *T, IdxType N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
