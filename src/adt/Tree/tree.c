@@ -129,15 +129,31 @@ int NbElmtTree(BinTree p) {
 }
 
 int level(BinTree p, ElType X) {
-/* Mengirimkan level dari node X yang merupakan salah satu daun dari pohon biner P */
+/* Mengirimkan level dari node X yang merupakan salah satu node dari pohon biner P */
 /* Akar(P) level-nya adalah 1. Pohon P tidak kosong dan elemen-elemennya unik.*/
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    if (isTreeOneElmt(p)) return 1;
+    if (ROOT(p) == X) return 1;
     else {
         if (searchTreeNode(LEFT(p), X)) return 1 + level(LEFT(p), X);
         else return 1 + level(RIGHT(p), X);
     }
+}
+
+int depth(BinTree p) {
+/* Mengirimkan maksimum level suatu pohon biner p */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (isTreeEmpty(p)) return 0;
+    else return 1 + Max(depth(LEFT(p)), depth(RIGHT(p)));
+}
+
+int Max(int a, int b) {
+/* Mengembalikan nilai terbesar antara a dan b */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (a > b) return a;
+    else return b;
 }
 
 boolean searchTreeNode(BinTree p, ElType X) {
@@ -156,10 +172,23 @@ boolean searchBaseOne(BinTree p, ElType X) {
     /* ALGORITMA */
     if (ROOT(p) == X) return true;
     else if (!isTreeOneElmt(p)) {
-        if (searchBaseOne(LEFT(p), X)) return true;
-        else return searchBaseOne(RIGHT(p), X);
+        if (searchTreeNode(LEFT(p), X)) return true;
+        else return searchTreeNode(RIGHT(p), X);
     } else {
         return false;
+    }
+}
+
+boolean isLeaf(BinTree p, ElType X) {
+/* Mengembalikan true jika X adalah daun dari pohon biner p */
+/* X pasti ada di pohon biner P */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (ROOT(p) == X) {
+        return isTreeOneElmt(p);
+    } else {
+        if (searchTreeNode(LEFT(p), X)) isLeaf(LEFT(p), X);
+        else isLeaf(RIGHT(p), X);
     }
 }
 
@@ -176,5 +205,15 @@ X, Y ditambahkan pada daun paling kiri. */
     } else {
         if (searchTreeNode(LEFT(*p), X)) addLeaf(&LEFT(*p), X, Y, Left);
         else addLeaf(&RIGHT(*p), X, Y, Left);
+    }
+}
+
+BinTree treeLocation(BinTree p, ElType X) {
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (ROOT(p) == X) return p;
+    else {
+        if (searchTreeNode(LEFT(p), X)) return treeLocation(LEFT(p), X);
+        else return treeLocation(RIGHT(p), X);
     }
 }

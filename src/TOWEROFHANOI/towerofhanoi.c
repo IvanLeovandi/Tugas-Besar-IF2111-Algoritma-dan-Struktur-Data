@@ -14,6 +14,7 @@ piringan yang ada di atasnya.
     int i, score, score_optimal, langkah = 0, piringan, optimal;
     char asal, tujuan;
     boolean win = false;
+    char* inputan;
     /* ALGORITMA */
     printf("Selamat datang di Tower of Hanoi!\n\n");
     printf("Permainan dimulai.\n\n");
@@ -22,12 +23,34 @@ piringan yang ada di atasnya.
     CreateEmptyStack(&StackB);
     CreateEmptyStack(&StackC);
 
-    // while (!valid) {
     printf("Masukkan jumlah piringan yang diinginkan: ");
-    piringan = StrToInt(Input());
+    inputan = (char*) malloc (sizeof(char));
+    inputan = Input();
+
+    while (!validInt(inputan)) {
+        ClearScreen();
+        printf("Masukan salah, silakan input kembali jumlah piringan: ");
+        inputan = Input();
+    }
+    
+    piringan = StrToInt(inputan);
     printf("\n");
 
-    optimal = langkahTower(piringan, 'A', 'C', 'B');
+    while (piringan > 31) {
+        ClearScreen();
+        printf("Masukan melebihi batas(31), silakan input kembali jumlah piringan: ");
+        inputan = Input();
+        while (!validInt(inputan)) {
+            ClearScreen();
+            printf("Masukan salah, silakan input kembali jumlah piringan: ");
+            inputan = Input();
+        }
+        
+        piringan = StrToInt(inputan);
+        printf("\n");
+    }
+
+    optimal = pow(2, piringan)-1;
     score_optimal = optimal/3;
     printf("Langkah optimal untuk memenangkan game adalah %d.\n\n", optimal);
     printf("Skor maksimal: %d\n\n", optimal/3);
