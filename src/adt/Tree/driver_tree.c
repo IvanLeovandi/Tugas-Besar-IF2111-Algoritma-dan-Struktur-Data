@@ -20,9 +20,15 @@ int main() {
     printf("\n\n");
 
     printf("Jumlah elemen p: %d\n", NbElmtTree(p));
-    printf("Level X = 4: %d\n", level(p, 4));
+    printf("Level X = 2: %d\n", level(p, 2));
+    printf("Depth: %d\n\n", depth(p));
     printf("Search X = 1: %d\n", searchTreeNode(p, 1));
     printf("Search X = 9: %d\n\n", searchTreeNode(p, 9));
+
+    printf("isLeaf X = 1: %d\n", isLeaf(p, 1));
+    printf("isLeaf X = 3: %d\n", isLeaf(p, 3));
+
+    printf("Info treeLoc X = 2: %d\n", ROOT(treeLocation(p, 2)));
 
     printf("Masukkan nilai info daun yang ingin ditambah: ");
     scanf("%d", &Y);
