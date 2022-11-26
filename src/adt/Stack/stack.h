@@ -64,4 +64,7 @@ void InversStack(Stack *S);
 void TulisStack(Stack S);
 /* Menuliskan seluruh elemen Stack S ke layar */
 
+Stack CopyStack(Stack *S);
+/* Mengembalikan hasil salinan S */
+
 #endif
