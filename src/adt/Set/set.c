@@ -16,7 +16,7 @@ boolean IsEmptySet(Set S)
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 {
-	return S.Count ==z Nil;
+	return S.Count == Nil;
 }
 
 boolean IsFullSet(Set S)
@@ -27,20 +27,20 @@ boolean IsFullSet(Set S)
 }
 
 /* ********** Operator Dasar Set ********* */
-void InsertSet(Set *S, infotype Elmt)
+void InsertSet(Set *S,char* Elmt)
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 {
-	if (IsEmpty(*S))
+	if (IsEmptySet(*S))
 	{
 		(*S).Count++;
 		(*S).Elements[0] = Elmt;
 	}
 	else
 	{
-		if (! IsMember((*S),Elmt))
+		if (!IsMemberSet((*S),Elmt))
 		{
 			(*S).Count++;
 			(*S).Elements[(*S).Count-1] = Elmt;
@@ -48,7 +48,7 @@ void InsertSet(Set *S, infotype Elmt)
 	}
 }
 
-void DeleteSet(Set *S, infotype Elmt)
+void DeleteSet(Set *S,infotype Elmt)
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
@@ -56,7 +56,7 @@ void DeleteSet(Set *S, infotype Elmt)
 {
 	int idx;
 	idx = 0;
-	if (IsMember((*S),Elmt))
+	if (IsMemberSet((*S),Elmt))
 	{
 		while ((*S).Elements[idx] != Elmt)
 		{

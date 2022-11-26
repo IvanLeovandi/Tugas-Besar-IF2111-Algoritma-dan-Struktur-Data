@@ -34,9 +34,7 @@ F.S.: Top awal berkurang 1, top tujuan bertambah 1
 boolean Win(Stack S, int piringan);
 /* Mengembalikan true jika kondisi S sudah sesuai dengan kondisi menang */
 
-int langkahTower(int piringan, char awal, char tujuan, char additional);
-/* Menghitung langkah optimal dari permainan Tower of Hanoi */
-
 void TulisBase(Stack S, long long int max);
+/* Menuliskan base ke layar */
 
 #endif

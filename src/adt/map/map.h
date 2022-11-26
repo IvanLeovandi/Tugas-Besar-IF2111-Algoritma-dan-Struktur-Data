@@ -16,7 +16,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define IdxMin 1
 
 // typedef int bool;
-typedef int keytype;
+typedef char* keytype;
 typedef int valuetype;
 typedef int address;
 typedef int IdxType;
@@ -87,7 +87,7 @@ int NbElmtArrMap (ArrayMap T);
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
 
-void SetElArrMap (ArrayMap *T, IdxType i, Set v);
+void SetElArrMap (ArrayMap *T, IdxType i, Map v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen arxray yang ke-i dengan set v*/
