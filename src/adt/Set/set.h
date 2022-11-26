@@ -12,7 +12,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define IdxMax 100
 #define IdxMin 1
 
-typedeff int IdxType;
+typedef int IdxType;
 typedef *char infotype;
 typedef int address;
 
@@ -21,6 +21,8 @@ typedef struct
     infotype Elements[MaxEl];
     address Count;
 } Set;
+
+
 
 typedef struct
 {

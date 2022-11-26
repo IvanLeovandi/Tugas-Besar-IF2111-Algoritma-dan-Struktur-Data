@@ -1,6 +1,7 @@
 /* File towerofhanoi.h */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../adt/Stack/stack.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../clear.h"
@@ -17,7 +18,7 @@ peraturannya adalah piringan yang di bawah tidak boleh lebih kecil daripada
 piringan yang ada di atasnya.
 */
 
-void Tulis3Stack(Stack StackA, Stack StackB, Stack StackC, int piringan);
+void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan);
 /* Menulis StackA, StackB, dan StackC ke layar */
 
 char* ConvertToStar(int num, int max);

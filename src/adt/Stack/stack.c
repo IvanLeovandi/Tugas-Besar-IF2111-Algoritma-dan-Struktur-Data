@@ -5,10 +5,10 @@
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Stack *S) {
+void CreateEmptyStack(Stack *S) {
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxStack */
+/* jadi indeksnya antara 0.. MaxStack */
 /* Ciri stack kosong : TOP berNilHanoiai NilHanoi */
     /* KAMUS LOKAL */
     /* ALGORITMA */
@@ -27,7 +27,7 @@ boolean IsFullStack(Stack S) {
 /* Mengirim true jika tabel penampung NilHanoiai elemen stack penuh */
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return (Top(S) == MaxEl-1);
+    return (Top(S) == MaxStack-1);
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
@@ -60,8 +60,8 @@ void InversStack(Stack *S) {
     Stack CopyS1, CopyS2;
     int X;
     /* ALGORITMA */
-    CreateEmpty(&CopyS1);
-    CreateEmpty(&CopyS2);
+    CreateEmptyStack(&CopyS1);
+    CreateEmptyStack(&CopyS2);
 
     while (!IsEmptyStack(*S)) {
         Pop(S, &X);

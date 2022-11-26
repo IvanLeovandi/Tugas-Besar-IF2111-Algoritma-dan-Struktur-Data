@@ -13,10 +13,10 @@
 #define LEFT(p) (p)->left
 #define RIGHT(p) (p)->right
 
-typedef int ElType;
+typedef int ElTypeTree;
 typedef struct treeNode* Address;
 typedef struct treeNode {
-    ElType info;
+    ElTypeTree info;
     Address left;
     Address right;
 } TreeNode;
@@ -26,18 +26,18 @@ typedef struct treeNode {
 typedef Address BinTree;
 
 /* *** Konstruktor/Kreator *** */
-BinTree NewTree(ElType X, BinTree L, BinTree R);
+BinTree NewTree(ElTypeTree X, BinTree L, BinTree R);
 /* Menghasilkan sebuah pohon biner dari X, L, dan R, jika alokasi berhasil */
 /* Menghasilkan pohon kosong (NIL) jika alokasi gagal. */
 
-void MakeTree(ElType X, BinTree L, BinTree R, BinTree *p);
+void MakeTree(ElTypeTree X, BinTree L, BinTree R, BinTree *p);
 /* I.S. Sembarang */
 /* F.S. Menghasilkan sebuah pohon p */
 /* Menghasilkan sebuah pohon biner p dari akar, l, dan r, jika alokasi berhasil */
 /* Menghasilkan pohon p yang kosong (NIL) jika alokasi gagal */
 
 /* *** Memory Management *** */
-BinTree newTreeNode(ElType X);
+BinTree newTreeNode(ElTypeTree X);
 /* Mengirimkan address hasil alokasi sebuah elemen bernilai x */
 /* Jika alokasi berhasil, maka address tidak NIL, dan misalnya menghasilkan p, 
 maka ROOT(p)=x, LEFT(p)=NIL, RIGHT(p)=NIL */
@@ -74,27 +74,43 @@ void printPreOrder(BinTree p);
 /* Cetak subpohon kiri p secara pre-order */
 /* Cetak subpohon kanan p secara pre-order */
 
+void RecursivePrint(BinTree p, int depth);
+/* Menampilkan pohon biner p ke layar */
+
 /* *** Fungsi Lain *** */
 int NbElmtTree(BinTree p);
 /* Pohon Biner mungkin kosong. */
 /* Mengembalikan jumlah elemen dari pohon */
 
-int level(BinTree p, ElType X);
-/* Mengirimkan level dari node X yang merupakan salah satu daun dari pohon biner P */
+int level(BinTree p, ElTypeTree X);
+/* Mengirimkan level dari node X yang merupakan salah satu node dari pohon biner P */
 /* Akar(P) level-nya adalah 1. Pohon P tidak kosong dan elemen-elemennya unik.*/
 
-boolean searchTreeNode(BinTree p, ElType X);
+int depth(BinTree p);
+/* Mengirimkan maksimum level suatu pohon biner p */
+
+int Max(int a, int b);
+/* Mengembalikan nilai terbesar antara a dan b */
+
+boolean searchTreeNode(BinTree p, ElTypeTree X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 /* Basis 0 */
 
-boolean searchBaseOne(BinTree p, ElType X);
+boolean searchBaseOne(BinTree p, ElTypeTree X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 /* Basis 1 */
 
-void addLeaf(BinTree *p, ElType X, ElType Y, boolean Left);
+boolean isLeaf(BinTree p, ElTypeTree X);
+/* Mengembalikan true jika X adalah daun dari pohon biner p */
+/* X pasti ada di pohon biner P */
+
+void addLeaf(BinTree *p, ElTypeTree X, ElTypeTree Y, boolean Left);
 /* I.S. P tidak kosong, X adalah daun Pohon Biner P */
 /* F.S. P bertambah simpulnya, dengan Y sebagai anak kiri X (jika Kiri), atau
 sebagai anak Kanan X (jika not Kiri). Jika ada lebih dari satu daun bernilai
 X, Y ditambahkan pada daun paling kiri. */
+
+BinTree treeLocation(BinTree p, ElTypeTree X);
+/* Mengembalikan address dari elemen node yang bernilai X */
 
 #endif

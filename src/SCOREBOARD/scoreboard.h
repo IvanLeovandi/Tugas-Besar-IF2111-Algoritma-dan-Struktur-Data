@@ -3,6 +3,7 @@
 
 #include "../adt/map/map.h"
 #include "../adt/set/set.h"
+#include "../boolean.h"
 
 void AddSet(ArraySet *nama_user);
 

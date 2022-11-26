@@ -7,7 +7,7 @@ int main() {
     Stack S;
     int X;
     /* ALGORITMA */
-    CreateEmpty(&S);
+    CreateEmptyStack(&S);
     Push(&S, 1);
     Push(&S, 2);
     Push(&S, 3);

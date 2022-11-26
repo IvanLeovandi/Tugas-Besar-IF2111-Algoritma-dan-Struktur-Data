@@ -59,7 +59,7 @@ void InsertMap(Map *M, keytype k, valuetype v)
 	}
 	else
 	{
-		if (! IsMember((*M),k))
+		if (!IsMember((*M),k))
 		{
 			int idx,i;
 			idx = 0;

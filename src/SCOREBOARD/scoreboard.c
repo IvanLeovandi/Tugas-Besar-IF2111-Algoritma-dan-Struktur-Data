@@ -20,6 +20,25 @@ void AddScoreboard (ArrayMap *scoreboard_game)
     SetNeffArrMap(scoreboard_game,NbElmt(*scoreboard_game+1));
 }
 
+boolean check_nama (char *nama, Set nama_pemain)
+{
+    int i;
+    i=0;
+    valid = false;
+    while (i<nama_pemain.Count && !valid)
+    {
+        valid = compareSTR(nama,nama_pemain.Elements[i]);
+        i++;
+    }
+}
+
+void add_to_scoreboard(Map *scoreboard, Set *list_name, char* nama,int score)
+{
+    InsertMap(scoreboard,nama,score);
+    InsertSet(list_name,nama);
+}
+
+
 int len_name (char* nama)
 {
     int i;
@@ -110,7 +129,7 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
             printf("Score");
             PrintSpace(panjang_score-5);
             printf("|\n");
-            for (i=0;i<jumlah_nama;i++);
+            for (i=0;i<jumlah_nama;i++); 
                 print("| %s",scoreboard_game.TI[x].Elements[i].Key);
                 PrintSpace(longest_name-len_name(scoreboard_game.TI[x].Elements[i].Key));
                 printf("| ");
@@ -137,6 +156,34 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     }
     else{
         int number = StrToInt(strnumber);
-        if (number > (*scoreboard).Neff);
+        if (number > (*scoreboard).Neff || number < 0;)
+        {
+            printf("Tidak ada scoreboard tersebut!");
+        }
+        else if (number == 0)
+        {
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL?\n");
+            printf("YA/TIDAK? ");
+            yakin =Input();
+            if (compareSTR(yakin,"YA"))
+            {
+                for (i=0;i<scoreboard_game.Neff;i++)
+                {
+                    CreateEmptyMap((*scoreboard_game).TI[i]);
+                    CreateEmptySet((*nama_pemain).TI[i]);
+                }
+            }
+        }
+        else
+        {
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
+            printf("YA/TIDAK? ");
+            yakin =Input();
+            if (compareSTR(yakin,"YA"))
+            {
+                CreateEmptyMap((*scoreboard_game).TI[number-1]);
+                CreateEmptySet((*scoreboard_game).TI[number-1]);
+            }
+        }
     }
 }
