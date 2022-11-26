@@ -13,7 +13,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define IdxMin 1
 
 typedef int IdxType;
-typedef *char infotype;
+typedef char* infotype;
 typedef int address;
 
 typedef struct
@@ -22,7 +22,7 @@ typedef struct
     address Count;
 } Set;
 
-
+typedef Set ElType;
 
 typedef struct
 {
@@ -76,7 +76,7 @@ int NbElmtArrSet (ArraySet T);
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
 
-void SetElArrSet (ArraySet *T, IdxType i, Set v);
+void SetElArrSet (ArraySet *T, IdxType i, ElType v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen array yang ke-i dengan set v*/

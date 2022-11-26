@@ -30,7 +30,7 @@ valuetype Value(Map M, keytype k)
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 {
-	if (IsMember(M,k))
+	if (IsMemberMap(M,k))
 	{
 		int idx=0;
 		while (M.Elements[idx].Key != k)
@@ -51,7 +51,7 @@ void InsertMap(Map *M, keytype k, valuetype v)
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 {
-	if (IsEmpty(*M))
+	if (IsEmptyMap(*M))
 	{
 		(*M).Count = 1;
 		(*M).Elements[0].Key = k;
@@ -59,22 +59,22 @@ void InsertMap(Map *M, keytype k, valuetype v)
 	}
 	else
 	{
-		if (!IsMember((*M),k))
+		if (!IsMemberMap((*M),k))
 		{
 			int idx,i;
 			idx = 0;
-			while (v < (*M).Elements[idx].value)
+			while (v < (*M).Elements[idx].Value)
 			{
 				idx++;
 			}
 			(*M).Count++;
 			for (i=idx;i<(*M).Count-1;i++)
 			{
-				(*M).Elements[i+1].Key = (*m).Elements[i].Key 
-				(*M).Elements[i+1].Value = (*m).Elements[i].Value 
+				(*M).Elements[i+1].Key = (*M).Elements[i].Key;
+				(*M).Elements[i+1].Value = (*M).Elements[i].Value; 
 			}
-			(*M).Elements[(*M).idx].Key = k;
-			(*M).Elements[(*M).idx].Value = v;
+			(*M).Elements[idx].Key = k;
+			(*M).Elements[idx].Value = v;
 		}
 	}
 }
@@ -84,7 +84,7 @@ void DeleteMap(Map *M, keytype k)
 {
 	int idx;
 	idx = 0;
-	if (IsMember((*M),k))
+	if (IsMemberMap((*M),k))
 	{
 		while ((*M).Elements[idx].Key != k)
 		{
@@ -133,7 +133,7 @@ int NbElmtArrMap (ArrayMap T) {
     return T.Neff;
 }
 
-void SetElArrMap (ArrayMap *T, IdxType i, ElType v) {
+void SetElArrMap (ArrayMap *T, IdxType i, Map v) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
@@ -145,7 +145,7 @@ void SetElArrMap (ArrayMap *T, IdxType i, ElType v) {
     }
 }
 
-void SetNeffArrMap (Array *T, IdxType N) {
+void SetNeffArrMap (ArrayMap *T, IdxType N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
