@@ -1,0 +1,114 @@
+/* File stackhis.c */
+#include "stackhistory.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+/* ************ Prototype ************ */
+/* *** Konstruktor/Kreator *** */
+void CreateEmptyStackHis(StackHis *S) {
+/* I.S. sembarang; */
+/* F.S. Membuat sebuah StackHis S yang kosong berkapasitas MaxEl */
+/* jadi indeksnya antara 0.. MaxEl */
+/* Ciri StackHis kosong : TOP bernilai Nil */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    Top(*S) = NilHis;
+}
+
+/* ************ Predikat Untuk test keadaan KOLEKSI ************ */
+boolean IsEmptyStackHis(StackHis S) {
+/* Mengirim true jika StackHis kosong: lihat definisi di atas */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    return (Top(S) == NilHis);
+}
+
+boolean IsFullStackHis(StackHis S) {
+/* Mengirim true jika tabel penampung NilHanoiai elemen StackHis penuh */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    return (Top(S) == MaxHis-1);
+}
+
+/* ************ Menambahkan sebuah elemen ke StackHis ************ */
+void PushHis(StackHis * S, infotypeHis X) {
+/* Menambahkan X sebagai elemen StackHis S. */
+/* I.S. S mungkin kosong, tabel penampung elemen StackHis TIDAK penuh */
+/* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    Top(*S)++;
+    InfoTop(*S) = X;
+}
+
+/* ************ Menghapus sebuah elemen StackHis ************ */
+void PopHis(StackHis * S, infotypeHis* X) {
+/* Menghapus X dari StackHis S. */
+/* I.S. S  tidak mungkin kosong */
+/* F.S. X adalah NilHanoiai elemen TOP yang lama, TOP berkurang 1 */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    *X = InfoTop(*S);
+    Top(*S)--;
+}
+
+void InversStackHis(StackHis *S) {
+/* Membalikkan StackHis S */
+/* I.S. S terdefinisi */
+/* F.S. Urutan elemen pada S menjadi terbalik */
+    /* KAMUS LOKAL */
+    StackHis CopyS1, CopyS2;
+    int X;
+    /* ALGORITMA */
+    CreateEmptyStackHis(&CopyS1);
+    CreateEmptyStackHis(&CopyS2);
+
+    while (!IsEmptyStackHis(*S)) {
+        Pop(S, &X);
+        Push(&CopyS1, X);
+    }
+
+    while (!IsEmptyStackHis(CopyS1)) {
+        Pop(&CopyS1, &X);
+        Push(&CopyS2, X);
+    }
+
+    while (!IsEmptyStackHis(CopyS2)) {        
+        Pop(&CopyS2, &X);
+        Push(S, X);
+    }
+}
+
+void TulisStackHis(StackHis S) {
+/* Menuliskan seluruh elemen StackHis S ke layar */
+    /* KAMUS LOKAL */
+    int i;
+    /* ALGORITMA */
+    for (i = Top(S); i >= 0; i--) {
+        printf("%d\n", S.T[i]);
+    }
+}
+
+StackHis CopyStackHis(StackHis *S) {
+/* Mengembalikan hasil salinan S */
+    /* KAMUS LOKAL */
+    StackHis temp1, temp2;
+    int X;
+    /* ALGORITMA */
+    CreateEmptyStackHis(&temp1);
+    CreateEmptyStackHis(&temp2);
+
+    while (!IsEmptyStackHis(*S)) {
+        Pop(S, &X);
+        Push(&temp1, X);
+        Push(&temp2, X);
+    }
+
+    while (!IsEmptyStackHis(temp2)) {
+        Pop(&temp2, &X);
+        Push(S, X);
+    }
+
+    InversStackHis(&temp1);
+    return temp1;
+}

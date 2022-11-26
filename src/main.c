@@ -11,6 +11,8 @@ int main()
     char *command, *secondCommand;
     Array array_game; MakeEmpty(&array_game);
     Queue queue_game; CreateQueue(&queue_game);
+    StackHis history; CreateEmptyStackHis(&history);
+    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard);
 
     srand(time(NULL));
 
@@ -61,7 +63,7 @@ int main()
             char *secSTR = SecSTR(command);
             if(compareSTR(firstSTR,"LOAD"))
             {
-                load(&array_game, secSTR, false);
+                load(&array_game, &history, &scoreboard, secSTR, false);
                 if(array_game.Neff != 0)
                 {
                     loaded = true;

@@ -6,7 +6,7 @@
 static FILE *tape;
 static int retval;
 
-void load(Array *array_game, Stack *history, char *filename, boolean isStart) {
+void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *filename, boolean isStart) {
 /* Membaca isi file "filename" dan memasukkannya ke dalam array_game */
     /* KAMUS LOKAL */
     int i, j, n, nhist;
@@ -68,8 +68,12 @@ void load(Array *array_game, Stack *history, char *filename, boolean isStart) {
             }
         }
 // load scoreboard
+        SetNeffArrMap(scoreboard, n);
+        ADVWORDLOAD();
         for(i = 0; i < n; i++)
         {
+            Map score_game;
+            CreateEmptyMap(&score_game);
             ADVWORDLOAD();
             int nscore = StrToInt(KataToSTR(currentWord));
             ADVLOAD();
@@ -89,10 +93,11 @@ void load(Array *array_game, Stack *history, char *filename, boolean isStart) {
                     }
                     *(score_lengkap + currentWord.Length) = '\0';
                     char *nama = FirstSTR(score_lengkap);
-                    char *score = SecSTR(score_lengkap);
-                    //masukin nama sama score ke map
+                    char *score = StrToInt(SecSTR(score_lengkap));
+                    InsertMap(&score_game, nama, score);
                 }
             }
+            SetElArrMap(scoreboard, i, score_game);
         }
 
         if(!isStart)
