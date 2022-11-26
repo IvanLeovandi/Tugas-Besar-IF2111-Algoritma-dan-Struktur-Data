@@ -7,7 +7,7 @@ void CreateEmptyMap(Map *M)
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 {
-	(*M).CountMap = Nil;
+	(*M).CountMap = 0;
 }
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -15,7 +15,7 @@ boolean IsEmptyMap(Map M)
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 {
-	return M.CountMap == Nil;
+	return M.CountMap == 0;
 }
 
 boolean IsFullMap(Map M)
