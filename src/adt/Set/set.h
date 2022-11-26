@@ -7,7 +7,7 @@
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
-#define Nil 0
+#define NilSet 0
 #define MaxElSet 100
 #define IdxMaxSet 100
 #define IdxMinSet 1

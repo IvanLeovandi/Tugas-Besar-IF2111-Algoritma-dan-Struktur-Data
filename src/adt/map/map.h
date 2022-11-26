@@ -9,7 +9,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 
 // #define false 0
 // #define true 1
-#define Nil 0
+#define NilMap 0
 #define MaxElMap 10
 #define Undefined -999
 #define IdxMaxMap 100
@@ -19,7 +19,6 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 typedef char* keytype;
 typedef int valuetype;
 typedef int address;
-typedef int int;
 
 typedef struct {
 	keytype Key;

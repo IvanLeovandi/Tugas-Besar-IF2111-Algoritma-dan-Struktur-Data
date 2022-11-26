@@ -12,7 +12,7 @@
 #ifndef LOAD_H
 #define LOAD_H
 
-void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *filename, boolean isStart);
+void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *filename);
 /* Membaca isi file "filename" dan memasukkannya ke dalam array_game */
 
 #endif

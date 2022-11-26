@@ -8,7 +8,7 @@ void CreateEmptySet(Set *S)
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
 {
-	(*S).CountSet = Nil;
+	(*S).CountSet = NilSet;
 }
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -16,7 +16,7 @@ boolean IsEmptySet(Set S)
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 {
-	return S.CountSet == Nil;
+	return S.CountSet == NilSet;
 }
 
 boolean IsFullSet(Set S)

@@ -6,21 +6,14 @@
 static FILE *tape;
 static int retval;
 
-void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *filename, boolean isStart) {
+void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *filename) {
 /* Membaca isi file "filename" dan memasukkannya ke dalam array_game */
     /* KAMUS LOKAL */
     int i, j, n, nhist;
     boolean valid;
     /* ALGORITMA */
     /* Mengecek apakah melakukan load pada file konfigurasi atau bukan*/
-    if(isStart)
-    {
-        valid = StartLOAD(filename);
-    } else
-    {
-        valid = StartLOAD(concatSTR("../data/", filename));
-    }
-
+    valid = StartLOAD(concatSTR("../data/", filename));
     if(valid)
     {
 // load game
@@ -64,7 +57,7 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
                     *(strhist + idx) = currentWord.TabWord[idx];
                 }
                 *(strhist + currentWord.Length) = '\0';
-                Push(history, *strhist);
+                PushHis(history, strhist);
             }
         }
 // load scoreboard
@@ -93,18 +86,15 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
                     }
                     *(score_lengkap + currentWord.Length) = '\0';
                     char *nama = FirstSTR(score_lengkap);
-                    char *score = StrToInt(SecSTR(score_lengkap));
+                    int score = StrToInt(SecSTR(score_lengkap));
                     InsertMap(&score_game, nama, score);
                 }
             }
             SetElArrMap(scoreboard, i, score_game);
         }
-
-        if(!isStart)
-        {
-            printf("File berhasil dibaca. BNMO berhasil dijalankan.\n");
-        }
-    } else
+        printf("File berhasil dibaca. BNMO berhasil dijalankan.\n");
+    }
+    else
     {
         printf("File tidak ditemukan, mohon masukan nama file yang valid.\n");
     }

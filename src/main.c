@@ -44,7 +44,7 @@ int main()
         {
             if (compareSTR(command, "START"))
             {
-                STARTGAME(&array_game, true);
+                STARTGAME(&array_game);
                 loaded = true;
             } else if (compareSTR(command, "QUIT"))
             {
@@ -63,7 +63,7 @@ int main()
             char *secSTR = SecSTR(command);
             if(compareSTR(firstSTR,"LOAD"))
             {
-                load(&array_game, &history, &scoreboard, secSTR, false);
+                load(&array_game, &history, &scoreboard, secSTR);
                 if(array_game.Neff != 0)
                 {
                     loaded = true;
@@ -124,6 +124,14 @@ int main()
                 {
                     command_lain();
                 }
+            }
+            else if(compareSTR(command, "HISTORY"))
+            {
+                TulisStackHis(history);
+            }
+            else if(compareSTR(command, "SCORE"))
+            {
+                TulisStackHis(history);
             }
             else if(compareSTR(command, "HELP"))
             {

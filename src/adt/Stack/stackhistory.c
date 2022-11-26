@@ -58,24 +58,24 @@ void InversStackHis(StackHis *S) {
 /* F.S. Urutan elemen pada S menjadi terbalik */
     /* KAMUS LOKAL */
     StackHis CopyS1, CopyS2;
-    int X;
+    char *X;
     /* ALGORITMA */
     CreateEmptyStackHis(&CopyS1);
     CreateEmptyStackHis(&CopyS2);
 
     while (!IsEmptyStackHis(*S)) {
-        Pop(S, &X);
-        Push(&CopyS1, X);
+        PopHis(S, &X);
+        PushHis(&CopyS1, X);
     }
 
     while (!IsEmptyStackHis(CopyS1)) {
-        Pop(&CopyS1, &X);
-        Push(&CopyS2, X);
+        PopHis(&CopyS1, &X);
+        PushHis(&CopyS2, X);
     }
 
     while (!IsEmptyStackHis(CopyS2)) {        
-        Pop(&CopyS2, &X);
-        Push(S, X);
+        PopHis(&CopyS2, &X);
+        PushHis(S, X);
     }
 }
 
@@ -93,20 +93,20 @@ StackHis CopyStackHis(StackHis *S) {
 /* Mengembalikan hasil salinan S */
     /* KAMUS LOKAL */
     StackHis temp1, temp2;
-    int X;
+    char *X;
     /* ALGORITMA */
     CreateEmptyStackHis(&temp1);
     CreateEmptyStackHis(&temp2);
 
     while (!IsEmptyStackHis(*S)) {
-        Pop(S, &X);
-        Push(&temp1, X);
-        Push(&temp2, X);
+        PopHis(S, &X);
+        PushHis(&temp1, X);
+        PushHis(&temp2, X);
     }
 
     while (!IsEmptyStackHis(temp2)) {
-        Pop(&temp2, &X);
-        Push(S, X);
+        PopHis(&temp2, &X);
+        PushHis(S, X);
     }
 
     InversStackHis(&temp1);

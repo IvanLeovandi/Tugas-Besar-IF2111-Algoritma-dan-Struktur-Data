@@ -7,7 +7,7 @@ void CreateEmptyMap(Map *M)
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 {
-	(*M).CountMap = Nil;
+	(*M).CountMap = NilMap;
 }
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -15,7 +15,7 @@ boolean IsEmptyMap(Map M)
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 {
-	return M.CountMap == Nil;
+	return M.CountMap == NilMap;
 }
 
 boolean IsFullMap(Map M)
@@ -145,7 +145,7 @@ void SetElArrMap (ArrayMap *T, int i, Map v) {
     }
 }
 
-void SetNeffMapArrMap (ArrayMap *T, int N) {
+void SetNeffArrMap (ArrayMap *T, int N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
