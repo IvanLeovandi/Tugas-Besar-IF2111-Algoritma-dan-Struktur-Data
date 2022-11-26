@@ -88,3 +88,27 @@ void TulisStack(Stack S) {
         printf("%d\n", S.T[i]);
     }
 }
+
+Stack CopyStack(Stack *S) {
+/* Mengembalikan hasil salinan S */
+    /* KAMUS LOKAL */
+    Stack temp1, temp2;
+    int X;
+    /* ALGORITMA */
+    CreateEmptyStack(&temp1);
+    CreateEmptyStack(&temp2);
+
+    while (!IsEmptyStack(*S)) {
+        Pop(S, &X);
+        Push(&temp1, X);
+        Push(&temp2, X);
+    }
+
+    while (!IsEmptyStack(temp2)) {
+        Pop(&temp2, &X);
+        Push(S, X);
+    }
+
+    InversStack(&temp1);
+    return temp1;
+}
