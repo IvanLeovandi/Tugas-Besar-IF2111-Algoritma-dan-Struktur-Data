@@ -10,16 +10,16 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 // #define false 0
 // #define true 1
 #define Nil 0
-#define MaxEl 10
+#define MaxElMap 10
 #define Undefined -999
-#define IdxMax 100
-#define IdxMin 1
+#define IdxMaxMap 100
+#define IdxMinMap 1
 
 // typedef int bool;
 typedef char* keytype;
 typedef int valuetype;
 typedef int address;
-typedef int IdxType;
+typedef int int;
 
 typedef struct {
 	keytype Key;
@@ -27,18 +27,18 @@ typedef struct {
 } infotype;
 
 typedef struct {
-	infotype Elements[MaxEl];
-	address Count;
+	infotype ElementsMap[MaxElMap];
+	address CountMap;
 } Map;
 
 typedef struct
 	{
-		Map TI [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
-		int Neff; /* banyaknya elemen efektif */
+		Map TIMap [IdxMaxMap-IdxMinMap+1]; /* memori tempat penyimpan elemen (container) */
+		int NeffMap; /* banyaknya elemen efektif */
 	} ArrayMap;
 
-/* Definisi Map M kosong : M.Count = Nil */
-/* M.Count = jumlah element Map */
+/* Definisi Map M kosong : M.CountMap = Nil */
+/* M.CountMap = jumlah element Map */
 /* M.Elements = tempat penyimpanan element Map */
 
 /* ********* Prototype ********* */
@@ -46,7 +46,7 @@ typedef struct
 /* *** Konstruktor/Kreator *** */
 void CreateEmptyMap(Map *M);
 /* I.S. Sembarang */
-/* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
+/* F.S. Membuat sebuah Map M kosong berkapasitas MaxElMap */
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -56,7 +56,7 @@ boolean IsEmptyMap(Map M);
 
 boolean IsFullMap(Map M);
 /* Mengirim true jika Map M penuh */
-/* Ciri Map penuh : count bernilai MaxEl */
+/* Ciri Map penuh : count bernilai MaxElMap */
 
 /* ********** Operator Dasar Map ********* */
 valuetype Value(Map M, keytype k);
@@ -80,24 +80,24 @@ boolean IsMemberMap(Map M, keytype k);
 
 void MakeEmptyArrMap (ArrayMap *T);
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMaxMap-IdxMinMap+1 */
 
 int NbElmtArrMap (ArrayMap T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
 
-void SetElArrMap (ArrayMap *T, IdxType i, Map v);
+void SetElArrMap (ArrayMap *T, int i, Map v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen array yang ke-i dengan set v*/
 
-void SetNeffArrMap (ArrayMap *T, IdxType N);
+void SetNeffArrMap (ArrayMap *T, int N);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
 
-void DelArrMap (ArrayMap *T, IdxType i);
+void DelArrMap (ArrayMap *T, int i);
 /* I.S. T Terdefinisi, sembarang*/
 /* F.S. Set T pada index i akan dihapus*/
 
