@@ -82,10 +82,12 @@ void InversStackHis(StackHis *S) {
 void TulisStackHis(StackHis S) {
 /* Menuliskan seluruh elemen StackHis S ke layar */
     /* KAMUS LOKAL */
-    int i;
+    int i, j;
     /* ALGORITMA */
+    j = 1;
     for (i = Top(S); i >= 0; i--) {
-        printf("%d\n", S.T[i]);
+        printf("%d. %s\n", j, S.T[i]);
+        j++;
     }
 }
 

@@ -26,7 +26,7 @@ void CreateScoreboard(ArraySet *nama_user,ArrayMap *scoreboard_game, Array array
     for (i=0;i<array.Neff;i++)
     {
         AddSet(nama_user);
-        AddMap(scoreboard_game);
+        AddScoreboard(scoreboard_game);
     }
 }
 
@@ -49,12 +49,11 @@ void add_to_scoreboard(Map *scoreboard, Set *list_name, char* nama,int score)
     InsertSet(list_name,nama);
 }
 
-
 int len_name (char* nama)
 {
     int i;
     i = 0;
-    while (nama[i] != "\0")
+    while (nama[i] != '\0')
     {
         i++;
     }
@@ -121,7 +120,7 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
     int x;
     for (x=0;x<NbElmtArrMap(scoreboard_game);x++)
     {
-        printf("**** Scoreboard Game %ss ****\n",arraygame.TI[x]);
+        printf("**** Scoreboard Game %s ****\n",arraygame.TI[x]);
         if (IsEmptyMap(scoreboard_game.TIMap[x]))
         {
             printf("|  Nama  |  Score  |\n");
@@ -140,13 +139,15 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
             printf("Score");
             PrintSpace(score_terpanjang-5);
             printf("|\n");
-            for (i=0;i<jumlah_nama;i++); 
-                print("| %s",scoreboard_game.TIMap[x].ElementsMap[i].Key);
-                PrintSpace(longest_name-len_name(scoreboard_game.TIMap[x].ElementsMap[i].Key));
+            for (i=0;i<jumlah_nama;i++)
+            {
+                printf("| %s",scoreboard_game.TIMap[x].ElementsMap[i].Key);
+                PrintSpace(nama_terpanjang-len_name(scoreboard_game.TIMap[x].ElementsMap[i].Key));
                 printf("| ");
                 printf("%d",scoreboard_game.TIMap[x].ElementsMap[i].Value);
                 PrintSpace(score_terpanjang-len_score(scoreboard_game.TIMap[x].ElementsMap[i].Value));
                 printf("|\n");
+            }
         }
     }
 }
@@ -168,7 +169,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     }
     else
     {
-        boolean yakin;
+        char* yakin;
         int number = StrToInt(strnumber);
         if (number > (*scoreboard_game).NeffMap || number < 0);
         {
@@ -180,7 +181,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
             {
                 printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL?\n");
                 printf("YA/TIDAK? ");
-                yakin =Input();
+                yakin = Input();
                 if (compareSTR(yakin,"YA"))
                 {
                     for (i=0;i<(*scoreboard_game).NeffMap;i++) 

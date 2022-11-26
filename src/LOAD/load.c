@@ -62,7 +62,6 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
         }
 // load scoreboard
         SetNeffArrMap(scoreboard, n);
-        ADVWORDLOAD();
         for(i = 0; i < n; i++)
         {
             Map score_game;
@@ -70,7 +69,7 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
             ADVWORDLOAD();
             int nscore = StrToInt(KataToSTR(currentWord));
             ADVLOAD();
-            for (i = 0; i < n; i++) {
+            for (j = 0; j < nscore; j++) {
                 ADVWORDLOAD();
                 char *score_lengkap;
                 score_lengkap = (char *)malloc(currentWord.Length * sizeof(char));
@@ -88,6 +87,7 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
                     char *nama = FirstSTR(score_lengkap);
                     int score = StrToInt(SecSTR(score_lengkap));
                     InsertMap(&score_game, nama, score);
+                    // printf("%s %d\n", score_game.ElementsMap[j].Key, score_game.ElementsMap[j].Value);
                 }
             }
             SetElArrMap(scoreboard, i, score_game);

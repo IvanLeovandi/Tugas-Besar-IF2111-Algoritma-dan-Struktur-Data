@@ -131,7 +131,7 @@ int main()
             }
             else if(compareSTR(command, "SCORE"))
             {
-                TulisStackHis(history);
+                DisplayScoreboard(scoreboard, array_game);
             }
             else if(compareSTR(command, "HELP"))
             {
