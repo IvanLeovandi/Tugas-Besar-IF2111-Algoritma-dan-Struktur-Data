@@ -43,6 +43,10 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         {
             printf("Loading %s ...\n", val);
             SnakeOnMeteor();
+        } else if(compareSTR(val, "GUESSING NUMBER"))
+        {
+            printf("Loading %s ...\n", val);
+            guess_number();
         }
         else
         {

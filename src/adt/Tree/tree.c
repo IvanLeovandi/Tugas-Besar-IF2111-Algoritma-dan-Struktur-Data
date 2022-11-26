@@ -2,7 +2,7 @@
 #include "tree.h"
 
 /* *** Konstruktor/Kreator *** */
-BinTree NewTree(ElType X, BinTree L, BinTree R) {
+BinTree NewTree(ElTypeTree X, BinTree L, BinTree R) {
 /* Menghasilkan sebuah pohon biner dari X, L, dan R, jika alokasi berhasil */
 /* Menghasilkan pohon kosong (NIL) jika alokasi gagal. */
     /* KAMUS LOKAL */
@@ -16,7 +16,7 @@ BinTree NewTree(ElType X, BinTree L, BinTree R) {
     return p;
 }
 
-void MakeTree(ElType X, BinTree L, BinTree R, BinTree *p) {
+void MakeTree(ElTypeTree X, BinTree L, BinTree R, BinTree *p) {
 /* I.S. Sembarang */
 /* F.S. Menghasilkan sebuah pohon p */
 /* Menghasilkan sebuah pohon biner p dari akar, l, dan r, jika alokasi berhasil */
@@ -31,7 +31,7 @@ void MakeTree(ElType X, BinTree L, BinTree R, BinTree *p) {
 }
 
 /* *** Memory Management *** */
-BinTree newTreeNode(ElType X) {
+BinTree newTreeNode(ElTypeTree X) {
 /* Mengirimkan address hasil alokasi sebuah elemen bernilai x */
 /* Jika alokasi berhasil, maka address tidak NIL, dan misalnya menghasilkan p, 
 maka ROOT(p)=x, LEFT(p)=NIL, RIGHT(p)=NIL */
@@ -107,15 +107,30 @@ void printPreOrder(BinTree p) {
 /* Cetak akar p */
 /* Cetak subpohon kiri p secara pre-order */
 /* Cetak subpohon kanan p secara pre-order */
+    RecursivePrint(p, 0);
+}
+
+void RecursivePrint(BinTree p, int depth) {
+/* Menampilkan pohon biner p ke layar */
     /* KAMUS LOKAL */
+    int i;
     /* ALGORITMA */
-    printf("[");
-    if (!isTreeEmpty(p)) {
-        printf("%d", ROOT(p));
-        printPreOrder(LEFT(p));
-        printPreOrder(RIGHT(p));
+    if (isTreeEmpty(p)) {
+        for (i = 0; i <= depth; i++) {
+            if (depth - i > 1) printf("   ");
+            else if (depth - i == 1) printf("%c%c ", 192, 196);
+        }
+        printf("\n\n");
+    } else {
+        for (i = 0; i <= depth; i++) {
+            if (depth - i > 1) printf("   ");
+            else if (depth - i == 1) printf("%c%c ", 192, 196);
+            else printf("%d", ROOT(p)); /* depth - i == 0 */
+        }
+        printf("\n\n");
+        RecursivePrint(LEFT(p), depth+1);
+        RecursivePrint(RIGHT(p), depth+1);
     }
-    printf("]");
 }
 
 /* *** Fungsi Lain *** */
@@ -128,9 +143,9 @@ int NbElmtTree(BinTree p) {
     else return 1 + NbElmtTree(LEFT(p)) + NbElmtTree(RIGHT(p));
 }
 
-int level(BinTree p, ElType X) {
+int level(BinTree p, ElTypeTree X) {
 /* Mengirimkan level dari node X yang merupakan salah satu node dari pohon biner P */
-/* Akar(P) level-nya adalah 1. Pohon P tidak kosong dan elemen-elemennya unik.*/
+/* Akar(P) level-nya adalah 0. Pohon P tidak kosong dan elemen-elemennya unik.*/
     /* KAMUS LOKAL */
     /* ALGORITMA */
     if (ROOT(p) == X) return 1;
@@ -156,7 +171,7 @@ int Max(int a, int b) {
     else return b;
 }
 
-boolean searchTreeNode(BinTree p, ElType X) {
+boolean searchTreeNode(BinTree p, ElTypeTree X) {
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 /* Basis 0 */
     /* KAMUS LOKAL */
@@ -165,7 +180,7 @@ boolean searchTreeNode(BinTree p, ElType X) {
     else return searchBaseOne(p, X);
 }
 
-boolean searchBaseOne(BinTree p, ElType X) {
+boolean searchBaseOne(BinTree p, ElTypeTree X) {
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 /* Basis 1 */
     /* KAMUS LOKAL */
@@ -179,7 +194,7 @@ boolean searchBaseOne(BinTree p, ElType X) {
     }
 }
 
-boolean isLeaf(BinTree p, ElType X) {
+boolean isLeaf(BinTree p, ElTypeTree X) {
 /* Mengembalikan true jika X adalah daun dari pohon biner p */
 /* X pasti ada di pohon biner P */
     /* KAMUS LOKAL */
@@ -192,7 +207,7 @@ boolean isLeaf(BinTree p, ElType X) {
     }
 }
 
-void addLeaf(BinTree *p, ElType X, ElType Y, boolean Left) {
+void addLeaf(BinTree *p, ElTypeTree X, ElTypeTree Y, boolean Left) {
 /* I.S. P tidak kosong, X adalah daun Pohon Biner P */
 /* F.S. P bertambah simpulnya, dengan Y sebagai anak kiri X (jika Kiri), atau
 sebagai anak Kanan X (jika not Kiri). Jika ada lebih dari satu daun bernilai
@@ -208,7 +223,8 @@ X, Y ditambahkan pada daun paling kiri. */
     }
 }
 
-BinTree treeLocation(BinTree p, ElType X) {
+BinTree treeLocation(BinTree p, ElTypeTree X) {
+/* Mengembalikan address dari elemen node yang bernilai X */
     /* KAMUS LOKAL */
     /* ALGORITMA */
     if (ROOT(p) == X) return p;
