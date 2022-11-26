@@ -9,6 +9,8 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 
 // #define false 0
 // #define true 1
+
+#define NilMap 0
 #define MaxElMap 10
 #define Undefined -999
 #define IdxMaxMap 100
@@ -87,7 +89,7 @@ int NbElmtArrMap (ArrayMap T);
 void SetElArrMap (ArrayMap *T, int i, Map v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
-/* Mengeset nilai elemen arxray yang ke-i dengan set v*/
+/* Mengeset nilai elemen array yang ke-i dengan set v*/
 
 void SetNeffArrMap (ArrayMap *T, int N);
 /* I.S. T terdefinisi, sembarang */
