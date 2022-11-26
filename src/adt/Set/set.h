@@ -12,12 +12,10 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define IdxMaxSet 100
 #define IdxMinSet 1
 
-typedef int address;
-
 typedef struct
 {
     char* Elements[MaxElSet];
-    address CountSet;
+    int CountSet;
 } Set;
 
 typedef struct
