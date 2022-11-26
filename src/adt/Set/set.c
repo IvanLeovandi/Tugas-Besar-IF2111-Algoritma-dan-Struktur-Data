@@ -8,7 +8,7 @@ void CreateEmptySet(Set *S)
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
 {
-	(*S).CountSet = 0;
+	(*S).CountSet = NilSet;
 }
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -16,7 +16,7 @@ boolean IsEmptySet(Set S)
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 {
-	return S.CountSet == 0;
+	return S.CountSet == NilSet;
 }
 
 boolean IsFullSet(Set S)
@@ -116,7 +116,7 @@ void SetElArrSet (ArraySet *T, int i, Set v) {
     }
 }
 
-void SetNeffSetArrSet (ArraySet *T, int N) {
+void SetNeffArrSet (ArraySet *T, int N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */

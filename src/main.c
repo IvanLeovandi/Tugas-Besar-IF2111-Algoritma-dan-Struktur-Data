@@ -11,6 +11,8 @@ int main()
     char *command, *secondCommand;
     Array array_game; MakeEmpty(&array_game);
     Queue queue_game; CreateQueue(&queue_game);
+    StackHis history; CreateEmptyStackHis(&history);
+    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard);
 
     srand(time(NULL));
 
@@ -42,7 +44,7 @@ int main()
         {
             if (compareSTR(command, "START"))
             {
-                STARTGAME(&array_game, true);
+                STARTGAME(&array_game);
                 loaded = true;
             } else if (compareSTR(command, "QUIT"))
             {
@@ -61,7 +63,7 @@ int main()
             char *secSTR = SecSTR(command);
             if(compareSTR(firstSTR,"LOAD"))
             {
-                load(&array_game, secSTR, false);
+                load(&array_game, &history, &scoreboard, secSTR);
                 if(array_game.Neff != 0)
                 {
                     loaded = true;
@@ -122,6 +124,14 @@ int main()
                 {
                     command_lain();
                 }
+            }
+            else if(compareSTR(command, "HISTORY"))
+            {
+                TulisStackHis(history);
+            }
+            else if(compareSTR(command, "SCORE"))
+            {
+                DisplayScoreboard(scoreboard, array_game);
             }
             else if(compareSTR(command, "HELP"))
             {
