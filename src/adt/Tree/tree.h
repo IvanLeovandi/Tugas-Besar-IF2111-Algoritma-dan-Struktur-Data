@@ -80,8 +80,14 @@ int NbElmtTree(BinTree p);
 /* Mengembalikan jumlah elemen dari pohon */
 
 int level(BinTree p, ElType X);
-/* Mengirimkan level dari node X yang merupakan salah satu daun dari pohon biner P */
+/* Mengirimkan level dari node X yang merupakan salah satu node dari pohon biner P */
 /* Akar(P) level-nya adalah 1. Pohon P tidak kosong dan elemen-elemennya unik.*/
+
+int depth(BinTree p);
+/* Mengirimkan maksimum level suatu pohon biner p */
+
+int Max(int a, int b);
+/* Mengembalikan nilai terbesar antara a dan b */
 
 boolean searchTreeNode(BinTree p, ElType X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
@@ -91,10 +97,16 @@ boolean searchBaseOne(BinTree p, ElType X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 /* Basis 1 */
 
+boolean isLeaf(BinTree p, ElType X);
+/* Mengembalikan true jika X adalah daun dari pohon biner p */
+/* X pasti ada di pohon biner P */
+
 void addLeaf(BinTree *p, ElType X, ElType Y, boolean Left);
 /* I.S. P tidak kosong, X adalah daun Pohon Biner P */
 /* F.S. P bertambah simpulnya, dengan Y sebagai anak kiri X (jika Kiri), atau
 sebagai anak Kanan X (jika not Kiri). Jika ada lebih dari satu daun bernilai
 X, Y ditambahkan pada daun paling kiri. */
+
+BinTree treeLocation(BinTree p, ElType X);
 
 #endif

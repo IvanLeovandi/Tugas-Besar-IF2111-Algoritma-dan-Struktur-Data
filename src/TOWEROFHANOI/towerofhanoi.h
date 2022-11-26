@@ -1,6 +1,7 @@
 /* File towerofhanoi.h */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../adt/Stack/stack.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../clear.h"

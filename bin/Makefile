@@ -7,11 +7,8 @@ stacktest:
 treetest:
 	gcc -o treetest ../src/adt/Tree/driver_tree.c ../src/adt/Tree/tree.c
 
-tictactoe:
-	gcc -o tictactoe ../src/TICTACTOE/tictactoe.c ../src/adt/Tree/tree.c
-
-t:
-	./tictactoe
+guessnumber:
+	gcc -o guessnumber ../src/GUESSNUMBER/guess_number.c ../src/adt/Tree/tree.c ../src/RNG/random_number.c
 
 exec:
 	./main
