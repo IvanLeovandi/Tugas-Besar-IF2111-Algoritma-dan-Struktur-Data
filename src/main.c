@@ -12,7 +12,8 @@ int main()
     Array array_game; MakeEmpty(&array_game);
     Queue queue_game; CreateQueue(&queue_game);
     StackHis history; CreateEmptyStackHis(&history);
-    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard);
+    ArraySet list_name; MakeEmptyArrSet(&list_name);
+    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard); CreateScoreboard(&list_name, &scoreboard, array_game);
 
     srand(time(NULL));
 
@@ -44,7 +45,7 @@ int main()
         {
             if (compareSTR(command, "START"))
             {
-                STARTGAME(&array_game);
+                STARTGAME(&array_game, &history, &list_name, &scoreboard);
                 loaded = true;
             } else if (compareSTR(command, "QUIT"))
             {
@@ -63,7 +64,7 @@ int main()
             char *secSTR = SecSTR(command);
             if(compareSTR(firstSTR,"LOAD"))
             {
-                load(&array_game, &history, &scoreboard, secSTR);
+                load(&array_game, &history, &list_name, &scoreboard, secSTR);
                 if(array_game.Neff != 0)
                 {
                     loaded = true;
@@ -107,7 +108,7 @@ int main()
                 queuegame(&queue_game, array_game);
             } else if(compareSTR(command, "PLAY GAME"))
             {
-                playgame(&queue_game);
+                playgame(&queue_game, array_game, &list_name, &scoreboard);
             } else if(count_space(command) == 1)
             {
                 char *firstSTR = FirstSTR(command);
@@ -115,10 +116,10 @@ int main()
                 if(compareSTR(firstSTR,"SKIPGAME"))
                 {
                     int skip_num = StrToInt(secSTR);
-                    skipgame(&queue_game, array_game, skip_num);
+                    skipgame(&queue_game, array_game, &list_name, &scoreboard,skip_num);
                 } else if(compareSTR(firstSTR, "SAVE"))
                 {
-                    save(secSTR, array_game);
+                    save(secSTR, array_game, history, scoreboard);
                 }
                 else
                 {
@@ -127,7 +128,13 @@ int main()
             }
             else if(compareSTR(command, "HISTORY"))
             {
-                TulisStackHis(history);
+                if(IsEmptyStackHis)
+                {
+                    printf("Tidak ada history.\n");
+                } else
+                {
+                    TulisStackHis(history);
+                }
             }
             else if(compareSTR(command, "SCORE"))
             {
