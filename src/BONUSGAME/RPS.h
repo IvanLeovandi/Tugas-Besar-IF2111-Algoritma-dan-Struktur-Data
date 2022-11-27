@@ -4,7 +4,7 @@
 #ifndef RPS_H
 #define RPS_H
 
-void Start_RPS();
+void Start_RPS(int *score_game);
 //I.S Game Rock Paper Scissor dimulai
 //F.S Mengemabalikan score yang diperoleh pemain
 

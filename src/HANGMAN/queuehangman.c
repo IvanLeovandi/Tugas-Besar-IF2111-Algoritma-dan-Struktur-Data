@@ -1,6 +1,6 @@
 /* File queue.c */
 
-#include "queue.h"
+#include "queuehangman.h"
 #include <stdio.h>
 
 /* *** Kreator *** */

@@ -97,7 +97,7 @@ void displayQueueDiner(QueueDiner pesanan, ArrayDiner masak, ArrayDiner saji, in
     }
 }
 
-void DinerDash() {
+void DinerDash(int *score) {
     /* KAMUS LOKAL */
     QueueDiner pesanan;
     ArrayDiner masak, saji;
@@ -174,4 +174,5 @@ void DinerDash() {
         printf("==========================================================\n\n");
     }
     printf("GAME OVER!!!\n\nSkor akhir: %d\n\n", saldo);
+    *score = saldo;
 }

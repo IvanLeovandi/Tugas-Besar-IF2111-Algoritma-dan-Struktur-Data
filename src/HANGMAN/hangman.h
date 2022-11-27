@@ -10,7 +10,7 @@
 #ifndef HANGMAN
 #define HANGMAN
 
-void Hangman(Array *Kamus);
+void Hangman(Array *Kamus, int *score_game);
 /* 
 Spesifikasi game : Pemain menebak satu huruf yang terdapat pada kata tersebut. 
 Apabila huruf tebakan terdapat dalam kata, maka huruf yang sudah tertebak akan 

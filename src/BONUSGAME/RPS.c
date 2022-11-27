@@ -2,7 +2,7 @@
 #include <time.h>
 #include "RPS.h"
 
-void Start_RPS()
+void Start_RPS(int *score_game)
 {
     int n,i, score,angka_bot;
     char *gerakan_pemain;
@@ -66,6 +66,7 @@ void Start_RPS()
         }
     }
     printf("Score anda : %d", score);
+    *score_game = score;
 }
 
 boolean CheckValidInput(char *gerakan)
