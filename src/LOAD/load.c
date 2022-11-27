@@ -6,7 +6,7 @@
 static FILE *tape;
 static int retval;
 
-void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *filename) {
+void load(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *scoreboard, char *filename) {
 /* Membaca isi file "filename" dan memasukkannya ke dalam array_game */
     /* KAMUS LOKAL */
     int i, j, n, nhist;
@@ -64,8 +64,8 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
         SetNeffArrMap(scoreboard, n);
         for(i = 0; i < n; i++)
         {
-            Map score_game;
-            CreateEmptyMap(&score_game);
+            Map score_game; CreateEmptyMap(&score_game);
+            Set nama_per_game; CreateEmptySet(&nama_per_game);
             ADVWORDLOAD();
             int nscore = StrToInt(KataToSTR(currentWord));
             ADVLOAD();
@@ -86,11 +86,12 @@ void load(Array *array_game, StackHis *history, ArrayMap *scoreboard, char *file
                     *(score_lengkap + currentWord.Length) = '\0';
                     char *nama = FirstSTR(score_lengkap);
                     int score = StrToInt(SecSTR(score_lengkap));
-                    InsertMap(&score_game, nama, score);
+                    add_to_scoreboard(&score_game, &nama_per_game, nama, score);
                     // printf("%s %d\n", score_game.ElementsMap[j].Key, score_game.ElementsMap[j].Value);
                 }
             }
             SetElArrMap(scoreboard, i, score_game);
+            SetElArrSet(list_name, i, nama_per_game);
         }
         printf("File berhasil dibaca. BNMO berhasil dijalankan.\n");
     }

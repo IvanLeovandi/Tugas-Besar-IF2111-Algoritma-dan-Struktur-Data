@@ -4,7 +4,7 @@
 #include "../LOAD/load.h"
 
 
-void STARTGAME(Array *array_game)
+void STARTGAME(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *scoreboard)
 {
 
 /*

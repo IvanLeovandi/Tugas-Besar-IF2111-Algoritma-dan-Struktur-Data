@@ -7,7 +7,7 @@
 #ifndef RNG_H
 #define RNG_H
 
-void rng();
+void rng(int *score);
 /*
 Fungsi rng menentukan angka random antara 0-300. Pengguna menebak angka hingga tebakan benar. 
 Fungsi mengembalikan skor pengguna antara 1-30, dengan skor maksimal 30 dan

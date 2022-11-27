@@ -6,6 +6,7 @@
 #include "./adt/List/linkedlist.h"
 #include "./STARTGAME/start.h"
 #include "./SAVE/save.h"
+#include "./LOAD/load.h"
 #include "./CREATEGAME/creategame.h"
 #include "./LISTGAME/listgame.h"
 #include "./DELETEGAME/deletegame.h"

@@ -9,7 +9,7 @@
 #ifndef TOWER_OF_HANOI_H
 #define TOWER_OF_HANOI_H
 
-void towerOfHanoi(int *score);
+void towerOfHanoi(int *score_game);
 /*
 Spesifikasi game: seluruh piringan harus dipindahkan ke tiang C dengan
 posisi yang sama (piringan paling bawah merupakan piringan yang paling besar
