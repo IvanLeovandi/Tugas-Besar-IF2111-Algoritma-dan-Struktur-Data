@@ -2,7 +2,7 @@
 #include "guess_number.h"
 #include "../clear.h"
 
-int guess_number() {
+int guess_number(int *score_game) {
 /*
 Game tebak angka dengan menggunakan konsep binary tree.
 Konsep binary tree: 
@@ -111,4 +111,5 @@ Konsep binary tree:
     printPreOrder(soal);
 
     printf("\nSkor akhir: %d\n", score);
+    *score_game = score;
 }

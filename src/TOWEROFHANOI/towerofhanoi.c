@@ -1,7 +1,7 @@
 /* File towerofhanoi.c */
 #include "towerofhanoi.h"
 
-void towerOfHanoi() {
+void towerOfHanoi(int *score_game) {
 /*
 Spesifikasi game: seluruh piringan harus dipindahkan ke tiang C dengan
 posisi yang sama (piringan paling bawah merupakan piringan yang paling besar
@@ -97,6 +97,7 @@ piringan yang ada di atasnya.
     else printf("Kamu gagal :(\n\n");
 
     printf("Skor didapatkan: %d\n", score);
+    *score_game = score;
 }
 
 void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {

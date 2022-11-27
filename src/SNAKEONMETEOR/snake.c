@@ -1,6 +1,6 @@
 #include "snake.h"
 
-void SnakeOnMeteor(){
+void SnakeOnMeteor(int *score_game){
 
     printf("Selamat datang di snake on meteor!\n\n");
     printf("Mengenerate peta, snake dan makanan . . .\n\n");
@@ -34,6 +34,7 @@ void SnakeOnMeteor(){
 
     int score = nbSnake(snake);
     printf("Game berakhir. Skor: %d\n\n", score);
+    *score_game = score;
 
 }
 
