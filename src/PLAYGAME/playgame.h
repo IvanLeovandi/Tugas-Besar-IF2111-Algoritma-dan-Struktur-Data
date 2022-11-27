@@ -8,6 +8,7 @@
 #include "../BONUSGAME/RPS.h"
 #include "../TOWEROFHANOI/towerofhanoi.h"
 #include "../SNAKEONMETEOR/snake.h"
+#include "../GUESSNUMBER/guess_number.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H

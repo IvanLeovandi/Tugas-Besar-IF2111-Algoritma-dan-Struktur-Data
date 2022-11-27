@@ -8,24 +8,35 @@ void AddSet(ArraySet *nama_user)
 {
     Set new_set;
     CreateEmptySet(&new_set); 
-    SetElArrSet(nama_user,NbElmt(*nama_user),new_set);
-    SetNeffArrSet(nama_user,NbElmt(*nama_user+1));
+    SetElArrSet(nama_user,NbElmtArrSet(*nama_user),new_set);
+    SetNeffArrSet(nama_user,NbElmtArrSet(*nama_user)+1);
 }
 
 void AddScoreboard (ArrayMap *scoreboard_game)
 {
     Map new_map;
     CreateEmptyMap(&new_map);
-    SetElArrMap(scoreboard_game,NbElmt(*scoreboard_game),new_map);
-    SetNeffArrMap(scoreboard_game,NbElmt(*scoreboard_game+1));
+    SetElArrMap(scoreboard_game,NbElmtArrMap((*scoreboard_game)),new_map);
+    SetNeffArrMap(scoreboard_game,NbElmtArrMap((*scoreboard_game))+1);
+}
+
+void CreateScoreboard(ArraySet *nama_user,ArrayMap *scoreboard_game, Array array)
+{
+    int i;
+    for (i=0;i<array.Neff;i++)
+    {
+        AddSet(nama_user);
+        AddScoreboard(scoreboard_game);
+    }
 }
 
 boolean check_nama (char *nama, Set nama_pemain)
 {
     int i;
+    boolean valid;
     i=0;
     valid = false;
-    while (i<nama_pemain.Count && !valid)
+    while (i<nama_pemain.CountSet && !valid)
     {
         valid = compareSTR(nama,nama_pemain.Elements[i]);
         i++;
@@ -38,12 +49,11 @@ void add_to_scoreboard(Map *scoreboard, Set *list_name, char* nama,int score)
     InsertSet(list_name,nama);
 }
 
-
 int len_name (char* nama)
 {
     int i;
     i = 0;
-    while (nama[i] != "\0")
+    while (nama[i] != '\0')
     {
         i++;
     }
@@ -66,10 +76,10 @@ int longest_score(Map scoreboard_game)
 {
     int score_terpanjang, i;
     score_terpanjang = 5;
-    for (i=0;i<scoreboard_game.Count;i++)
+    for (i=0;i<scoreboard_game.CountMap;i++)
     {
         int panjang_score;
-        panjang_score = len_score(scoreboard_game.Elements[i].Value);
+        panjang_score = len_score(scoreboard_game.ElementsMap[i].Value);
         if (panjang_score > score_terpanjang)
         {
             score_terpanjang = panjang_score;
@@ -83,10 +93,10 @@ int longest_name(Map scoreboard_game)
 {
     int nama_terpanjang, i;
     nama_terpanjang = 4;
-    for (i=0;i<scoreboard_game.Count;i++)
+    for (i=0;i<scoreboard_game.CountMap;i++)
     {
         int panjang_nama;
-        panjang_nama = len_name(scoreboard_game.Elements[i].Key);
+        panjang_nama = len_name(scoreboard_game.ElementsMap[i].Key);
         if (panjang_nama > nama_terpanjang)
         {
             nama_terpanjang = panjang_nama;
@@ -110,32 +120,34 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
     int x;
     for (x=0;x<NbElmtArrMap(scoreboard_game);x++)
     {
-        printf("**** Scoreboard Game %ss ****\n",array_game.TI[x]);
-        if (IsEmptyMap(scoreboard_game.TI[i]))
+        printf("**** Scoreboard Game %s ****\n",arraygame.TI[x]);
+        if (IsEmptyMap(scoreboard_game.TIMap[x]))
         {
             printf("|  Nama  |  Score  |\n");
-            printf("--Scoreboard Kosong--\n")
+            printf("--Scoreboard Kosong--\n");
         }
         else
         {
-            int nama_terpanjang,jumlah_nama,panjang_score;
+            int nama_terpanjang,jumlah_nama,score_terpanjang;
             int i;
-            jumlah_nama = scoreboard_game.Count;
-            longest_score = longest_score(scoreboard_game.TI[x]);
-            nama_terpanjang = longest_name(scoreboard_game.TI[x]);
+            jumlah_nama = scoreboard_game.TIMap[x].CountMap;
+            score_terpanjang = longest_score(scoreboard_game.TIMap[x]);
+            nama_terpanjang = longest_name(scoreboard_game.TIMap[x]);
             printf("| Nama");
             PrintSpace(nama_terpanjang-4);
             printf("| ");
             printf("Score");
-            PrintSpace(panjang_score-5);
+            PrintSpace(score_terpanjang-5);
             printf("|\n");
-            for (i=0;i<jumlah_nama;i++); 
-                print("| %s",scoreboard_game.TI[x].Elements[i].Key);
-                PrintSpace(longest_name-len_name(scoreboard_game.TI[x].Elements[i].Key));
+            for (i=0;i<jumlah_nama;i++)
+            {
+                printf("| %s",scoreboard_game.TIMap[x].ElementsMap[i].Key);
+                PrintSpace(nama_terpanjang-len_name(scoreboard_game.TIMap[x].ElementsMap[i].Key));
                 printf("| ");
-                printf("%d",scoreboard_game.Value[i]);
-                PrintSpace(longest_score-len_score(scoreboard_game.TI[x].Elements[i].Value));
+                printf("%d",scoreboard_game.TIMap[x].ElementsMap[i].Value);
+                PrintSpace(score_terpanjang-len_score(scoreboard_game.TIMap[x].ElementsMap[i].Value));
                 printf("|\n");
+            }
         }
     }
 }
@@ -143,9 +155,10 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
 void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array array_game)
 {
     char *strnumber;
+    int i;
     printf("DAFTAR SCOREBOARD:\n");
-    printf("0. ALL\n")
-    for (i=0;i<NbElmtArrMap(array_game);i++)
+    printf("0. ALL\n");
+    for (i=0;i<array_game.Neff;i++)
     {
         printf("%d. %s\n",i+1,array_game.TI[i]);
     }
@@ -154,35 +167,40 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     {
         printf("Masukan tidak valid");
     }
-    else{
+    else
+    {
+        char* yakin;
         int number = StrToInt(strnumber);
-        if (number > (*scoreboard).Neff || number < 0;)
+        if (number > (*scoreboard_game).NeffMap || number < 0);
         {
             printf("Tidak ada scoreboard tersebut!");
         }
-        else if (number == 0)
-        {
-            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL?\n");
-            printf("YA/TIDAK? ");
-            yakin =Input();
-            if (compareSTR(yakin,"YA"))
+
+        { 
+            if (number == 0)
             {
-                for (i=0;i<scoreboard_game.Neff;i++)
+                printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL?\n");
+                printf("YA/TIDAK? ");
+                yakin = Input();
+                if (compareSTR(yakin,"YA"))
                 {
-                    CreateEmptyMap((*scoreboard_game).TI[i]);
-                    CreateEmptySet((*nama_pemain).TI[i]);
+                    for (i=0;i<(*scoreboard_game).NeffMap;i++) 
+                    {
+                        CreateEmptyMap(&((*scoreboard_game).TIMap[i]));
+                        CreateEmptySet(&((*nama_pemain).TISet[i]));
+                    }
                 }
             }
-        }
-        else
-        {
-            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
-            printf("YA/TIDAK? ");
-            yakin =Input();
-            if (compareSTR(yakin,"YA"))
+            else
             {
-                CreateEmptyMap((*scoreboard_game).TI[number-1]);
-                CreateEmptySet((*scoreboard_game).TI[number-1]);
+                printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
+                printf("YA/TIDAK? ");
+                yakin =Input();
+                if (compareSTR(yakin,"YA"))
+                {
+                    CreateEmptyMap(&((*scoreboard_game).TIMap[number-1]));
+                    CreateEmptySet(&((*nama_pemain).TISet[number-1]));
+                }
             }
         }
     }

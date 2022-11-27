@@ -12,6 +12,7 @@
 #include "./QUEUEGAME/queuegame.h"
 #include "./PLAYGAME/playgame.h"
 #include "./SKIPGAME/skipgame.h"
+#include "./SCOREBOARD/scoreboard.h"
 #include "./QUITGAME/quitgame.h"
 #include "./HELP/help.h"
 #include "./COMMANDLAIN/commandlain.h"

@@ -14,6 +14,7 @@ piringan yang ada di atasnya.
     int i, score, score_optimal, langkah = 0, piringan, optimal;
     char asal, tujuan;
     boolean win = false;
+    char* inputan;
     /* ALGORITMA */
     printf("Selamat datang di Tower of Hanoi!\n\n");
     printf("Permainan dimulai.\n\n");
@@ -22,12 +23,34 @@ piringan yang ada di atasnya.
     CreateEmptyStack(&StackB);
     CreateEmptyStack(&StackC);
 
-    // while (!valid) {
     printf("Masukkan jumlah piringan yang diinginkan: ");
-    piringan = StrToInt(Input());
+    inputan = (char*) malloc (sizeof(char));
+    inputan = Input();
+
+    while (!validInt(inputan)) {
+        ClearScreen();
+        printf("Masukan salah, silakan input kembali jumlah piringan: ");
+        inputan = Input();
+    }
+    
+    piringan = StrToInt(inputan);
     printf("\n");
 
-    optimal = langkahTower(piringan, 'A', 'C', 'B');
+    while (piringan > 31) {
+        ClearScreen();
+        printf("Masukan melebihi batas(31), silakan input kembali jumlah piringan: ");
+        inputan = Input();
+        while (!validInt(inputan)) {
+            ClearScreen();
+            printf("Masukan salah, silakan input kembali jumlah piringan: ");
+            inputan = Input();
+        }
+        
+        piringan = StrToInt(inputan);
+        printf("\n");
+    }
+
+    optimal = pow(2, piringan)-1;
     score_optimal = optimal/3;
     printf("Langkah optimal untuk memenangkan game adalah %d.\n\n", optimal);
     printf("Skor maksimal: %d\n\n", optimal/3);
@@ -224,20 +247,18 @@ F.S.: Top awal berkurang 1, top tujuan bertambah 1
 boolean Win(Stack S, int piringan) {
 /* Mengembalikan true jika kondisi S sudah sesuai dengan kondisi menang */
     /* KAMUS LOKAL */
-    boolean win = false;
-    int i = 0;
+    int i = 0, X;
+    Stack temp;
     /* ALGORITMA */
-    if (!IsEmptyStack(S)) {
-        win = true;
-        while (win && i < piringan && i <= Top(S)) {
-            if (S.T[i] != 2*piringan-(2*(i+1)-1)) win = false;
-            else {
-                i++;
-            }
-        }
-        if (i != piringan) win = false;
+    CreateEmptyStack(&temp);
+    temp = CopyStack(&S);
+    while (!IsEmptyStack(temp)) {
+        Pop(&temp, &X);
+        if (X != 2*i + 1) return false;
+        i++;
     }
-    return win;
+    if (i == piringan) return true;
+    else return false;
 }
 
 int langkahTower(int piringan, char awal, char tujuan, char additional) {
@@ -252,6 +273,7 @@ int langkahTower(int piringan, char awal, char tujuan, char additional) {
 }
 
 void TulisBase(Stack S, long long int max) {
+/* Menuliskan base ke layar */
     /* KAMUS LOKAL */
     int i, j;
     /* ALGORITMA */

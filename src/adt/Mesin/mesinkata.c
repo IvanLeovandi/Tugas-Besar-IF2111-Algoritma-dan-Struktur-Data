@@ -236,3 +236,15 @@ int StrToInt(char *str)
         return result;
     }
 }
+
+boolean validInt(char *inputan) {
+/* Mengembalikan true jika inputan adalah integer */
+    /* KAMUS LOKAL */
+    boolean integer = true;
+    int i;
+    /* ALGORITMA */
+    for (i = 0; i < str_len(inputan); i++) {
+        if (!(inputan[i] >= 48 && inputan[i] <= 57)) integer = false;
+    }
+    return integer;
+}

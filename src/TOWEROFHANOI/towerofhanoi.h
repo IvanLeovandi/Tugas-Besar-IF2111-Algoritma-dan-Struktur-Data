@@ -1,6 +1,7 @@
 /* File towerofhanoi.h */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../adt/Stack/stack.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../clear.h"
@@ -33,9 +34,7 @@ F.S.: Top awal berkurang 1, top tujuan bertambah 1
 boolean Win(Stack S, int piringan);
 /* Mengembalikan true jika kondisi S sudah sesuai dengan kondisi menang */
 
-int langkahTower(int piringan, char awal, char tujuan, char additional);
-/* Menghitung langkah optimal dari permainan Tower of Hanoi */
-
 void TulisBase(Stack S, long long int max);
+/* Menuliskan base ke layar */
 
 #endif

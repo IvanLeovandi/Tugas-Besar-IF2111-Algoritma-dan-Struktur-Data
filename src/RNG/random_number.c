@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
-
 #include "random_number.h"
 
 unsigned long long int randm(int n);
@@ -42,13 +37,12 @@ unsigned long long int randm(int n) {
 /* Mengembalikan random number dari jumlah digit n yang diinginkan */
     /* KAMUS LOKAL */
     double x;
-    long long int seed;
+    // long long int seed;
     unsigned long long int y;
     int i;
     /* ALGORITMA */
-    // u = (double*) malloc (sizeof(double));
-
     for (i = 0; i < n*n*n; i++) {
+        long long int seed;
         x = (rand() + seed) / (double)RAND_MAX;
         y = x * pow(10.0, n*1.0);
     }
