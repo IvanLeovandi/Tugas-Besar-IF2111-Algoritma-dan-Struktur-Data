@@ -49,6 +49,7 @@ boolean check_nama (char *nama, Set nama_pemain)
         valid = compareSTR(nama,nama_pemain.Elements[i]);
         i++;
     }
+    return valid;
 }
 
 void add_to_scoreboard(Map *scoreboard, Set *list_name, char* nama,int score)

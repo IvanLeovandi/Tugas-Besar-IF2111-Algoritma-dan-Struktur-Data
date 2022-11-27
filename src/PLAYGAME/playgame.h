@@ -6,12 +6,13 @@
 #include "../DINERDASH/dinerdash.h"
 #include "../GAMEBUATAN/game.h"
 #include "../BONUSGAME/RPS.h"
+#include "../HANGMAN/hangman.h"
 #include "../TOWEROFHANOI/towerofhanoi.h"
 #include "../SNAKEONMETEOR/snake.h"
 #include "../GUESSNUMBER/guess_number.h"
 #include "../adt/Set/set.h"
 #include "../adt/Map/map.h"
-#include "../SCOREBOARD\scoreboard.h
+#include "../SCOREBOARD/scoreboard.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H
