@@ -1,5 +1,5 @@
-/* File : Snakelinier.h */
-/* contoh ADT Snake berkait dengan representasi fisik pointer  */
+/* File : linkedlist.h */
+/* contoh ADT snakeList berkait dengan representasi fisik pointer  */
 /* Representasi adrSnake dengan pointer */
 /* int adalah integer */
 
@@ -49,58 +49,61 @@ typedef struct
 
 #include "linkedlist.h"
 
-/* PROTOTYPE */
-/****************** TEST Snake KOSONG ******************/
 boolean IsSnakeEmpty (snakeList L);
 /* Mengirim true jika Snake kosong */
 
-/****************** PEMBUATAN Snake KOSONG ******************/
 void CreateEmptySnake (snakeList *L);
 
-void CreatePeta (snakeList *L, point* food);
 
-void InsertSnake (snakeList*L);
-
-/* I.S. sembarang             */
-/* F.S. Terbentuk Snake kosong */
-
-/****************** Manajemen Memori ******************/
 adrSnake AlokasiSnake (int X, int Y, char prev);
 
-point NewPoint (snakeList L);
-
-/* Mengirimkan adrSnake hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka adrSnake tidak nil, dan misalnya */
-/* menghasilkan P, maka info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+point NewPoint (snakeList L, point obstacle);
 
 void DealokasiSnake (adrSnake *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
-/* Melakukan dealokasi/pengembalian adrSnake P */
 
-/****************** PENCARIAN SEBUAH ELEMEN Snake ******************/
-adrSnake Search (snakeList L, int X, int Y);
+adrSnake SearchSnake (snakeList L, int X, int Y);
 /* Mencari apakah ada elemen Snake dengan info(P)= X */
 /* Jika ada, mengirimkan adrSnake elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
-void SetNext (snakeList *L, int X, int Y, char prev);
-
-
-/****************** PROSES SEMUA ELEMEN Snake ******************/
-
-/* I.S. Snake mungkin kosong */
-/* F.S. Jika Snake tidak kosong, iai Snake dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Snake kosong : menulis [] */
-/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-
-int SnakeScore (snakeList L);
+int nbSnake (snakeList L);
 /* Mengirimkan banyaknya elemen Snake mengirimkan 0 jika Snake kosong */
 
-void PrintSnake(snakeList L, point food, point meteor);
+/*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
+void InsertFirstSnake (snakeList *L, adrSnake P);
+/* I.S. Sembarang, P sudah dialokasi  */
+/* F.S. Menambahkan elemen ber-adrSnake P sebagai elemen pertama */
+void InsertAfterSnake (snakeList *L, adrSnake P, adrSnake Prec);
+/* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
+/*      P sudah dialokasi  */
+/* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
+void InsertLastSnake (snakeList *L, adrSnake P);
+/* I.S. Sembarang, P sudah dialokasi  */
+/* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
-void PrintGaris();
+/*** PENGHAPUSAN SEBUAH ELEMEN ***/
+void DelFirstSnake (snakeList *L, adrSnake *P);
+/* I.S. List tidak kosong */
+/* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
+/*      Elemen list berkurang satu (mungkin menjadi kosong) */
+/* First element yg baru adalah suksesor elemen pertama yang lama */
+void DelPSnake (snakeList *L, point X);
+/* I.S. Sembarang */
+/* F.S. Jika ada elemen list beradrSnake P, dengan info(P)=X  */
+/* Maka P dihapus dari list dan di-dealokasi */
+/* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
+/* List mungkin menjadi kosong karena penghapusan */
+void DelLastSnake (snakeList *L, adrSnake *P);
+/* I.S. List tidak kosong */
+/* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
+/*      Elemen list berkurang satu (mungkin menjadi kosong) */
+/* Last element baru adalah predesesor elemen terakhir yg lama, */
+/* jika ada */
+void DelAfterSnake (snakeList *L, adrSnake *Pdel, adrSnake Prec);
+/* I.S. List tidak kosong. Prec adalah anggota list  */
+/* F.S. Menghapus Next(Prec): */
+/*      Pdel adalah alamat elemen list yang dihapus  */
 
 #endif
