@@ -90,8 +90,8 @@ void TulisStackHis(StackHis *S) {
     while (!IsEmptyStackHis(*S)) {
         PopHis(S, &X);
         PushHis(&temp, X);
-        if (IsEmptyStackHis(*S)) printf("%d]\n", X);
-        else printf("%d,", X);
+        if (IsEmptyStackHis(*S)) printf("%s]\n", X);
+        else printf("%s,", X);
     }
 
     while (!IsEmptyStackHis(temp)) {
