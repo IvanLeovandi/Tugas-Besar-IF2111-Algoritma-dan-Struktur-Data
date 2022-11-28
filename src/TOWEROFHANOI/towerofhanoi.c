@@ -71,7 +71,9 @@ piringan yang ada di atasnya.
         printf("TIANG TUJUAN: ");
         tujuan = StrToInt(Input()) + '0';
         ClearScreen();
-        printf("\nMemindahkan piringan ke %c...\n\n", tujuan);
+        printf("\nMemindahkan piringan ke %c", tujuan);
+        loadingDelay();
+        printf("\n\n");
 
         if (asal == 'A' && tujuan == 'B') MoveTop(&StackA, &StackB, &langkah);
         else if (asal == 'A' && tujuan == 'C') MoveTop(&StackA, &StackC, &langkah);
@@ -127,7 +129,7 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
         else {
             Pop(StackA, &X);
             Push(&tempA, X);
-            printf("%s", ConvertToStar(X, max));
+            printf("%s", ConvertToBrick(X, max));
         }
         printf("%c", '\t');
 
@@ -143,7 +145,7 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
         else {
             Pop(StackB, &X);
             Push(&tempB, X);
-            printf("%s", ConvertToStar(X, max));
+            printf("%s", ConvertToBrick(X, max));
         }
         printf("%c", '\t');
 
@@ -160,7 +162,7 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
         else {
             Pop(StackC, &X);
             Push(&tempC, X);
-            printf("%s", ConvertToStar(X, max));
+            printf("%s", ConvertToBrick(X, max));
             printf("\n");
         };
     }
@@ -202,8 +204,8 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
     printf("\n\n");
 }
 
-char* ConvertToStar(int num, int max) {
-/* Mengonversi num ke dalam bentuk star */
+char* ConvertToBrick(int num, int max) {
+/* Mengonversi num ke dalam bentuk bata */
     /* KAMUS LOKAL */
     int i;
     char* star;

@@ -27,11 +27,15 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         dequeue(game, &val);
         if(compareSTR(val, "RNG"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             rng(&score);
         } else if(compareSTR(val, "Diner DASH"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             DinerDash(&score);
         } 
         // else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
@@ -41,23 +45,33 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         // } 
         else if(compareSTR(val, "RPS"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             Start_RPS(&score);
         } else if(compareSTR(val, "HANGMAN"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             // Hangman();
         } else if(compareSTR(val, "TOWER OF HANOI"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             towerOfHanoi(&score);
         } else if(compareSTR(val, "SNAKE ON METEOR"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             SnakeOnMeteor(&score);
         } else if(compareSTR(val, "GUESSING NUMBER"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ");
+            loadingDelay();
+            printf("\n", val);
             guess_number(&score);
         }
         else

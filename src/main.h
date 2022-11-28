@@ -17,6 +17,7 @@
 #include "./HELP/help.h"
 #include "./COMMANDLAIN/commandlain.h"
 #include "../src/clear.h"
+#include "../src/delay.h"
 
 #ifndef MAIN_H
 #define MAIN_H

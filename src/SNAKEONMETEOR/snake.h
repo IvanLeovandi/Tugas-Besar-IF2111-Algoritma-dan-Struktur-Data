@@ -2,6 +2,8 @@
 #include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/List/linkedlist.h"
 #include "../RNG/random_number.h"
+#include "../clear.h"
+#include "../delay.h"
 
 #ifndef SNAKE_H
 #define SNAKE_H

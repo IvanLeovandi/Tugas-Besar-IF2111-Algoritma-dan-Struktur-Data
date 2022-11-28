@@ -12,6 +12,7 @@
 #include "../adt/Set/set.h"
 #include "../adt/Map/map.h"
 #include "../SCOREBOARD/scoreboard.h"
+#include "../delay.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H

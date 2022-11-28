@@ -2,11 +2,12 @@
 #include <stdlib.h>
 
 #include "snake.h"
-#include "../clear.h"
 
 void SnakeOnMeteor(int *score_game){
     printf("Selamat datang di snake on meteor!\n\n");
-    printf("Mengenerate peta, snake dan makanan . . .\n\n");
+    printf("Mengenerate peta, snake dan makanan");
+    loadingDelay();
+    printf("\n\n");
 
     snakeList snake;
     point food, meteor, obstacle;
@@ -266,6 +267,8 @@ void PrintSnake(snakeList L, point food, point meteor, point obstacle){
     g = 195; h = 196; i = 197;
     j = 217; k = 218; s = 178;
     int head = 1, tail = 240, mete = 19, obs = 88;
+
+    printf("\n'%c' merupakan obstacle.\n'%c' merupakan meteor.\n\n", obs, mete);
 
     for (int m=0; m<6; m++){
         for (int o=0; o<5; o++){
