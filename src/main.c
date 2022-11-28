@@ -18,6 +18,7 @@ int main()
     srand(time(NULL));
 
     // Memulai program
+    ClearScreen();
     printf("  _______   ___   __    ___ __ __   ______      \n");
     printf("/_______/\\ /__/\\ /__/\\ /__//_//_/\\ /_____/\\     \n");
     printf("\\::: _  \\ \\\\::\\_\\\\  \\ \\\\::\\| \\| \\ \\\\:::_ \\ \\    \n");
@@ -29,10 +30,15 @@ int main()
     printf("____ _  _     ____ _  _ ___ ____ _____ \n");
     printf("(  _ ( \\/ ()  (_  _( \\( / __( ___(  _  )\n");
     printf(" ) _ <\\  /     _)(_ )  ( (_-.)__) )(_)( \n");
-    printf("(____/(__)()  (____(_)\\_\\___(__) (_____)\n\n\n");
+    printf("(____/(__)()  (____(_)\\_\\___(__) (_____)\n\n");
+
+    for (int i = 0; i < 48; i++) {
+        printf("-");
+    }
+    printf("\n\n");
 
     printf("Selamat datang di BNMO.\n");
-    printf("Silahkan pilih menu START atau LOAD untuk memulai program\n");
+    printf("Silahkan pilih menu START atau LOAD untuk memulai program.\n");
     while(!loaded && !end)
     {
         printf("\nENTER COMMAND: ");
@@ -133,7 +139,7 @@ int main()
                     printf("Tidak ada history.\n");
                 } else
                 {
-                    TulisStackHis(history);
+                    TulisStackHis(&history);
                 }
             }
             else if(compareSTR(command, "SCORE"))

@@ -1,8 +1,5 @@
-#include "scoreboard.h"
-#include "../adt/Array/array.h"
-#include "../adt/Mesin/mesinkarakter.h"
-#include "../adt/Mesin/mesinkata.h"
 #include <stdio.h>
+#include "scoreboard.h"
 
 void AddSet(ArraySet *nama_user)
 /*I.S. Array Set Terdefinisi, ArraySet Mungkin Kosong*/

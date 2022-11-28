@@ -1,7 +1,9 @@
 // File queue.h
-#include <stdio.h>
+#include "../LISTGAME/listgame.h"
 #include "../adt/Queue/queue.h"
 #include "../adt/Array/array.h"
+#include "../adt/Mesin/mesinkata.h"
+#include "../clear.h"
 
 #ifndef QUEUEGAME_H
 #define QUEUEGAME_H
