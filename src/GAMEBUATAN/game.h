@@ -7,7 +7,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-void game_buatan(char *game);
+void game_buatan(char *game, int *score);
 /* 
 I.S.: Pemain membuat game buatan dengan menggunakan command CREATE GAME
 F.S.: Program langsung menghentikan game dan mengeluarkan skor akhir berupa random integer

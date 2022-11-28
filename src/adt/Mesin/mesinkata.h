@@ -79,4 +79,7 @@ boolean isInt(char *str_int);
 int StrToInt(char *str);
 /* Sebuah fungsi yang mengkonversi tipe data string menjadi integer.*/
 
+boolean validInt(char *input);
+/* Mengembalikan true jika inputan adalah integer */
+
 #endif

@@ -7,7 +7,7 @@ void CreateEmptyMap(Map *M)
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 {
-	(*M).Count = Nil;
+	(*M).CountMap = NilMap;
 }
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
@@ -15,14 +15,14 @@ boolean IsEmptyMap(Map M)
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 {
-	return M.Count == Nil;
+	return M.CountMap == NilMap;
 }
 
 boolean IsFullMap(Map M)
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 {
-	return M.Count == MaxEl;
+	return M.CountMap == MaxElMap;
 }
 
 /* ********** Operator Dasar Map ********* */
@@ -30,14 +30,14 @@ valuetype Value(Map M, keytype k)
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 {
-	if (IsMember(M,k))
+	if (IsMemberMap(M,k))
 	{
 		int idx=0;
-		while (M.Elements[idx].Key != k)
+		while (M.ElementsMap[idx].Key != k)
 		{
 			idx++;
 		}
-		return M.Elements[idx].Value;
+		return M.ElementsMap[idx].Value;
 	}
 	else
 	{
@@ -51,19 +51,30 @@ void InsertMap(Map *M, keytype k, valuetype v)
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 {
-	if (IsEmpty(*M))
+	if (IsEmptyMap(*M))
 	{
-		(*M).Count = 1;
-		(*M).Elements[0].Key = k;
-		(*M).Elements[0].Value = v;
+		(*M).CountMap = 1;
+		(*M).ElementsMap[0].Key = k;
+		(*M).ElementsMap[0].Value = v;
 	}
 	else
 	{
-		if (! IsMember((*M),k))
+		if (!IsMemberMap((*M),k))
 		{
-			(*M).Elements[(*M).Count].Key = k;
-			(*M).Elements[(*M).Count].Value = v;
-			(*M).Count++;
+			int idx,i;
+			idx = 0;
+			while (v < (*M).ElementsMap[idx].Value)
+			{
+				idx++;
+			}
+			(*M).CountMap++;
+			for (i=idx;i<(*M).CountMap-1;i++)
+			{
+				(*M).ElementsMap[i+1].Key = (*M).ElementsMap[i].Key;
+				(*M).ElementsMap[i+1].Value = (*M).ElementsMap[i].Value; 
+			}
+			(*M).ElementsMap[idx].Key = k;
+			(*M).ElementsMap[idx].Value = v;
 		}
 	}
 }
@@ -73,17 +84,17 @@ void DeleteMap(Map *M, keytype k)
 {
 	int idx;
 	idx = 0;
-	if (IsMember((*M),k))
+	if (IsMemberMap((*M),k))
 	{
-		while ((*M).Elements[idx].Key != k)
+		while ((*M).ElementsMap[idx].Key != k)
 		{
 			idx++;
 		}
-		for (idx;idx<(*M).Count-1;idx++)
+		for (idx;idx<(*M).CountMap-1;idx++)
 		{
-			(*M).Elements[idx] = (*M).Elements[idx+1];
+			(*M).ElementsMap[idx] = (*M).ElementsMap[idx+1];
 		}
-		(*M).Count--;
+		(*M).CountMap--;
 	}
 }
 
@@ -94,9 +105,9 @@ boolean IsMemberMap(Map M, keytype k)
 	i = 0;
 	boolean ada;
 	ada = false;
-	while (i < M.Count && ada == false)
+	while (i < M.CountMap && ada == false)
 	{
-		if (M.Elements[i].Key == k)
+		if (M.ElementsMap[i].Key == k)
 		{
 			ada = true;
 		}
@@ -111,7 +122,7 @@ void MakeEmptyArrMap (ArrayMap *T) {
 /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
     // KAMUS LOKAL
     // ALGORITMA
-    T->Neff = 0;
+    T->NeffMap = 0;
 }
 
 int NbElmtArrMap (ArrayMap T) {
@@ -119,36 +130,36 @@ int NbElmtArrMap (ArrayMap T) {
 /* Mengirimkan nol jika tabel kosong */
     // KAMUS LOKAL
     // ALGORITMA
-    return T.Neff;
+    return T.NeffMap;
 }
 
-void SetElArrMap (ArrayMap *T, IdxType i, ElType v) {
+void SetElArrMap (ArrayMap *T, int i, Map v) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
     // KAMUS LOKAL
     // ALGORITMA
-    T->TI[i] = v;
-    if (i > T->Neff) {
-        T->Neff = i;
+    T->TIMap[i] = v;
+    if (i > T->NeffMap) {
+        T->NeffMap = i;
     }
 }
 
-void SetNeffArrMap (Array *T, IdxType N) {
+void SetNeffArrMap (ArrayMap *T, int N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
     // KAMUS LOKAL
     // ALGORITMA
-    T->Neff = N;
+    T->NeffMap = N;
 }
 
-void DelArrMap (ArrayMap *T, IdxType i) {
+void DelArrMap (ArrayMap *T, int i) {
 /* I.S. T Terdefinisi, sembarang*/
 /* F.S. Set T pada index i akan dihapus*/
-	for (i;i<(*T).Neff;i++)
+	for (i;i<(*T).NeffMap;i++)
 	{
-		(*T).TI[i] = (*T).TI[i+1];
+		(*T).TIMap[i] = (*T).TIMap[i+1];
 	}
-	(*T).Neff--;
+	(*T).NeffMap--;
 }
