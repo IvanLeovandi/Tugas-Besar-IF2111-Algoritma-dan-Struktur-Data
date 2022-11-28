@@ -1,4 +1,7 @@
 /* File towerofhanoi.c */
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "towerofhanoi.h"
 
 void towerOfHanoi(int *score_game) {

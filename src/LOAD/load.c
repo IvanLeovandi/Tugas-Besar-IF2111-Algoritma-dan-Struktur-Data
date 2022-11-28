@@ -87,7 +87,6 @@ void load(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *s
                     char *nama = FirstSTR(score_lengkap);
                     int score = StrToInt(SecSTR(score_lengkap));
                     add_to_scoreboard(&score_game, &nama_per_game, nama, score);
-                    // printf("%s %d\n", score_game.ElementsMap[j].Key, score_game.ElementsMap[j].Value);
                 }
             }
             SetElArrMap(scoreboard, i, score_game);

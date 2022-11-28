@@ -1,6 +1,6 @@
 /* File guess_number.c */
+#include <stdio.h>
 #include "guess_number.h"
-#include "../clear.h"
 
 int guess_number(int *score_game) {
 /*

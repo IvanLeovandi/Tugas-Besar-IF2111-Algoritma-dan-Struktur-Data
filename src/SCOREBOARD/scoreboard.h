@@ -1,6 +1,7 @@
 #include "../adt/map/map.h"
 #include "../adt/set/set.h"
 #include "../adt/Array/array.h"
+#include "../adt/Mesin/mesinkata.h"
 #include "../boolean.h"
 
 #ifndef scoreboard_H
