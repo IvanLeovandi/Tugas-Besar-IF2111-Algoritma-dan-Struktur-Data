@@ -13,7 +13,7 @@ int main()
     Queue queue_game; CreateQueue(&queue_game);
     StackHis history; CreateEmptyStackHis(&history);
     ArraySet list_name; MakeEmptyArrSet(&list_name);
-    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard); CreateScoreboard(&list_name, &scoreboard, array_game);
+    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard); 
 
     srand(time(NULL));
 
@@ -47,6 +47,7 @@ int main()
             {
                 STARTGAME(&array_game, &history, &list_name, &scoreboard);
                 loaded = true;
+                CreateScoreboard(&list_name, &scoreboard, array_game);
             } else if (compareSTR(command, "QUIT"))
             {
                 quitgame(&queue_game);
@@ -78,7 +79,7 @@ int main()
             command_lain();
         }
     }
-
+    
     while(loaded && !end)
     {
         printf("\nENTER COMMAND: ");
@@ -95,14 +96,14 @@ int main()
         {
             if(compareSTR(command, "CREATE GAME"))
             {
-                creategame(&array_game);
+                creategame(&array_game,&scoreboard,&list_name);
             }
             else if(compareSTR(command, "LIST GAME"))
             {
                 listgame(array_game);
             } else if(compareSTR(command, "DELETE GAME"))
             {
-                deletegame(&array_game, queue_game);
+                deletegame(&array_game, queue_game,&list_name,&scoreboard);
             } else if(compareSTR(command, "QUEUE GAME"))
             {
                 queuegame(&queue_game, array_game);
