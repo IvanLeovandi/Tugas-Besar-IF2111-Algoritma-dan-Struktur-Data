@@ -1,5 +1,5 @@
-#include "listgame.h"
 #include <stdio.h>
+#include "listgame.h"
 
 void listgame(Array array_game)
 /*
