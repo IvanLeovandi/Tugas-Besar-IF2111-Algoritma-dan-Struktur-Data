@@ -80,15 +80,21 @@ int len_score (int score)
 /*I.S. score terdefinisi*/
 /*F.S. Mengembalikan jumlah digit score*/
 {
-
-    int x;
-    x = 0;
-    while (score > 0)
+    if (score == 0)
     {
-        score /= 10;
-        x++;
+        return 1;
     }
-    return x;
+    else
+    {
+        int x;
+        x = 0;
+        while (score > 0)
+        {
+            score /= 10;
+            x++;
+        }
+        return x;
+    }
 }
 
 int longest_score(Map scoreboard_game)
@@ -191,6 +197,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     {
         printf("%d. %s\n",i+1,array_game.TI[i]);
     }
+    printf("Scoreboard yang ingin dihapus : ");
     strnumber = Input();
     if (count_space(strnumber) > 0)
     {
@@ -218,17 +225,27 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
                         CreateEmptyMap(&((*scoreboard_game).TIMap[i]));
                         CreateEmptySet(&((*nama_pemain).TISet[i]));
                     }
+                    printf("Seluruh scoreboard berhasil dihapus.\n");
+                }
+                else
+                {
+                    printf("Scoreboard batal dihapus\n");
                 }
             }
             else
             {
-                printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
+                printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s?\n",array_game.TI[number-1]);
                 printf("YA/TIDAK? ");
                 yakin =Input();
                 if (compareSTR(yakin,"YA"))
                 {
                     CreateEmptyMap(&((*scoreboard_game).TIMap[number-1]));
                     CreateEmptySet(&((*nama_pemain).TISet[number-1]));
+                    printf("Scoreboard Game %s berhasil dihapus.\n",array_game.TI[number-1]);
+                }
+                else
+                {
+                    printf("Scoreboard batal dihapus.\n");
                 }
             }
         }
