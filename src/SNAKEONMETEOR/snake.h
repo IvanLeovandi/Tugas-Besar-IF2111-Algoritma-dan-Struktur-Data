@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "../adt/Mesin/mesinkata.h"
 #include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/List/linkedlist.h"

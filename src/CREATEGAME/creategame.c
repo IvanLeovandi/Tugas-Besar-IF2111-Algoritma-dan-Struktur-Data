@@ -1,6 +1,7 @@
 /* File creategame.c */
 #include <stdio.h>
 #include "creategame.h"
+#include "../clear.h"
 
 /* File ADT*/
 #include "../adt/Mesin/mesinkata.h"
@@ -13,6 +14,7 @@ F.S.: Program menambahkan nama game ke list game
 {
     printf("Masukkan nama game yang akan ditambahkan: ");
     char* name = Input();
+    ClearScreen();
     if(IsElmt(*game, name))
     {
         printf("Game sudah ditambahkan, silahkan masukan nama game yang lain\n");

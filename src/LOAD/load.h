@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "../boolean.h"
 #include "../adt/Array/array.h"
 #include "../adt/Mesin/mesinkarakter.h"
