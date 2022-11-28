@@ -13,14 +13,14 @@ int main() {
     Push(&S, 3);
     Push(&S, 4);
     printf("S sebelum di pop:\n");
-    TulisStack(S);
+    TulisStack(&S);
 
     Pop(&S, &X);
     printf("\nS setelah di pop:\n");
-    TulisStack(S);
+    TulisStack(&S);
 
     InversStack(&S);
     printf("\nInvers S:\n");
-    TulisStack(S);
+    TulisStack(&S);
     return 0;
 }

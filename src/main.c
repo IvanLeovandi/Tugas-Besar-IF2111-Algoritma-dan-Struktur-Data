@@ -13,11 +13,12 @@ int main()
     Queue queue_game; CreateQueue(&queue_game);
     StackHis history; CreateEmptyStackHis(&history);
     ArraySet list_name; MakeEmptyArrSet(&list_name);
-    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard); CreateScoreboard(&list_name, &scoreboard, array_game);
+    ArrayMap scoreboard; MakeEmptyArrMap(&scoreboard); 
 
     srand(time(NULL));
 
     // Memulai program
+    ClearScreen();
     printf("  _______   ___   __    ___ __ __   ______      \n");
     printf("/_______/\\ /__/\\ /__/\\ /__//_//_/\\ /_____/\\     \n");
     printf("\\::: _  \\ \\\\::\\_\\\\  \\ \\\\::\\| \\| \\ \\\\:::_ \\ \\    \n");
@@ -29,10 +30,15 @@ int main()
     printf("____ _  _     ____ _  _ ___ ____ _____ \n");
     printf("(  _ ( \\/ ()  (_  _( \\( / __( ___(  _  )\n");
     printf(" ) _ <\\  /     _)(_ )  ( (_-.)__) )(_)( \n");
-    printf("(____/(__)()  (____(_)\\_\\___(__) (_____)\n\n\n");
+    printf("(____/(__)()  (____(_)\\_\\___(__) (_____)\n\n");
+
+    for (int i = 0; i < 48; i++) {
+        printf("-");
+    }
+    printf("\n\n");
 
     printf("Selamat datang di BNMO.\n");
-    printf("Silahkan pilih menu START atau LOAD untuk memulai program\n");
+    printf("Silahkan pilih menu START atau LOAD untuk memulai program.\n");
     while(!loaded && !end)
     {
         printf("\nENTER COMMAND: ");
@@ -47,6 +53,7 @@ int main()
             {
                 STARTGAME(&array_game, &history, &list_name, &scoreboard);
                 loaded = true;
+                CreateScoreboard(&list_name, &scoreboard, array_game);
             } else if (compareSTR(command, "QUIT"))
             {
                 quitgame(&queue_game);
@@ -78,7 +85,7 @@ int main()
             command_lain();
         }
     }
-
+    
     while(loaded && !end)
     {
         printf("\nENTER COMMAND: ");
@@ -95,14 +102,14 @@ int main()
         {
             if(compareSTR(command, "CREATE GAME"))
             {
-                creategame(&array_game);
+                creategame(&array_game,&scoreboard,&list_name);
             }
             else if(compareSTR(command, "LIST GAME"))
             {
                 listgame(array_game);
             } else if(compareSTR(command, "DELETE GAME"))
             {
-                deletegame(&array_game, queue_game);
+                deletegame(&array_game, queue_game,&list_name,&scoreboard);
             } else if(compareSTR(command, "QUEUE GAME"))
             {
                 queuegame(&queue_game, array_game);
@@ -133,7 +140,7 @@ int main()
                     printf("Tidak ada history.\n");
                 } else
                 {
-                    TulisStackHis(history);
+                    TulisStackHis(&history);
                 }
             }
             else if(compareSTR(command, "SCORE"))

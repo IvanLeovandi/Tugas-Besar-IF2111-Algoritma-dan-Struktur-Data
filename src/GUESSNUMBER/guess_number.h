@@ -1,8 +1,8 @@
 /* File guess_number.h */
-#include <stdio.h>
 #include "../adt/Tree/tree.h"
 #include "../RNG/random_number.h"
 #include "../adt/Mesin/mesinkata.h"
+#include "../clear.h"
 
 #ifndef GUESS_NUMBER_H
 #define GUESS_NUMBER_H

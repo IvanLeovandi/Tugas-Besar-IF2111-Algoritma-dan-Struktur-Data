@@ -1,5 +1,4 @@
 #include "../adt/Array/array.h"
-#include <stdio.h>
 
 #ifndef LISTGAME_H
 #define LISTGAME_H

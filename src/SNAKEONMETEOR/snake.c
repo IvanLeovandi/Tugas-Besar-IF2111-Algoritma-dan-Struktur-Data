@@ -1,7 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "snake.h"
+#include "../clear.h"
 
 void SnakeOnMeteor(int *score_game){
-
     printf("Selamat datang di snake on meteor!\n\n");
     printf("Mengenerate peta, snake dan makanan . . .\n\n");
 
@@ -23,6 +26,7 @@ void SnakeOnMeteor(int *score_game){
         printf("\nTURN %d\n", turn);
         printf("Silahkan masukkan command anda: ");
         command = Input();
+        ClearScreen();
         if (str_len(command) == 1){
             Move(*command, &snake, &food, &game, &meteor, obstacle, &turn);
             PrintSnake(snake, food, meteor, obstacle);
@@ -35,10 +39,7 @@ void SnakeOnMeteor(int *score_game){
     int score = nbSnake(snake);
     printf("Game berakhir. Skor: %d\n\n", score);
     *score_game = score;
-
 }
-
-
 
 void Move (char command, snakeList *L, point* food, boolean* game, point* meteor, point obstacle, int* turn){
     /* Snake bergerak */
@@ -127,8 +128,6 @@ void Move (char command, snakeList *L, point* food, boolean* game, point* meteor
 
 }
 
-
-
 void Food (snakeList *L, point *food, point obstacle){
     /* Snake memanjang */
     adrSnake(P) = Head(*L);
@@ -138,8 +137,6 @@ void Food (snakeList *L, point *food, point obstacle){
         *food = NewPoint(*L, obstacle);
     }
 }
-
-
 
 void Meteor (snakeList *L, boolean *game, point* meteor, point food, point obstacle){
     /* Randomize bom dan hit jika mengenai snake */
