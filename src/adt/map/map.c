@@ -63,17 +63,18 @@ void InsertMap(Map *M, keytype k, valuetype v)
 		{
 			int idx,i;
 			idx = 0;
-			while (v <= (*M).ElementsMap[idx].Value && idx < (*M).CountMap)
+			while (v <= (*M).ElementsMap[idx].Value)
 			{
 				idx++;	
 			}
-			(*M).CountMap++;
-			for (i = (*M).CountMap; i < idx; i--) {
-				(*M).ElementsMap[i].Key = (*M).ElementsMap[i-1].Key;
-				(*M).ElementsMap[i].Value = (*M).ElementsMap[i-1].Value;
+			for (i=idx;i<(*M).CountMap;i++)
+			{
+				(*M).ElementsMap[i+1].Key = (*M).ElementsMap[i].Key;
+				(*M).ElementsMap[i+1].Value = (*M).ElementsMap[i].Value; 
 			}
 			(*M).ElementsMap[idx].Key = k;
 			(*M).ElementsMap[idx].Value = v;
+			(*M).CountMap++;
 		}
 	}
 }

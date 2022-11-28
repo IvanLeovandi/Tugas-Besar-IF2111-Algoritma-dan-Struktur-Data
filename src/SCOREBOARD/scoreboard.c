@@ -148,9 +148,9 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
 /*F.S. Scoreboard setiap game tercetak ke layar*/
 {  
     int x;
-    for (x = 0 ; x < NbElmtArrMap(scoreboard_game); x++)
+    for (x=0;x<NbElmtArrMap(scoreboard_game);x++)
     {
-        printf("**** Scoreboard Game %s ****\n", arraygame.TI[x]);
+        printf("**** Scoreboard Game %s ****\n",arraygame.TI[x]);
         if (IsEmptyMap(scoreboard_game.TIMap[x]))
         {
             printf("|  Nama  |  Score  |\n");
@@ -158,7 +158,7 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
         }
         else
         {
-            int nama_terpanjang, jumlah_nama, score_terpanjang;
+            int nama_terpanjang,jumlah_nama,score_terpanjang;
             int i;
             jumlah_nama = scoreboard_game.TIMap[x].CountMap;
             score_terpanjang = longest_score(scoreboard_game.TIMap[x]);
@@ -169,7 +169,7 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
             printf("Score");
             PrintSpace(score_terpanjang-5);
             printf("|\n");
-            for (i = 0; i < jumlah_nama; i++)
+            for (i=0;i<jumlah_nama;i++)
             {
                 printf("| %s",scoreboard_game.TIMap[x].ElementsMap[i].Key);
                 PrintSpace(nama_terpanjang-len_name(scoreboard_game.TIMap[x].ElementsMap[i].Key));
@@ -190,9 +190,9 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     int i;
     printf("DAFTAR SCOREBOARD:\n");
     printf("0. ALL\n");
-    for (i = 0; i < array_game.Neff; i++)
+    for (i=0;i<array_game.Neff;i++)
     {
-        printf("%d. %s\n", i + 1, array_game.TI[i]);
+        printf("%d. %s\n",i+1,array_game.TI[i]);
     }
     printf("Scoreboard yang ingin dihapus : ");
     strnumber = Input();
