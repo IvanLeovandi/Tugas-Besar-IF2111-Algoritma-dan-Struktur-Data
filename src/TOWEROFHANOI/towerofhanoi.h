@@ -32,7 +32,10 @@ F.S.: Top awal berkurang 1, top tujuan bertambah 1
 boolean Win(Stack S, int piringan);
 /* Mengembalikan true jika kondisi S sudah sesuai dengan kondisi menang */
 
-void TulisBase(Stack S, long long int max);
+void TulisBase(Stack S, int max);
 /* Menuliskan base ke layar */
+
+void ChangeStackColor(int X);
+/* Mengganti warna stack pada Tower of Hanoi */
 
 #endif

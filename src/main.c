@@ -1,8 +1,28 @@
-#include "main.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "./adt/Array/array.h"
+#include "./adt/Mesin/mesinkarakter.h"
+#include "./adt/Mesin/mesinkata.h"
+#include "./adt/Queue/queue.h"
+#include "./adt/List/linkedlist.h"
+#include "./STARTGAME/start.h"
+#include "./SAVE/save.h"
+#include "./LOAD/load.h"
+#include "./CREATEGAME/creategame.h"
+#include "./LISTGAME/listgame.h"
+#include "./DELETEGAME/deletegame.h"
+#include "./QUEUEGAME/queuegame.h"
+#include "./PLAYGAME/playgame.h"
+#include "./SKIPGAME/skipgame.h"
+#include "./SCOREBOARD/scoreboard.h"
+#include "./QUITGAME/quitgame.h"
+#include "./HELP/help.h"
+#include "./COMMANDLAIN/commandlain.h"
+#include "../src/clear.h"
+#include "../src/delay.h"
+#include "../src/color.h"
 
 int main()
 {
@@ -19,6 +39,7 @@ int main()
 
     // Memulai program
     ClearScreen();
+    RESET;
     printf("  _______   ___   __    ___ __ __   ______      \n");
     printf("/_______/\\ /__/\\ /__/\\ /__//_//_/\\ /_____/\\     \n");
     printf("\\::: _  \\ \\\\::\\_\\\\  \\ \\\\::\\| \\| \\ \\\\:::_ \\ \\    \n");
@@ -41,8 +62,11 @@ int main()
     printf("Silahkan pilih menu START atau LOAD untuk memulai program.\n");
     while(!loaded && !end)
     {
+        HITAM;
+        BACKGROUND_PUTIH;
         printf("\nENTER COMMAND: ");
         command = Input();
+        RESET;
         ClearScreen();
 
         printf("ENTER COMMAND: %s\n", command);
@@ -88,9 +112,12 @@ int main()
     
     while(loaded && !end)
     {
+        BACKGROUND_PUTIH;
+        HITAM;
         printf("\nENTER COMMAND: ");
         command = Input();
-        
+        RESET;
+
         ClearScreen();
 
         printf("ENTER COMMAND: %s\n", command);
@@ -143,7 +170,7 @@ int main()
                     TulisStackHis(&history);
                 }
             }
-            else if(compareSTR(command, "SCORE"))
+            else if(compareSTR(command, "SCOREBOARD"))
             {
                 DisplayScoreboard(scoreboard, array_game);
             }
