@@ -304,48 +304,48 @@ void PrintSnake(snakeList L, point food, point meteor, point obstacle){
                     if (P == Nil){
                         if (n==1){
                             if (o == food.x && m == food.y){
-                                printf("%c    o    ", a);
+                                printf("%c    ", a); HIJAU; printf("o    "); RESET;
                             } else if (o == obstacle.x && m == obstacle.y){
-                                printf("%c    %c    ", a, obs);
+                                printf("%c    ", a); MERAH; printf("%c    ", obs); RESET;
                             } else if (o == meteor.x && m == meteor.y){
-                                printf("%c    %c    ", a, mete);
+                                printf("%c    ", a); MERAH; printf("%c    ", mete); RESET;
                             } else {printf("%c         ", a);}
                         }
                         else{printf("%c         ", a);}
                     } else{
                         if(n==0){
                             if(Dir(P).prec == 'w' || Dir(P).succ == 'w'){
-                                printf("%c   %c%c%c   ", a, s, s, s);
+                                printf("%c   ", a); HIJAU; printf("%c%c%c   ", s, s, s); RESET;
                             } else {printf("%c         ", a);}
                         }
                         
                         else if(n==1){                            
                             if(Dir(P).prec == 'a' || Dir(P).succ == 'a'){
-                                printf("%c%c%c%c%c", a, s, s, s, s);
+                                printf("%c", a); HIJAU; printf("%c%c%c%c", s, s, s, s); RESET;
                             } else {
                                 if(Dir(P).prec == 'x' || Dir(P).succ =='x'){
                                     printf("%c    ", a);
-                                } else {printf("%c   %c", a, s);}
+                                } else {printf("%c   ", a); HIJAU; printf("%c", s); RESET;}
                             }
 
                             /* head */
                             if(Dir(P).prec == 'x'){
-                                printf("%c", head);
+                                KUNING; printf("%c", head); RESET;
                             } else if(Dir(P).succ =='x'){
-                                printf("%c", tail);
-                            } else {printf("%c",s);}
+                                HIJAU; printf("%c", tail); RESET;
+                            } else { HIJAU; printf("%c",s); RESET;}
 
                             if(Dir(P).prec == 'd' || Dir(P).succ == 'd'){
-                                printf("%c%c%c%c", s, s, s, s);
+                                HIJAU; printf("%c%c%c%c", s, s, s, s); RESET;
                             } else{                                
                                 if(Dir(P).prec == 'x' || Dir(P).succ =='x'){
                                     printf("    ");
-                                } else {printf("%c   ", s);}}
+                                } else {HIJAU; printf("%c   ", s); RESET;}}
                         }
                         
                         else{
                             if(Dir(P).prec == 's' || Dir(P).succ == 's'){
-                                printf("%c   %c%c%c   ", a, s, s, s);
+                                printf("%c   ", a); HIJAU; printf("%c%c%c   ", s, s, s); RESET;
                             } else {printf("%c         ", a);}
                         }
                     }

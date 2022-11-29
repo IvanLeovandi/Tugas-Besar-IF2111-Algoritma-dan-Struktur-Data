@@ -4,6 +4,7 @@
 #include "../RNG/random_number.h"
 #include "../clear.h"
 #include "../delay.h"
+#include "../color.h"
 
 #ifndef SNAKE_H
 #define SNAKE_H
