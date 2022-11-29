@@ -231,17 +231,13 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
                         valid = true;
                     } else if (compareSTR(yakin, "TIDAK"))
                     {
-                        printf("Scoreboard gagal di-reset\n");
+                        printf("Scoreboard batal di-reset\n");
                         valid = true;
                     } else
                     {
                         printf("Masukkan tidak valid, mohon masukkan YA / TIDAK. ");
                     }
                     printf("Seluruh scoreboard berhasil dihapus.\n");
-                }
-                else
-                {
-                    printf("Scoreboard batal dihapus\n");
                 }
             }
             else
@@ -260,7 +256,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
                         valid = true;
                     } else if (compareSTR(yakin, "TIDAK"))
                     {
-                        printf("Scoreboard gagal di-reset.\n");
+                        printf("Scoreboard batal di-reset.\n");
                         valid = true;
                     } else
                     {

@@ -3,7 +3,7 @@
 #include "skipgame.h"
 
 
-void skipgame (Queue *q, Array array_game, ArraySet *list_name, ArrayMap *scoreboard, int n)
+void skipgame (Queue *q, Array array_game, ArraySet *list_name, ArrayMap *scoreboard, StackHis *history,int n)
 /* 
 I.S.: Queue/antrian game terdefinisi, antrian mungkin kosong, antrian tidak mungkin penuh
 F.S.: Program akan melakukan dequeue sebanyak n kali dari antrian game yang dimasukkan pada parameter
@@ -27,6 +27,6 @@ F.S.: Program akan melakukan dequeue sebanyak n kali dari antrian game yang dima
         {
             dequeue(q, &val);
         }
-        playgame(q, array_game, list_name, scoreboard);
+        playgame(q, array_game, list_name, scoreboard, history);
     }
 }

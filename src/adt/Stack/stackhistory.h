@@ -61,7 +61,7 @@ void InversStackHis(StackHis *S);
 /* I.S. S terdefinisi */
 /* F.S. Urutan elemen pada S menjadi terbalik */
 
-void TulisStackHis(StackHis *S);
+void TulisStackHis(StackHis S);
 /* Menuliskan seluruh elemen StackHis S ke layar */
 
 StackHis CopyStackHis(StackHis *S);
