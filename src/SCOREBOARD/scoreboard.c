@@ -183,7 +183,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
 /*I.S. ArrayMap scoreboard game terdefinisi, Array array_game terdefinisi, ArraySet nama pemain terdefinisi*/
 /*F.S.  Scoreboard game yang terpilih akan dibuat menjadi kosong*/
 {
-    char *strnumber;
+    char *strnumber; boolean valid;
     int i;
     printf("DAFTAR SCOREBOARD:\n");
     printf("0. ALL\n");
@@ -191,6 +191,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     {
         printf("%d. %s\n",i+1,array_game.TI[i]);
     }
+    printf("Scoreboard yang ingin dihapus: ");
     strnumber = Input();
     if (count_space(strnumber) > 0)
     {
@@ -200,35 +201,61 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
     {
         char* yakin;
         int number = StrToInt(strnumber);
-        if (number > (*scoreboard_game).NeffMap || number < 0);
+        if (number > (*scoreboard_game).NeffMap || number < 0)
         {
             printf("Tidak ada scoreboard tersebut!");
         }
-
+        else
         { 
             if (number == 0)
             {
                 printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL?\n");
                 printf("YA/TIDAK? ");
-                yakin = Input();
-                if (compareSTR(yakin,"YA"))
+                valid = false;
+                while (!valid)
                 {
-                    for (i=0;i<(*scoreboard_game).NeffMap;i++) 
+                    yakin = Input();
+                    if (compareSTR(yakin,"YA"))
                     {
-                        CreateEmptyMap(&((*scoreboard_game).TIMap[i]));
-                        CreateEmptySet(&((*nama_pemain).TISet[i]));
+                        for (i=0;i<(*scoreboard_game).NeffMap;i++) 
+                        {
+                            CreateEmptyMap(&((*scoreboard_game).TIMap[i]));
+                            CreateEmptySet(&((*nama_pemain).TISet[i]));
+                        }
+                        printf("Scoreboard berhasil di-reset.\n");
+                        valid = true;
+                    } else if (compareSTR(yakin, "TIDAK"))
+                    {
+                        printf("Scoreboard gagal di-reset\n");
+                        valid = true;
+                    } else
+                    {
+                        printf("Masukkan tidak valid, mohon masukkan YA / TIDAK. ");
                     }
                 }
             }
             else
             {
-                printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s",array_game.TI[number-1]);
+                printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s\n",array_game.TI[number-1]);
                 printf("YA/TIDAK? ");
-                yakin =Input();
-                if (compareSTR(yakin,"YA"))
+                valid = false;
+                while (!valid)
                 {
-                    CreateEmptyMap(&((*scoreboard_game).TIMap[number-1]));
-                    CreateEmptySet(&((*nama_pemain).TISet[number-1]));
+                    yakin = Input();
+                    if (compareSTR(yakin,"YA"))
+                    {
+                        CreateEmptyMap(&((*scoreboard_game).TIMap[number-1]));
+                        CreateEmptySet(&((*nama_pemain).TISet[number-1]));
+                        printf("Scoreboard berhasil di-reset.\n");
+                        valid = true;
+                    } else if (compareSTR(yakin, "TIDAK"))
+                    {
+                        printf("Scoreboard gagal di-reset.\n");
+                        valid = true;
+                    } else
+                    {
+                        printf("Masukkan tidak valid, mohon masukkan YA / TIDAK. ");
+                    }
                 }
             }
         }

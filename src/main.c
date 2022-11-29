@@ -109,7 +109,12 @@ int main()
             } else if(compareSTR(command, "PLAY GAME"))
             {
                 playgame(&queue_game, array_game, &list_name, &scoreboard);
-            } else if(count_space(command) == 1)
+            } 
+            else if(compareSTR(command, "RESET SCOREBOARD"))
+            {
+                DeleteScoreboard(&scoreboard, &list_name, array_game);
+            }
+            else if(count_space(command) == 1)
             {
                 char *firstSTR = FirstSTR(command);
                 char *secSTR = SecSTR(command);
@@ -120,7 +125,12 @@ int main()
                 } else if(compareSTR(firstSTR, "SAVE"))
                 {
                     save(secSTR, array_game, history, scoreboard);
-                }
+                } 
+                // else if(compareSTR(firstSTR, "HISTORY"))
+                // {
+                //     int hist_num = StrToInt(secSTR);
+                //     // tulis history sbnyk hist_num
+                // }
                 else
                 {
                     command_lain();
@@ -136,7 +146,7 @@ int main()
                     TulisStackHis(history);
                 }
             }
-            else if(compareSTR(command, "SCORE"))
+            else if(compareSTR(command, "SCOREBOARD"))
             {
                 DisplayScoreboard(scoreboard, array_game);
             }
