@@ -2,11 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../adt/Array/array.h"
-#include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../RNG/random_number.h"
 #include "../adt/Mesin/loader.h"
-#include "queuehangman.h"
+#include "../adt/Queue/queuehangman.h"
 
 
 #ifndef HANGMAN
@@ -38,7 +37,7 @@ boolean IsElement(ElType kata, char tebakan);
 /* Menghasilkan True jika huruf pada tebakan terdapat dalam array kata
 */
 
-boolean haveguess(Queue huruftebakan, char tebakan);
+boolean haveguess(QueueHangman huruftebakan, char tebakan);
 /* menghasilkan true jika huruf yang ditebak sudah pernah ditebak
 */
 

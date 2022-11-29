@@ -1,11 +1,6 @@
 /* File hangman.c */
 #include "hangman.h"
-#include "array.c"
-#include "mesinkarakter.c"
-#include "mesinkata.c"
-#include "random_number.c"
-#include "loader.c"
-#include "queuehangman.c"
+#include "../clear.h"
 
 void Hangman(int *score_game){
 /* 
@@ -20,7 +15,7 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
 */
     /*KAMUS LOKAL*/
     Array Penanda, Kamus;
-    Queue huruftebakan;
+    QueueHangman huruftebakan;
     int score, percobaan;
     char* InputTebakan;
     char tebakan;
@@ -35,18 +30,19 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
     printf("Menu.\n\n");
 
     MakeEmpty(&Penanda);
-    CreateQueue(&huruftebakan);
+    CreateQueueHangman(&huruftebakan);
     MakeEmpty(&Kamus);
     valid = false;
 
     while (valid == false){
         printf("1. Mulai Game\n");
-        printf("2. Tambah Kata Baru\n");
+        printf("2. Tambah Kata Baru\n\n");
         printf("Masukkkan nomor opsi: ");
         opsi = StrToInt(Input());
         if (opsi == 1 || opsi == 2){
             valid == true;
-            printf("\nLoading..\n");
+            ClearScreen();
+            printf("\nLoading...\n");
             break;
         }else{
             printf("Masukkan tidak valid, silahkan input ulang!\n\n");
@@ -57,74 +53,82 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
         percobaan = 10;
         score = 0;
         while (percobaan > 0){
+            printf("Bahasa yang digunakan pada game ini adalah bahasa Indonesia.\n\n");
             printf("Kata yang harus ditebak: \n");
-            srand(time(NULL));
-            index_kamus = rand()% (Kamus.Neff -1);
+            index_kamus = randomNumber() % (Kamus.Neff -1);
             Kata = Kamus.TI[index_kamus];
             CreateArrayPenanda(Kata, &Penanda);
             while (percobaan >0 && IsWin(Penanda) == false){
                 CetakHuruf(Kata,Penanda);
-                printf("\nSisa Percobaan : %d\n",percobaan);
-                printf("Masukkan Tebakan :");
+                printf("\n\nSisa Percobaan: %d\n\n",percobaan);
+                printf("Masukkan Tebakan: ");
                 InputTebakan = Input();
                 printf("\n");
                 while (str_len(InputTebakan) != 1 ){
-                    printf("\nTebakan Harus 1 Huruf\n");
-                    printf("Masukkan Tebakan :");
+                    ClearScreen();
+                    printf("\nHuruf yang anda tebak sebelumnya: \n\n");
+                    displayQueueHangman(huruftebakan);
+                    CetakHuruf(Kata,Penanda);
+                    printf("\n\nTebakan Harus 1 Huruf\n\n");
+                    printf("Masukkan Tebakan: ");
                     InputTebakan = Input();
                 }
                 while ((InputTebakan[0]<'A' || (InputTebakan[0] > 'Z' && InputTebakan[0] < 'a') || InputTebakan[0] > 'z')){
-                    printf("\nTebakan Harus berupa Huruf\n");
-                    printf("Masukkan Tebakan :");
+                    ClearScreen();
+                    printf("\nHuruf yang anda tebak sebelumnya: \n\n");
+                    displayQueueHangman(huruftebakan);
+                    CetakHuruf(Kata,Penanda);
+                    printf("\n\nTebakan harus berupa Huruf\n\n");
+                    printf("Masukkan Tebakan: ");
                     InputTebakan = Input();
                 }
+                ClearScreen();
                 tebakan = *InputTebakan;
                 while (haveguess(huruftebakan, tebakan)){
-                    printf("\nHuruf yang ditebak sudah ditebak sebelumnya!\n");
-                    printf("Masukkan Tebakan :");
+                    printf("\nHuruf yang ditebak sudah ditebak sebelumnya!\n\n");
+                    printf("\nHuruf yang anda tebak sebelumnya: \n\n");
+                    displayQueueHangman(huruftebakan);
+                    CetakHuruf(Kata,Penanda);
+                    printf("\n\nMasukkan Tebakan: ");
                     InputTebakan = Input();
                     tebakan = *InputTebakan;
                     printf("\n");
                 }
-                enqueue(&huruftebakan, tebakan);
+                enqueueHangman(&huruftebakan, tebakan);
                 if (IsElement(Kata, tebakan) == false){
                     percobaan = percobaan - 1;
                 }
 
                 ChangeArrayPenanda(Kata, &Penanda, tebakan);
                 if (percobaan > 0 && IsWin(Penanda) == false){
-                    printf("\nHuruf yang anda tebak sebelumnya :\n");
-                    displayQueue(huruftebakan);
+                    printf("\nHuruf yang anda tebak sebelumnya: \n\n");
+                    displayQueueHangman(huruftebakan);
                 }
                 if(IsWin(Penanda)){
                     score += str_len(Kata);
-                    printf("%s",Kata);
-                    printf("\nWow Bagus, Lanjut Kata Selanjutnya!!!\n");
-                    printf("\nScore sementara anda adalah %d\n", score);
-                    CreateQueue(&huruftebakan);
+                    printf("Jawaban yang benar: %s\n", Kata);
+                    printf("\nWow bagus! Kamu mendapatkan %d poin. GGWP!! Let's go lanjut kata berikutnya!!!\n", str_len(Kata));
+                    printf("\nScore sementara anda adalah %d\n\n\n", score);
+                    CreateQueueHangman(&huruftebakan);
                 }
             }
         }
-        printf("\nYey, Score akhir anda adalah %d\n", score);
+        printf("Jawaban yang benar: %s\n", Kata);
+        printf("\nYey, Score akhir anda adalah %d\n\n", score);
         *score_game = score;
     }else{
-        printf("\nMasukkan Kata Baru :");
+        printf("\nMasukkan Kata Baru: ");
         KataBaru = Input();
         if (IsElmt(Kamus, KataBaru) == false && IsFull(Kamus) == false ){
-            printf("\nx = %s",Kamus.TI[Kamus.Neff - 2]);
-            printf("\nx = %s",Kamus.TI[Kamus.Neff - 1]);
-            printf("%d\n",Kamus.Neff);
             Kamus.TI[Kamus.Neff] = KataBaru;
             Kamus.Neff += 1;
-            printf("\nx = %s",Kamus.TI[Kamus.Neff - 2]);
-            printf("\nx = %s\n",Kamus.TI[Kamus.Neff - 1]);
-            printf("%d\n",Kamus.Neff);
         }else if (IsElmt(Kamus, KataBaru)){
             printf("Kata sudah ada dalam kamus\n");
         }else if (IsFull(Kamus)){
             printf("Kamus telah penuh\n");
         }
         SaveKamus(Kamus);
+        printf("\n\n");
         Hangman(score_game);
     }
 }
@@ -177,14 +181,14 @@ boolean IsElement(ElType kata, char tebakan){
     return found;
 }
 
-boolean haveguess(Queue huruftebakan, char tebakan){
+boolean haveguess(QueueHangman huruftebakan, char tebakan){
 /* menghasilkan true jika huruf yang ditebak sudah pernah ditebak
 */
     /*KAMUS LOKAL*/
     boolean found;
     /*ALGORITMA*/
     found = false;
-    if (SearchElmtQueue(huruftebakan, tebakan)){
+    if (SearchElmtQueueHangman(huruftebakan, tebakan)){
         found = true;
     }
     return found;
@@ -233,7 +237,7 @@ void KamusToArray(Array* Kamus){
     boolean valid;
     int idx, i;
     //ALGORITMA
-    valid = StartLOAD("../../data/kamus.txt");
+    valid = StartLOAD("../data/kamus.txt");
     if (valid){
         i = 0;
         while(!EOP){
@@ -270,7 +274,7 @@ void SaveKamus(Array Kamus){
     FILE *outp;
     int count, idx;
     /*ALGORITMA*/
-    outp = fopen("../../data/kamus.txt", "w+");
+    outp = fopen("../data/kamus.txt", "w+");
     count = Kamus.Neff;
     for (idx = 0; idx < count; idx++){
         if (idx != count -1){
@@ -280,8 +284,4 @@ void SaveKamus(Array Kamus){
         }
     }
     fclose(outp);
-}
-int main(){
-    int score;
-    Hangman(&score);
 }
