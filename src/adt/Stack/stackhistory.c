@@ -79,24 +79,15 @@ void InversStackHis(StackHis *S) {
     }
 }
 
-void TulisStackHis(StackHis *S) {
+void TulisStackHis(StackHis S) {
 /* Menuliskan seluruh elemen StackHis S ke layar */
     /* KAMUS LOKAL */
-    char* X;
-    StackHis temp;
+    int i, j;
     /* ALGORITMA */
-    CreateEmptyStackHis(&temp);
-    printf("[");
-    while (!IsEmptyStackHis(*S)) {
-        PopHis(S, &X);
-        PushHis(&temp, X);
-        if (IsEmptyStackHis(*S)) printf("%s]\n", X);
-        else printf("%s,", X);
-    }
-
-    while (!IsEmptyStackHis(temp)) {
-        PopHis(&temp, &X);
-        PushHis(S, X);
+    j = 1;
+    for (i = Top(S); i >= 0; i--) {
+        printf("%d. %s\n", j, S.T[i]);
+        j++;
     }
 }
 
