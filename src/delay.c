@@ -11,6 +11,7 @@ void delay(int seconds) {
 }
 
 void loadingDelay() {
+/* Memberi delay waktu pada saat loading game */
     /* KAMUS LOKAL */
     int i;
     /* ALGORITMA */

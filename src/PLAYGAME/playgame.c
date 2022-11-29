@@ -27,15 +27,15 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         dequeue(game, &val);
         if(compareSTR(val, "RNG"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
+            printf("\n");
             rng(&score);
         } else if(compareSTR(val, "Diner DASH"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
+            printf("\n");
             DinerDash(&score);
         } 
         // else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
@@ -45,33 +45,33 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         // } 
         else if(compareSTR(val, "RPS"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
+            printf("\n");
             Start_RPS(&score);
         } else if(compareSTR(val, "HANGMAN"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
-            // Hangman();
+            printf("\n");
+            Hangman(&score);
         } else if(compareSTR(val, "TOWER OF HANOI"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
+            printf("\n");
             towerOfHanoi(&score);
         } else if(compareSTR(val, "SNAKE ON METEOR"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
+            printf("\n");
             SnakeOnMeteor(&score);
         } else if(compareSTR(val, "GUESSING NUMBER"))
         {
-            printf("Loading %s ");
+            printf("Loading %s ", val);
             loadingDelay();
-            printf("\n", val);
+            printf("\n");
             guess_number(&score);
         }
         else

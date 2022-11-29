@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /* *** Kreator *** */
-void CreateQueue(Queue *q) {
+void CreateQueueHangman(QueueHangman *q) {
 /* I.S. sembarang */
 /* F.S. Sebuah q kosong terbentuk dengan kondisi sbb: */
 /* - Index head bernilai IDX_UNDEF */
@@ -17,14 +17,14 @@ void CreateQueue(Queue *q) {
 }
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q) {
+boolean isEmptyHangman(QueueHangman q) {
 /* Mengirim true jika q kosong: lihat definisi di atas */
     // KAMUS LOKAL
     // ALGORITMA
     return (q.idxHead == IDX_UNDEF && q.idxTail == IDX_UNDEF);
 }
 
-boolean isFull(Queue q) {
+boolean isFullHangman(QueueHangman q) {
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
     // KAMUS LOKAL
@@ -32,11 +32,11 @@ boolean isFull(Queue q) {
     return (q.idxHead == 0 && q.idxTail == CAPACITY-1);
 }
 
-int length(Queue q) {
+int lengthHangman(QueueHangman q) {
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
     // KAMUS LOKAL
     // ALGORITMA
-    if (isEmpty(q)) {
+    if (isEmptyHangman(q)) {
         return 0;
     } else {
         return (q.idxTail - q.idxHead + 1);
@@ -44,13 +44,13 @@ int length(Queue q) {
 }
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElTypeq val) {
+void enqueueHangman(QueueHangman *q, ElTypeq val) {
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
     // KAMUS LOKAL
     // ALGORITMA
-    if (isEmpty(*q)) {
+    if (isEmptyHangman(*q)) {
         q->idxHead = 0;
         q->idxTail = 0;
     } else {
@@ -59,7 +59,7 @@ void enqueue(Queue *q, ElTypeq val) {
     q->buffer[q->idxTail] = val;
 }
 
-void dequeue(Queue *q, ElTypeq *val) {
+void dequeueHangman(QueueHangman *q, ElTypeq *val) {
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
@@ -72,7 +72,7 @@ void dequeue(Queue *q, ElTypeq *val) {
         q->idxTail = IDX_UNDEF;
     } else {
         int i;
-        for(i = 0; i < length(*q); i++)
+        for(i = 0; i < lengthHangman(*q); i++)
         {
             q->buffer[i] = q->buffer[i+1];
         }
@@ -81,7 +81,7 @@ void dequeue(Queue *q, ElTypeq *val) {
 }
 
 /* *** Display Queue *** */
-void displayQueue(Queue q) {
+void displayQueueHangman(QueueHangman q) {
 /* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
@@ -92,30 +92,30 @@ void displayQueue(Queue q) {
     // KAMUS LOKAL
     int i;
     // ALGORITMA
-    if (isEmpty(q)) {
+    if (isEmptyHangman(q)) {
         printf("Queue kosong\n");
     } else {
-        for (i = q.idxHead; i < length(q); i++) {
+        for (i = q.idxHead; i < lengthHangman(q); i++) {
             printf("%d. %c\n", i+1, q.buffer[i]);
         }
         printf("\n");
     }
 }
 
-boolean SearchElmtQueue(Queue q, char str)
+boolean SearchElmtQueueHangman(QueueHangman q, char str)
 /* Sebuah fungsi yang mengembalikan tipe boolean apakah sebuah elemen ada pada queue atau tidak.*/
 {
-    if(isEmpty(q))
+    if(isEmptyHangman(q))
     {
         return false;
     } else
     {
         int i = 0;
-        while(i < length(q) && q.buffer[i] != str)
+        while(i < lengthHangman(q) && q.buffer[i] != str)
         {
             i++;
         }
-        if(i < length(q))
+        if(i < lengthHangman(q))
         {
             return true;
         } else
