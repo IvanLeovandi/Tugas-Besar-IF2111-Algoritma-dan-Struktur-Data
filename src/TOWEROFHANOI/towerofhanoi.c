@@ -1,5 +1,9 @@
 /* File towerofhanoi.c */
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "towerofhanoi.h"
+#include "../color.h"
 
 void towerOfHanoi(int *score_game) {
 /*
@@ -36,9 +40,9 @@ piringan yang ada di atasnya.
     piringan = StrToInt(inputan);
     printf("\n");
 
-    while (piringan > 31) {
+    while (piringan > 31 || piringan < 2) {
         ClearScreen();
-        printf("Masukan melebihi batas(31), silakan input kembali jumlah piringan: ");
+        printf("Masukan yang valid hanyalah antara 2..31, silakan input kembali jumlah piringan: ");
         inputan = Input();
         while (!validInt(inputan)) {
             ClearScreen();
@@ -68,7 +72,8 @@ piringan yang ada di atasnya.
         printf("TIANG TUJUAN: ");
         tujuan = StrToInt(Input()) + '0';
         ClearScreen();
-        printf("\nMemindahkan piringan ke %c...\n\n", tujuan);
+        printf("\nMemindahkan piringan ke %c. . .", tujuan);
+        printf("\n\n");
 
         if (asal == 'A' && tujuan == 'B') MoveTop(&StackA, &StackB, &langkah);
         else if (asal == 'A' && tujuan == 'C') MoveTop(&StackA, &StackC, &langkah);
@@ -105,7 +110,7 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
     /* KAMUS LOKAL */
     int i, j, X;
     Stack tempA, tempB, tempC;
-    long long int max;
+    int max;
     /* ALGORITMA */
     CreateEmptyStack(&tempA);
     CreateEmptyStack(&tempB);
@@ -124,7 +129,9 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
         else {
             Pop(StackA, &X);
             Push(&tempA, X);
-            printf("%s", ConvertToStar(X, max));
+            ChangeStackColor(X);
+            printf("%s", ConvertToBrick(X, max));
+            RESET;
         }
         printf("%c", '\t');
 
@@ -140,7 +147,9 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
         else {
             Pop(StackB, &X);
             Push(&tempB, X);
-            printf("%s", ConvertToStar(X, max));
+            ChangeStackColor(X);
+            printf("%s", ConvertToBrick(X, max));
+            RESET;
         }
         printf("%c", '\t');
 
@@ -157,8 +166,10 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
         else {
             Pop(StackC, &X);
             Push(&tempC, X);
-            printf("%s", ConvertToStar(X, max));
+            ChangeStackColor(X);
+            printf("%s", ConvertToBrick(X, max));
             printf("\n");
+            RESET;
         };
     }
     
@@ -199,8 +210,8 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
     printf("\n\n");
 }
 
-char* ConvertToStar(int num, int max) {
-/* Mengonversi num ke dalam bentuk star */
+char* ConvertToBrick(int num, int max) {
+/* Mengonversi num ke dalam bentuk bata */
     /* KAMUS LOKAL */
     int i;
     char* star;
@@ -210,7 +221,7 @@ char* ConvertToStar(int num, int max) {
         star[i] = ' ';
     }
     for (i = 0; i < num; i++) {
-        star[(max-num)/2 + i] = 176;
+        star[(max-num)/2 + i] = 219;
     }
     star[max] = '\0';
     return star;
@@ -262,18 +273,7 @@ boolean Win(Stack S, int piringan) {
     else return false;
 }
 
-int langkahTower(int piringan, char awal, char tujuan, char additional) {
-/* Menghitung langkah optimal dari permainan Tower of Hanoi */
-	/* KAMUS LOKAL */
-    /* ALGORITMA */
-    if (piringan == 1) {
-        return 1;
-    } else {
-        return 1 + langkahTower(piringan-1, awal, additional, tujuan) + langkahTower(piringan-1, additional, tujuan, awal);
-    }
-}
-
-void TulisBase(Stack S, long long int max) {
+void TulisBase(Stack S, int max) {
 /* Menuliskan base ke layar */
     /* KAMUS LOKAL */
     int i, j;
@@ -296,4 +296,13 @@ void TulisBase(Stack S, long long int max) {
         printf(" ");
     }
     printf("%c", '\t');
+}
+
+void ChangeStackColor(int X) {
+/* Mengganti warna stack pada Tower of Hanoi */
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    if (X % 3 == 0) KUNING;
+    else if (X % 3 == 1) MERAH;
+    else BIRU;
 }

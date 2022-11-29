@@ -2,15 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../adt/Array/array.h"
-#include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../RNG/random_number.h"
-#include "queuehangman.h"
+#include "../adt/Mesin/loader.h"
+#include "../adt/Queue/queuehangman.h"
+
 
 #ifndef HANGMAN
 #define HANGMAN
 
-void Hangman(Array *Kamus, int *score_game);
+void Hangman(int *score_game);
 /* 
 Spesifikasi game : Pemain menebak satu huruf yang terdapat pada kata tersebut. 
 Apabila huruf tebakan terdapat dalam kata, maka huruf yang sudah tertebak akan 
@@ -36,7 +37,7 @@ boolean IsElement(ElType kata, char tebakan);
 /* Menghasilkan True jika huruf pada tebakan terdapat dalam array kata
 */
 
-boolean haveguess(Queue huruftebakan, char tebakan);
+boolean haveguess(QueueHangman huruftebakan, char tebakan);
 /* menghasilkan true jika huruf yang ditebak sudah pernah ditebak
 */
 
@@ -51,4 +52,9 @@ boolean IsWin(Array Penanda);
 /* Menghasilkan true jika semua elemen pada Penanda berelemen '1'
 */
 
+void KamusToArray(Array* Kamus);
+/* Membuat suatu Array pada suatu Kamus*/
+
+void SaveKamus(Array Kamus);
+/* Menyimpan kata kata dalam array kamus ke kmus.txt*/
 #endif

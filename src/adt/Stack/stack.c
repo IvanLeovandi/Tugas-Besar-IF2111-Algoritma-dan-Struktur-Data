@@ -79,13 +79,24 @@ void InversStack(Stack *S) {
     }
 }
 
-void TulisStack(Stack S) {
+void TulisStack(Stack *S) {
 /* Menuliskan seluruh elemen Stack S ke layar */
     /* KAMUS LOKAL */
-    int i;
+    int X;
+    Stack temp;
     /* ALGORITMA */
-    for (i = Top(S); i >= 0; i--) {
-        printf("%d\n", S.T[i]);
+    CreateEmptyStack(&temp);
+    printf("[");
+    while (!IsEmptyStack(*S)) {
+        Pop(S, &X);
+        Push(&temp, X);
+        if (IsEmptyStack(*S)) printf("%d]\n", X);
+        else printf("%d,", X);
+    }
+
+    while (!IsEmptyStack(temp)) {
+        Pop(&temp, &X);
+        Push(S, X);
     }
 }
 

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "deletegame.h"
 
-void deletegame(Array* game, Queue queue_game)
+void deletegame(Array* game, Queue queue_game, ArraySet *list_name, ArrayMap *scoreboard)
 /* 
 I.S.: input list game yang akan dihapus dan nomor dari list tersebut
 F.S.: Program menghapus nama game dengan nomor padalist tersebut
@@ -37,8 +37,12 @@ F.S.: Program menghapus nama game dengan nomor padalist tersebut
                 int j;
                 for(j = number-1; j<game->Neff; j++){
                     game->TI[j] = game->TI[j+1];
+                    list_name->TISet[j] = list_name->TISet[j+1];
+                    scoreboard->TIMap[j] = scoreboard->TIMap[j+1];
                 }
                 game->Neff--;
+                scoreboard->NeffMap--;
+                list_name->NeffSet--;
                 printf("Game berhasil dihapus");
             }
         }

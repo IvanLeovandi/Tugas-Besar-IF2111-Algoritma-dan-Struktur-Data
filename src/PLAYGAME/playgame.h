@@ -1,11 +1,10 @@
 /* File playgame.h */
-#include <stdio.h>
 #include "../adt/Queue/queue.h"
 #include "../LISTGAME/listgame.h"
 #include "../RNG/rng.h"
 #include "../DINERDASH/dinerdash.h"
 #include "../GAMEBUATAN/game.h"
-#include "../BONUSGAME/RPS.h"
+#include "../RPS/RPS.h"
 #include "../HANGMAN/hangman.h"
 #include "../TOWEROFHANOI/towerofhanoi.h"
 #include "../SNAKEONMETEOR/snake.h"
@@ -13,6 +12,7 @@
 #include "../adt/Set/set.h"
 #include "../adt/Map/map.h"
 #include "../SCOREBOARD/scoreboard.h"
+#include "../delay.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H

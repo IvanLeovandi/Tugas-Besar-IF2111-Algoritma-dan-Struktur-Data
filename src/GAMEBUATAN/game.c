@@ -21,6 +21,6 @@ F.S.: Program langsung menghentikan game dan mengeluarkan skor akhir berupa rand
     printf("Selamat datang di %s!\n\n", game);
     printf("Permainan selesai!\n\n");
     score_sem =randomNumber();
-    printf("Skor Anda: %lld\n", score_sem);
+    printf("Skor Anda: %d\n", score_sem);
     *score = score_sem;
 }
