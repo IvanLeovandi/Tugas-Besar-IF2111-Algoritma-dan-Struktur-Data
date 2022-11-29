@@ -179,6 +179,7 @@ void DisplayScoreboard(ArrayMap scoreboard_game, Array arraygame)
                 printf("|\n");
             }
         }
+        printf("\n");
     }
 }
 

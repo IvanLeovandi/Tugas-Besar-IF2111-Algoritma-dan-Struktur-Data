@@ -27,11 +27,15 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         dequeue(game, &val);
         if(compareSTR(val, "RNG"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
             rng(&score);
         } else if(compareSTR(val, "Diner DASH"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
             DinerDash(&score);
         } 
         // else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
@@ -41,23 +45,33 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
         // } 
         else if(compareSTR(val, "RPS"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
             Start_RPS(&score);
         } else if(compareSTR(val, "HANGMAN"))
         {
-            printf("Loading %s ...\n", val);
-            // Hangman();
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
+            Hangman(&score);
         } else if(compareSTR(val, "TOWER OF HANOI"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
             towerOfHanoi(&score);
         } else if(compareSTR(val, "SNAKE ON METEOR"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
             SnakeOnMeteor(&score);
         } else if(compareSTR(val, "GUESSING NUMBER"))
         {
-            printf("Loading %s ...\n", val);
+            printf("Loading %s ", val);
+            loadingDelay();
+            printf("\n");
             guess_number(&score);
         }
         else
