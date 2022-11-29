@@ -1,7 +1,13 @@
 /* File hangman.c */
 #include "hangman.h"
+#include "array.c"
+#include "mesinkarakter.c"
+#include "mesinkata.c"
+#include "random_number.c"
+#include "loader.c"
+#include "queuehangman.c"
 
-void Hangman(Array *Kamus, int *score_game){
+void Hangman(int *score_game){
 /* 
 Spesifikasi game : Pemain menebak satu huruf yang terdapat pada kata tersebut. 
 Apabila huruf tebakan terdapat dalam kata, maka huruf yang sudah tertebak akan 
@@ -13,7 +19,7 @@ baru yang harus ditebak oleh pemain dengan jumlah kesempatan yang tersisa. Perma
 akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
 */
     /*KAMUS LOKAL*/
-    Array Penanda;
+    Array Penanda, Kamus;
     Queue huruftebakan;
     int score, percobaan;
     char* InputTebakan;
@@ -23,12 +29,14 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
     int opsi;
     boolean win;
     boolean valid;
+    boolean validitas;
     /*ALGORITMA*/
     printf("Selamat datang di Hangman!\n\n");
     printf("Menu.\n\n");
 
     MakeEmpty(&Penanda);
     CreateQueue(&huruftebakan);
+    MakeEmpty(&Kamus);
     valid = false;
 
     while (valid == false){
@@ -44,15 +52,15 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
             printf("Masukkan tidak valid, silahkan input ulang!\n\n");
         }
     }
-
+    KamusToArray(&Kamus);
     if (opsi == 1){
         percobaan = 10;
         score = 0;
         while (percobaan > 0){
             printf("Kata yang harus ditebak: \n");
             srand(time(NULL));
-            index_kamus = rand()% (Kamus->Neff -1);
-            Kata = Kamus->TI[index_kamus];
+            index_kamus = rand()% (Kamus.Neff -1);
+            Kata = Kamus.TI[index_kamus];
             CreateArrayPenanda(Kata, &Penanda);
             while (percobaan >0 && IsWin(Penanda) == false){
                 CetakHuruf(Kata,Penanda);
@@ -90,6 +98,7 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
                 }
                 if(IsWin(Penanda)){
                     score += str_len(Kata);
+                    printf("%s",Kata);
                     printf("\nWow Bagus, Lanjut Kata Selanjutnya!!!\n");
                     printf("\nScore sementara anda adalah %d\n", score);
                     CreateQueue(&huruftebakan);
@@ -101,14 +110,22 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
     }else{
         printf("\nMasukkan Kata Baru :");
         KataBaru = Input();
-        if (IsElmt(*Kamus, KataBaru) == false && IsFull(*Kamus) == false ){
-            Kamus->TI[Kamus->Neff] = KataBaru;
-            Kamus->Neff += 1;
-        }else if (IsElmt(*Kamus, KataBaru)){
+        if (IsElmt(Kamus, KataBaru) == false && IsFull(Kamus) == false ){
+            printf("\nx = %s",Kamus.TI[Kamus.Neff - 2]);
+            printf("\nx = %s",Kamus.TI[Kamus.Neff - 1]);
+            printf("%d\n",Kamus.Neff);
+            Kamus.TI[Kamus.Neff] = KataBaru;
+            Kamus.Neff += 1;
+            printf("\nx = %s",Kamus.TI[Kamus.Neff - 2]);
+            printf("\nx = %s\n",Kamus.TI[Kamus.Neff - 1]);
+            printf("%d\n",Kamus.Neff);
+        }else if (IsElmt(Kamus, KataBaru)){
             printf("Kata sudah ada dalam kamus\n");
-        }else if (IsFull(*Kamus)){
+        }else if (IsFull(Kamus)){
             printf("Kamus telah penuh\n");
         }
+        SaveKamus(Kamus);
+        Hangman(score_game);
     }
 }
 void CreateArrayPenanda(char * Kata, Array* Penanda){
@@ -207,4 +224,64 @@ boolean IsWin(Array Penanda){
         i += 1;
     }
     return found;
+}
+
+void KamusToArray(Array* Kamus){
+/*  I.S. Array Kamus berupa array kosong
+    F.S. Membuat suatu Array pada suatu Kamus*/
+    //Kamus Lokal
+    boolean valid;
+    int idx, i;
+    //ALGORITMA
+    valid = StartLOAD("../../data/kamus.txt");
+    if (valid){
+        i = 0;
+        while(!EOP){
+            char *strkata;
+            strkata = (char *)malloc(currentWord.Length * sizeof(char));
+            if(strkata != NULL){
+                for (idx = 0; idx < currentWord.Length; idx++ ){
+                    *(strkata + idx) = currentWord.TabWord[idx];
+                }
+                *(strkata + currentWord.Length) = '\0';
+                Kamus->TI[i] = strkata;
+                i += 1;
+                Kamus->Neff += 1;
+            }
+            ADVWORDLOAD();
+        }
+        char *strkata;
+            strkata = (char *)malloc(currentWord.Length * sizeof(char));
+            if(strkata != NULL){
+                for (idx = 0; idx < currentWord.Length; idx++ ){
+                    *(strkata + idx) = currentWord.TabWord[idx];
+                }
+                *(strkata + currentWord.Length) = '\0';
+                Kamus->TI[i] = strkata;
+                i += 1;
+                Kamus->Neff += 1;
+            }
+    }
+}
+
+void SaveKamus(Array Kamus){
+/* Menyimpan kata kata dalam array kamus ke kmus.txt*/
+    /*KAMUS LOKAL*/
+    FILE *outp;
+    int count, idx;
+    /*ALGORITMA*/
+    outp = fopen("../../data/kamus.txt", "w+");
+    count = Kamus.Neff;
+    for (idx = 0; idx < count; idx++){
+        if (idx != count -1){
+            fprintf(outp,"%s\n",Kamus.TI[idx]);
+        }else{
+            fprintf(outp,"%s",Kamus.TI[idx]);
+        }
+    }
+    fclose(outp);
+}
+int main(){
+    int score;
+    Hangman(&score);
 }
