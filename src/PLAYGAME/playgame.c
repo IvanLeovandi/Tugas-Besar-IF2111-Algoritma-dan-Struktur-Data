@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "playgame.h"
 
-void playgame(Queue *game, Array array_game, ArraySet *nama_pemain, ArrayMap *scoreboard_game)
+void playgame(Queue *game, Array array_game, ArraySet *nama_pemain, ArrayMap *scoreboard_game, StackHis *history)
 /* 
 I.S.: menerima input queue game 
 F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam name
@@ -31,12 +31,14 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
             loadingDelay();
             printf("\n");
             rng(&score);
+            PushHis(history, val);
         } else if(compareSTR(val, "Diner DASH"))
         {
             printf("Loading %s ", val);
             loadingDelay();
             printf("\n");
             DinerDash(&score);
+            PushHis(history, val);
         } 
         // else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
         // {
@@ -49,34 +51,40 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
             loadingDelay();
             printf("\n");
             Start_RPS(&score);
+            PushHis(history, val);
         } else if(compareSTR(val, "HANGMAN"))
         {
             printf("Loading %s ", val);
             loadingDelay();
             printf("\n");
             Hangman(&score);
+            PushHis(history, val);
         } else if(compareSTR(val, "TOWER OF HANOI"))
         {
             printf("Loading %s ", val);
             loadingDelay();
             printf("\n");
             towerOfHanoi(&score);
+            PushHis(history, val);
         } else if(compareSTR(val, "SNAKE ON METEOR"))
         {
             printf("Loading %s ", val);
             loadingDelay();
             printf("\n");
             SnakeOnMeteor(&score);
+            PushHis(history, val);
         } else if(compareSTR(val, "GUESSING NUMBER"))
         {
             printf("Loading %s ", val);
             loadingDelay();
             printf("\n");
             guess_number(&score);
+            PushHis(history, val);
         }
         else
         {
             game_buatan(val,&score);
+            PushHis(history, val);
         }
         while (!ketemu)
         {

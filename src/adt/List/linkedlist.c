@@ -1,21 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "linkedlist.h"
 
 boolean IsSnakeEmpty (snakeList L){
     return (Head(L) == Nil && Tail(L)==Nil);
 }
 
-
 void CreateEmptySnake (snakeList *L){
+/* Membuat snake kosong */
     Head(*L) = Nil;
     Tail(*L) = Nil;
 }
 
-
-
 adrSnake AlokasiSnake (int X, int Y, char prev){
+/* Mengirimkan address hasil alokasi sebuah point bernilai (x, y) */
+/* Jika alokasi berhasil, maka address tidak NIL */
+/* Jika alokasi gagal, mengirimkan NIL */
     adrSnake p = (adrSnake) malloc (sizeof(Snake));
-    while (p==Nil){
-        adrSnake p = (adrSnake) malloc (sizeof(Snake));}
 
     Point(p).x = X;
     Point(p).y = Y;
@@ -26,8 +27,8 @@ adrSnake AlokasiSnake (int X, int Y, char prev){
     return p;
 }
 
-
 point NewPoint (snakeList L, point obstacle){
+/* Mengirimkan posisi baru dalam bentuk point (x, y) */
     point new;
     new.x = randomNumberMinMax(0, 4);
     new.y = randomNumberMinMax(0, 4);
@@ -53,7 +54,6 @@ point NewPoint (snakeList L, point obstacle){
 
     return new;
 }
-
 
 void DealokasiSnake (adrSnake *P){
     free(*P);

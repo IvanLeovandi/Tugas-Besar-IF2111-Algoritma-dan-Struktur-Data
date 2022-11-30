@@ -1,6 +1,5 @@
+#include <stdio.h>
 #include "set.h"
-#include "../Mesin/mesinkarakter.h"
-#include "../Mesin/mesinkata.h"
 
 /* *** Konstruktor/Kreator *** */
 void CreateEmptySet(Set *S)

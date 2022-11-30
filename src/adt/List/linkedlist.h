@@ -3,8 +3,6 @@
 /* Representasi adrSnake dengan pointer */
 /* int adalah integer */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "../../boolean.h"
 #include "../../RNG/random_number.h"
 
@@ -53,11 +51,15 @@ boolean IsSnakeEmpty (snakeList L);
 /* Mengirim true jika Snake kosong */
 
 void CreateEmptySnake (snakeList *L);
-
+/* Membuat snake kosong */
 
 adrSnake AlokasiSnake (int X, int Y, char prev);
+/* Mengirimkan address hasil alokasi sebuah point bernilai (x, y) */
+/* Jika alokasi berhasil, maka address tidak NIL */
+/* Jika alokasi gagal, mengirimkan NIL */
 
 point NewPoint (snakeList L, point obstacle);
+/* Mengirimkan posisi baru dalam bentuk point (x, y) */
 
 void DealokasiSnake (adrSnake *P);
 /* I.S. P terdefinisi */

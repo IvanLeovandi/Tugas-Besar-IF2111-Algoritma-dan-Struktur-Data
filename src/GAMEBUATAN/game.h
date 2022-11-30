@@ -1,7 +1,5 @@
 /* File game.h */
-#include <stdio.h>
 #include "../adt/Mesin/mesinkata.h"
-
 #include "../RNG/random_number.h"
 
 #ifndef GAME_H

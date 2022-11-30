@@ -142,19 +142,29 @@ int main()
                 queuegame(&queue_game, array_game);
             } else if(compareSTR(command, "PLAY GAME"))
             {
-                playgame(&queue_game, array_game, &list_name, &scoreboard);
-            } else if(count_space(command) == 1)
+                playgame(&queue_game, array_game, &list_name, &scoreboard, &history);
+            } 
+            else if(compareSTR(command, "RESET SCOREBOARD"))
+            {
+                DeleteScoreboard(&scoreboard, &list_name, array_game);
+            }
+            else if(count_space(command) == 1)
             {
                 char *firstSTR = FirstSTR(command);
                 char *secSTR = SecSTR(command);
                 if(compareSTR(firstSTR,"SKIPGAME"))
                 {
                     int skip_num = StrToInt(secSTR);
-                    skipgame(&queue_game, array_game, &list_name, &scoreboard,skip_num);
+                    skipgame(&queue_game, array_game, &list_name, &scoreboard, &history, skip_num);
                 } else if(compareSTR(firstSTR, "SAVE"))
                 {
                     save(secSTR, array_game, history, scoreboard);
-                }
+                } 
+                // else if(compareSTR(firstSTR, "HISTORY"))
+                // {
+                //     int hist_num = StrToInt(secSTR);
+                //     // tulis history sbnyk hist_num
+                // }
                 else
                 {
                     command_lain();
@@ -162,12 +172,12 @@ int main()
             }
             else if(compareSTR(command, "HISTORY"))
             {
-                if(IsEmptyStackHis)
+                if(IsEmptyStackHis(history))
                 {
                     printf("Tidak ada history.\n");
                 } else
                 {
-                    TulisStackHis(&history);
+                    TulisStackHis(history);
                 }
             }
             else if(compareSTR(command, "SCOREBOARD"))
