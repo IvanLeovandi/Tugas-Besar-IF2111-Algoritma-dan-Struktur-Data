@@ -22,7 +22,7 @@ void help(boolean loaded){
         printf("                  Game yang dapat dihapus hanyalah game yang sedang tidak ada di queue \n");
         printf("                  dan bukan merupakan 5 game pertama pada file konfigurasi.\n");
         printf("HISTORY <n>     : Menampilkan n buah permainan yang terakhir dimainkan.\n");
-        printf("DELETE HISTORY  : Menghapus seluruh history.\n");
+        printf("RESET HISTORY   : Menghapus seluruh history.\n");
         printf("SCOREBOARD      : Menampilkan daftar skor dan pemain tiap game.\n");
         printf("RESET SCOREBOARD: Menghapus seluruh scoreboard.\n");        
         printf("QUEUE GAME      : Menambahkan permainan pilihan ke dalam daftar antrian game\n");
