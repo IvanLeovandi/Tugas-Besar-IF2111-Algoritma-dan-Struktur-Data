@@ -76,7 +76,7 @@ int main()
         {
             if (compareSTR(command, "START"))
             {
-                STARTGAME(&array_game, &history, &list_name, &scoreboard);
+                STARTGAME(&array_game, &history, &list_name, &scoreboard, true);
                 loaded = true;
                 CreateScoreboard(&list_name, &scoreboard, array_game);
             } else if (compareSTR(command, "QUIT"))
@@ -96,7 +96,7 @@ int main()
             char *secSTR = SecSTR(command);
             if(compareSTR(firstSTR,"LOAD"))
             {
-                load(&array_game, &history, &list_name, &scoreboard, secSTR);
+                load(&array_game, &history, &list_name, &scoreboard, secSTR, false);
                 if(array_game.Neff != 0)
                 {
                     loaded = true;
@@ -166,8 +166,15 @@ int main()
                 char *secSTR = SecSTR(command);
                 if(compareSTR(firstSTR,"SKIPGAME"))
                 {
-                    int skip_num = StrToInt(secSTR);
-                    skipgame(&queue_game, array_game, &list_name, &scoreboard, &history, skip_num);
+                    if(validInt(secSTR))
+                    {
+                        int skip_num = StrToInt(secSTR);
+                        skipgame(&queue_game, array_game, &list_name, &scoreboard, &history, skip_num);
+                    }
+                    else
+                    {
+                        printf("Masukkan angka tidak valid.\n");
+                    }
                 } else if(compareSTR(firstSTR, "SAVE"))
                 {
                     save(secSTR, array_game, history, scoreboard);
@@ -175,12 +182,19 @@ int main()
                 else if(compareSTR(firstSTR , "HISTORY"))
                 {
                     int hist_num = StrToInt(secSTR);
-                    if(IsEmptyStackHis(history))
+                    if(!validInt(secSTR))
                     {
-                        printf("Belum ada game yang telah dimainkan.\n");
-                    } else
+                        printf("Masukkan angka tidak valid.\n");
+                    }
+                    else
                     {
-                        show_hist(history, hist_num);
+                        if(IsEmptyStackHis(history))
+                        {
+                            printf("Belum ada game yang telah dimainkan.\n");
+                        } else if(validInt(secSTR))
+                        {
+                            show_hist(history, hist_num);
+                        }
                     }
                 }
                 else
