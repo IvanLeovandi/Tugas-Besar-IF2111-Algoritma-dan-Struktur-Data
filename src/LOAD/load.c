@@ -22,7 +22,7 @@ void load(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *s
     }
     if(valid)
     {
-// load game
+        // load game
         n = StrToInt(KataToSTR(currentWord));
         array_game->Neff = n;
         ADVLOAD();
@@ -44,10 +44,10 @@ void load(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *s
                 array_game->TI[i] = strgame;
             }
         }
-        if(retval >= 0)
+        ADVWORDLOAD();
+        if(!EndWord)
         {
             // load history
-            ADVWORDLOAD();
             nhist = StrToInt(KataToSTR(currentWord));
             ADVLOAD();
             for (i = 0; i < nhist; i++) {
