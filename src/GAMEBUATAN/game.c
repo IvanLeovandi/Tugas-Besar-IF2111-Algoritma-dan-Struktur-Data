@@ -3,10 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-
-/* Include ADT */
-#include "../adt/Mesin/mesinkata.h"
-
 #include "game.h"
 
 void game_buatan(char *game, int *score) {

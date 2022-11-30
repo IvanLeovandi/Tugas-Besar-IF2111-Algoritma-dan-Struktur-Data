@@ -1,7 +1,6 @@
 /* File array.c */
-#include "array.h"
-#include "../Mesin/mesinkata.h"
 #include <stdio.h>
+#include "array.h"
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong */
