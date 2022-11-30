@@ -17,6 +17,7 @@
 #include "./PLAYGAME/playgame.h"
 #include "./SKIPGAME/skipgame.h"
 #include "./SCOREBOARD/scoreboard.h"
+#include "./HISTORY/history.h"
 #include "./QUITGAME/quitgame.h"
 #include "./HELP/help.h"
 #include "./COMMANDLAIN/commandlain.h"
@@ -148,6 +149,17 @@ int main()
             {
                 DeleteScoreboard(&scoreboard, &list_name, array_game);
             }
+            else if(compareSTR(command, "RESET HISTORY"))
+            {
+                if(IsEmptyStackHis(history))
+                {
+                    printf("History masih kosong, reset gagal dilakukan.\n");
+                }
+                else
+                {
+                    reset_hist(&history);
+                }
+            }
             else if(count_space(command) == 1)
             {
                 char *firstSTR = FirstSTR(command);
@@ -160,24 +172,20 @@ int main()
                 {
                     save(secSTR, array_game, history, scoreboard);
                 } 
-                // else if(compareSTR(firstSTR, "HISTORY"))
-                // {
-                //     int hist_num = StrToInt(secSTR);
-                //     // tulis history sbnyk hist_num
-                // }
+                else if(compareSTR(firstSTR , "HISTORY"))
+                {
+                    int hist_num = StrToInt(secSTR);
+                    if(IsEmptyStackHis(history))
+                    {
+                        printf("Belum ada game yang telah dimainkan.\n");
+                    } else
+                    {
+                        show_hist(history, hist_num);
+                    }
+                }
                 else
                 {
                     command_lain();
-                }
-            }
-            else if(compareSTR(command, "HISTORY"))
-            {
-                if(IsEmptyStackHis(history))
-                {
-                    printf("Tidak ada history.\n");
-                } else
-                {
-                    TulisStackHis(history);
                 }
             }
             else if(compareSTR(command, "SCOREBOARD"))

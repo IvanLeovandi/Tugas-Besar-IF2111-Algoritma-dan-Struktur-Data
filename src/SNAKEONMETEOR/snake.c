@@ -259,7 +259,7 @@ void SetNext (snakeList *L, int X, int Y, char prev){
 }
 
 void PrintSnake(snakeList L, point food, point meteor, point obstacle){
-    printf("\n\nBerikut merupakan peta permainan\n");
+    printf("\nBerikut merupakan peta permainan\n");
 
     int a, b, c, d, e, f, g, h, i, j, k, s;
     a = 179; b = 180; c = 191;
@@ -268,7 +268,7 @@ void PrintSnake(snakeList L, point food, point meteor, point obstacle){
     j = 217; k = 218; s = 178;
     int head = 1, tail = 240, mete = 19, obs = 88;
 
-    printf("\n'%c' merupakan obstacle.\n'%c' merupakan meteor.\n\n", obs, mete);
+    printf("'%c' merupakan obstacle. '%c' merupakan meteor. 'o' merupakan makanan.\n", obs, mete);
 
     for (int m=0; m<6; m++){
         for (int o=0; o<5; o++){
