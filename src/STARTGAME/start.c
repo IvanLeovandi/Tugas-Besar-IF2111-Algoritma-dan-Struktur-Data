@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include "../adt/Array/array.h"
 #include "start.h"
-#include "../LOAD/load.h"
-
 
 void STARTGAME(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *scoreboard, boolean isStart)
 {

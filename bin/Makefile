@@ -20,4 +20,4 @@ exec:
 	./main
 
 clean:
-	rm main *.o
+	rm main
