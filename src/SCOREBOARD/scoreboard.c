@@ -227,7 +227,7 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
                             CreateEmptyMap(&((*scoreboard_game).TIMap[i]));
                             CreateEmptySet(&((*nama_pemain).TISet[i]));
                         }
-                        printf("\nScoreboard berhasil di-reset.\n");
+                        printf("\nSeluruh scoreboard berhasil dihapus.\n");
                         valid = true;
                     } else if (compareSTR(yakin, "TIDAK"))
                     {
@@ -237,7 +237,6 @@ void DeleteScoreboard(ArrayMap *scoreboard_game, ArraySet *nama_pemain, Array ar
                     {
                         printf("\nMasukkan tidak valid, mohon masukkan YA / TIDAK. ");
                     }
-                    printf("\nSeluruh scoreboard berhasil dihapus.\n");
                 }
             }
             else
