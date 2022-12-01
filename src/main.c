@@ -68,6 +68,7 @@ int main()
         printf("\nENTER COMMAND: ");
         command = Input();
         RESET;
+        BACKGROUND_HITAM; printf("\n"); /* biar background terminal tidak putih setelah direset */
         ClearScreen();
 
         printf("ENTER COMMAND: %s\n", command);
@@ -116,6 +117,7 @@ int main()
         HITAM;
         printf("\nENTER COMMAND: ");
         command = Input();
+        BACKGROUND_HITAM; printf("\n"); /* biar background terminal tidak putih setelah direset */
         RESET;
 
         ClearScreen();
