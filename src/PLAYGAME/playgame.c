@@ -40,11 +40,6 @@ F.S.: melakukan dequeue dan menyimpan hasil elemen yang baru dihapus di dalam na
             DinerDash(&score);
             PushHis(history, val);
         } 
-        // else if(compareSTR(val, "DINOSAUR IN EARTH") || compareSTR(val, "RISEWOMAN") || compareSTR(val, "EIFFEL TOWER"))
-        // {
-        //     printf("Game %s masih dalam maintenance, belum dapat dimainkan.\n", val);
-        //     printf("Silahkan pilih game lain.\n");
-        // } 
         else if(compareSTR(val, "RPS"))
         {
             printf("Loading %s ", val);
