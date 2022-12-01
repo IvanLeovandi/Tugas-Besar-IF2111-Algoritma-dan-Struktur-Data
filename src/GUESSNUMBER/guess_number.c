@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "guess_number.h"
 
-int guess_number(int *score_game) {
+void guess_number(int *score_game) {
 /*
 Game tebak angka dengan menggunakan konsep binary tree.
 Konsep binary tree: 
@@ -11,16 +11,41 @@ Konsep binary tree:
 */
     /* KAMUS LOKAL */
     BinTree soal, loc;
-    int cnt = 17;
     // int cnt = randomNumberMinMax(3, 20);
-    int node[cnt-1], X, Y, idx;
+    int cnt;
+    int X, Y, idx, level, nyawa;
     int len_node = 0;
-    int nomor, ans, tebakan, score = 0, nyawa = 10;
+    int nomor, ans, tebakan, score = 0;
     int upper = 50, lower = 0;
     boolean win = false, Left;
     /* ALGORITMA */
     printf("Selamat datang di Guess Number!\n\n");
     printf("Permainan dimulai.\n\n");
+
+    printf("Mau level berapa? (1/2/3): ");
+    scanf("%d", &level);
+    printf("\n");
+
+    while (!(level >= 1 && level <= 3)) {
+        ClearScreen();
+        printf("Masukkan salah. Silakan input kembali.\n\n");
+        printf("Mau level berapa? (1/2/3): ");
+        scanf("%d", &level);
+        printf("\n");
+    }
+
+    if (level == 1) {
+        cnt = randomNumberMinMax(3, 10);
+        nyawa = 10;
+    } else if (level == 2) {
+        cnt = randomNumberMinMax(11, 15);
+        nyawa = 15;
+    } else {
+        cnt = randomNumberMinMax(16, 20);
+        nyawa = 20;
+    }
+
+    int node[cnt-1];
     
     X = randomNumberMinMax(lower, upper);
     MakeTree(X, Nil, Nil, &soal);
@@ -79,7 +104,7 @@ Konsep binary tree:
 
     while (tebakan != ans && nyawa > 0) {
         ClearScreen();
-        printf("Jawaban kamu salah.\n");
+        printf("Jawaban kamu salah.\n\n");
         if (ans > tebakan) printf("Jawaban seharusnya lebih besar dari %d\n\n", tebakan);
         else printf("Jawaban seharusnya lebih kecil dari %d\n\n", tebakan);
         printf("Nyawa tersisa: %d\n\n", nyawa);

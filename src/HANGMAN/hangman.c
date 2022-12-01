@@ -25,6 +25,7 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
     boolean win;
     boolean valid;
     boolean validitas;
+    char body[11] = {'\0'}; /* hangman body */
     /*ALGORITMA*/
     printf("Selamat datang di Hangman!\n\n");
     printf("Menu.\n\n");
@@ -85,6 +86,7 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
                 ClearScreen();
                 tebakan = *InputTebakan;
                 while (haveguess(huruftebakan, tebakan)){
+                    PrintBody(10 - percobaan, body);
                     printf("\nHuruf yang ditebak sudah ditebak sebelumnya!\n\n");
                     printf("\nHuruf yang anda tebak sebelumnya: \n\n");
                     displayQueueHangman(huruftebakan);
@@ -98,6 +100,7 @@ akan berlanjut hingga pemain kehabisan kesempatan untuk menebak huruf yang salah
                 if (IsElement(Kata, tebakan) == false){
                     percobaan = percobaan - 1;
                 }
+                PrintBody(10 - percobaan, body);
 
                 ChangeArrayPenanda(Kata, &Penanda, tebakan);
                 if (percobaan > 0 && IsWin(Penanda) == false){
@@ -284,4 +287,66 @@ void SaveKamus(Array Kamus){
         }
     }
     fclose(outp);
+}
+
+void PrintBody(int mistakes, char* body) {
+/* Menampilkan gambar hangman ke layar */
+    /* KAMUS LOKAL */
+    int i;
+    /* ALGORITMA */
+	switch (mistakes) {
+        case 10:
+            body[9] = '\\';
+            break;
+        case 9:
+            body[8] = '\\';
+            break;
+        case 8:
+            body[7] = '/';
+            break;
+        case 7:
+            body[6] = '|';
+            break;
+		case 6:
+            body[5] = '-';
+            break;
+		case 5:
+            body[3] = '-';
+            break;
+		case 4:
+            body[3] = ' ';
+            body[4] = '|';
+            break;
+		case 3:
+            body[2] = ')';
+            break;
+		case 2:
+            body[1] = '(';
+            break;
+		case 1:
+            body[0] = '|';
+            break;
+		default:
+            break;
+	}
+
+    printf("\t");
+    for (i = 0; i < 9; i++) {
+        #ifdef _WIN32
+            printf("%c", 196);
+        #else
+            printf("%s", "\u2500");
+        #endif
+    }
+    printf("\n");
+
+    printf("\t|       %c\n"
+	       "\t|      %c %c\n"
+	       "\t|      %c%c%c\n"
+           "\t|       %c  \n"
+	       "\t|      %c %c%c\n"
+	       "\t|             \n"
+	       "\t|             \n\n",
+           body[0], body[1], body[2], body[3], body[4], body[5], body[6], body[7],
+           body[8], body[9]);
 }

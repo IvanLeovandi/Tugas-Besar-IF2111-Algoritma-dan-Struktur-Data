@@ -57,4 +57,8 @@ void KamusToArray(Array* Kamus);
 
 void SaveKamus(Array Kamus);
 /* Menyimpan kata kata dalam array kamus ke kmus.txt*/
+
+void PrintBody(int mistakes, char* body);
+/* Menampilkan gambar hangman ke layar */
+
 #endif

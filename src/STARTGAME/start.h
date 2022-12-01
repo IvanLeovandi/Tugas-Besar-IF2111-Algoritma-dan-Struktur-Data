@@ -1,12 +1,12 @@
 //File start.h
 #include <stdio.h>
 #include "../adt/Array/array.h"
-#include "../adt/Mesin/mesinkarakter.h"
 #include "../adt/Mesin/mesinkata.h"
 #include "../boolean.h"
 #include "../adt/Stack/stackhistory.h"
 #include "../adt/map/map.h"
 #include "../adt/Set/set.h"
+#include "../LOAD/load.h"
 
 #ifndef START_H
 #define START_H
