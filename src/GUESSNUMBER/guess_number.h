@@ -7,7 +7,7 @@
 #ifndef GUESS_NUMBER_H
 #define GUESS_NUMBER_H
 
-int guess_number(int *score_game);
+void guess_number(int *score_game);
 /*
 Game tebak angka dengan menggunakan konsep binary tree.
 Konsep binary tree: 
