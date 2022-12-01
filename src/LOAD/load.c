@@ -44,6 +44,7 @@ void load(Array *array_game, StackHis *history, ArraySet *list_name, ArrayMap *s
                 array_game->TI[i] = strgame;
             }
         }
+        CreateScoreboard(list_name, scoreboard, *array_game);
         ADVWORDLOAD();
         if(!EndWord)
         {
