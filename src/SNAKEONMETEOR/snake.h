@@ -17,6 +17,7 @@ void CreatePeta (snakeList *L, point* food, point* obstacle);
 void InsertSnake (snakeList*L);
 void SetNext (snakeList *L, int X, int Y, char prev);
 void PrintSnake(snakeList L, point food, point meteor, point obstacle);
+void PrintSnakeLinux(snakeList L, point food, point meteor, point obstacle);
 void PrintGaris();
 
 #endif

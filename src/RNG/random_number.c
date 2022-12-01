@@ -54,8 +54,9 @@ unsigned long long int von(unsigned long long int x, int n) {
     /* KAMUS LOKAL */
     unsigned long long int y;
     int k;
+    double MAX = 9223372036854775807.0; /* batas atas value dari long long int */
     /* ALGORITMA */
     k = n * 0.5;
-    y = (unsigned long long int)(x / pow(10.0, k*1.0) * x) % (unsigned long long int)(pow(10.0, n*1.0));
+    y = ((unsigned long long int)(fmod(x / pow(10.0, k*1.0) * x, MAX))) % (unsigned long long int)(pow(10.0, n*1.0));
     return y;
 }

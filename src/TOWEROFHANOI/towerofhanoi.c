@@ -108,7 +108,7 @@ piringan yang ada di atasnya.
 void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
 /* Menulis StackA, StackB, dan StackC ke layar */
     /* KAMUS LOKAL */
-    int i, j, X;
+    int i, j, k, z, X;
     Stack tempA, tempB, tempC;
     int max;
     /* ALGORITMA */
@@ -130,7 +130,19 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
             Pop(StackA, &X);
             Push(&tempA, X);
             ChangeStackColor(X);
-            printf("%s", ConvertToBrick(X, max));
+            #ifdef _WIN32
+                printf("%s", ConvertToBrick(X, max));
+            #else
+                for (z = 0; z < (max-X)/2; z++) {
+                        printf(" ");
+                }
+                for (k = 0; k < X; k++) {
+                    printf("%s", "\u2588");
+                }
+                for (z = 0; z < (max-X)/2; z++) {
+                        printf(" ");
+                }
+            #endif
             RESET;
         }
         printf("%c", '\t');
@@ -148,7 +160,19 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
             Pop(StackB, &X);
             Push(&tempB, X);
             ChangeStackColor(X);
-            printf("%s", ConvertToBrick(X, max));
+            #ifdef _WIN32
+                printf("%s", ConvertToBrick(X, max));
+            #else
+                for (z = 0; z < (max-X)/2; z++) {
+                        printf(" ");
+                }
+                for (k = 0; k < X; k++) {
+                    printf("%s", "\u2588");
+                }
+                for (z = 0; z < (max-X)/2; z++) {
+                        printf(" ");
+                }
+            #endif
             RESET;
         }
         printf("%c", '\t');
@@ -167,7 +191,19 @@ void Tulis3Stack(Stack *StackA, Stack *StackB, Stack *StackC, int piringan) {
             Pop(StackC, &X);
             Push(&tempC, X);
             ChangeStackColor(X);
-            printf("%s", ConvertToBrick(X, max));
+            #ifdef _WIN32
+                printf("%s", ConvertToBrick(X, max));
+            #else
+                for (z = 0; z < (max-X)/2; z++) {
+                        printf(" ");
+                }
+                for (k = 0; k < X; k++) {
+                    printf("%s", "\u2588");
+                }
+                for (z = 0; z < (max-X)/2; z++) {
+                        printf(" ");
+                }
+            #endif
             printf("\n");
             RESET;
         };
@@ -276,23 +312,39 @@ boolean Win(Stack S, int piringan) {
 void TulisBase(Stack S, int max) {
 /* Menuliskan base ke layar */
     /* KAMUS LOKAL */
-    int i, j;
+    int i;
     /* ALGORITMA */
     if (IsEmptyStack(S)) {
         for (i = 0; i < max/2-1; i++) {
             printf(" ");
         }
-        for (i = 0; i < 3; i++) {
-            printf("%c", 205);
-        }
+
+        #ifdef _WIN32
+            for (i = 0; i < 3; i++) {
+                printf("%c", 205);
+            }
+        #else
+            for (i = 0; i < 3; i++) {
+                printf("%s", "\u2550");
+            }
+        #endif
+
         for (i = 0; i < max/2-1; i++) {
             printf(" ");
         }
     } else {
         printf(" ");
-        for (i = 0; i < max-2; i++) {
-            printf("%c", 205);
-        }
+
+        #ifdef _WIN32
+            for (i = 0; i < max-2; i++) {
+                printf("%c", 205);
+            }
+        #else
+            for (i = 0; i < max-2; i++) {
+                printf("%s", "\u2550");
+            }
+        #endif
+
         printf(" ");
     }
     printf("%c", '\t');
