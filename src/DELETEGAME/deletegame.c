@@ -16,7 +16,7 @@ F.S.: Program menghapus nama game dengan nomor padalist tersebut
     char *strnumber;
     printf("Masukkan nomor game yang akan dihapus: ");
     strnumber = Input();
-    if(count_space(strnumber) > 0)
+    if(!validInt(strnumber))
     {
         printf("Masukan tidak valid");
     } else
