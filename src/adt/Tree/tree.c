@@ -118,13 +118,25 @@ void RecursivePrint(BinTree p, int depth) {
     if (isTreeEmpty(p)) {
         for (i = 0; i <= depth; i++) {
             if (depth - i > 1) printf("   ");
-            else if (depth - i == 1) printf("%c%c ", 192, 196);
+            else if (depth - i == 1) {
+                #ifdef _WIN32
+                    printf("%c%c ", 192, 196);
+                #else
+                    printf("%s ", "\u2514\u2500");
+                #endif
+            }
         }
         printf("\n\n");
     } else {
         for (i = 0; i <= depth; i++) {
             if (depth - i > 1) printf("   ");
-            else if (depth - i == 1) printf("%c%c ", 192, 196);
+            else if (depth - i == 1) {
+                #ifdef _WIN32
+                    printf("%c%c ", 192, 196);
+                #else
+                    printf("%s ", "\u2514\u2500");
+                #endif
+            }
             else printf("%d", ROOT(p)); /* depth - i == 0 */
         }
         printf("\n\n");

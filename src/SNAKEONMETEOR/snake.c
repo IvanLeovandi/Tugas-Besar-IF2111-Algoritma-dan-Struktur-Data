@@ -21,7 +21,12 @@ void SnakeOnMeteor(int *score_game){
     
     printf("Berhasil digenerate!\n\n");
     PrintGaris(); PrintGaris(); PrintGaris(); PrintGaris(); PrintGaris(); PrintGaris(); 
-    PrintSnake(snake, food, meteor, obstacle);
+
+    #ifdef _WIN32
+        PrintSnake(snake, food, meteor, obstacle);
+    #else
+        PrintSnakeLinux(snake, food, meteor, obstacle);
+    #endif
 
     while (game){
         printf("\nTURN %d\n", turn);
@@ -30,7 +35,11 @@ void SnakeOnMeteor(int *score_game){
         ClearScreen();
         if (str_len(command) == 1){
             Move(*command, &snake, &food, &game, &meteor, obstacle, &turn);
-            PrintSnake(snake, food, meteor, obstacle);
+            #ifdef _WIN32
+                PrintSnake(snake, food, meteor, obstacle);
+            #else
+                PrintSnakeLinux(snake, food, meteor, obstacle);
+            #endif
         }
         else{
             printf("\nCommand tidak valid! Silahkan input command menggunakan huruf w/a/s/d\n");
@@ -118,7 +127,7 @@ void Move (char command, snakeList *L, point* food, boolean* game, point* meteor
     printf("\nBerhasil bergerak!\n");
 
     Food(L, food, obstacle);
-
+    
     if(*turn != 1){
         Meteor(L, game, meteor, *food, obstacle);
     }
@@ -126,7 +135,6 @@ void Move (char command, snakeList *L, point* food, boolean* game, point* meteor
     (*turn) ++;
 
     P = Head(*L);
-
 }
 
 void Food (snakeList *L, point *food, point obstacle){
@@ -145,6 +153,8 @@ void Meteor (snakeList *L, boolean *game, point* meteor, point food, point obsta
     (*meteor).y = randomNumberMinMax(0,4);
 
     while (((*meteor).x == food.x && (*meteor).y == food.y) || ((*meteor).x == obstacle.x && (*meteor).y == obstacle.y)){
+        printf("1: %d\n", ((*meteor).x == food.x && (*meteor).y == food.y));
+        printf("2: %d\n\n", ((*meteor).x == obstacle.x && (*meteor).y == obstacle.y));
         (*meteor).x = randomNumberMinMax(0,4);
         (*meteor).y = randomNumberMinMax(0,4);
     }
@@ -153,8 +163,7 @@ void Meteor (snakeList *L, boolean *game, point* meteor, point food, point obsta
 
     if (Point(P).x == (*meteor).x && Point(P).y == (*meteor).y){
         adrSnake Q = Head(*L);
-        Head(*L) = Next(Head(*L));
-
+        Head(*L) = Next(Head(*L));   
         DealokasiSnake(&Q);
 
         printf("Kepala snake terkena meteor!\n");
@@ -358,7 +367,116 @@ void PrintSnake(snakeList L, point food, point meteor, point obstacle){
     }
 }
 
-void PrintGaris(){
-    int h = 196;
-    printf("%c%c%c%c%c%c%c%c%c",h,h,h,h,h,h,h,h,h);
+void PrintSnakeLinux(snakeList L, point food, point meteor, point obstacle){
+    printf("\nBerikut merupakan peta permainan\n");
+    /*******/
+    int a, b, c, d, e, f, g, h, i, j, k, s;
+    a = 179; b = 180; c = 191;
+    d = 192; e = 193; f = 194;
+    g = 195; h = 196; i = 197;
+    j = 217; k = 218; s = 178;
+    int head = 1, tail = 240, mete = 19, obs = 88; //mete = \u203c   obs = \u2715
+    /******/
+    printf("\u2715 merupakan obstacle. \u203c merupakan meteor. 'o' merupakan makanan.\n");
+
+    for (int m =0; m<6; m++){
+        for (int o=0; o<5; o++){
+            if (m==0){
+                if (o==0){printf("%s", "\u250c");} //k
+                else {printf("%s", "\u252f");} //f
+            } else if(m==5){
+                if (o==0){printf("%s", "\u2514");} //d
+                else {printf("%s", "\u2534");} //e
+            } else {
+                if (o==0){printf("%s", "\u251c");} //g
+                else {printf("%s", "\u253c");} //i
+            }
+
+            for (int i = 0; i < 9; i++) {
+                printf("%s", "\u2500"); //h
+            }
+
+            if (o==4){
+                if (m==0){
+                    printf("%s", "\u2510"); //c
+                } else if (m==5) {
+                    printf("%s", "\u2518"); //j
+                } else {
+                    printf("%s", "\u2524"); //b
+                }
+            }
+        }
+        printf("\n");
+        
+        if (m!=5){
+            for (int n=0; n<3; n++){
+                for (int o=0; o<5; o++){
+                    adrSnake P = SearchSnake(L, o, m);
+                    if (P == Nil){
+                        if (n==1){
+                            if (o == food.x && m == food.y){
+                                printf("%s    ", "\u2502"); HIJAU; printf("o    "); RESET; //a
+                            } else if (o == obstacle.x && m == obstacle.y){
+                                printf("%s    ", "\u2502"); MERAH; printf("%s    ", "\u2715"); RESET; //a
+                            } else if (o == meteor.x && m == meteor.y){
+                                printf("%s    ", "\u2502"); MERAH; printf("%s    ", "\u203c"); RESET; //a
+                            } else {printf("%s         ", "\u2502");} //a
+                        }
+                        else{printf("%s         ", "\u2502");} //a
+                    } else{
+                        if(n==0){
+                            if(Dir(P).prec == 'w' || Dir(P).succ == 'w'){
+                                printf("%s   ", "\u2502"); HIJAU; printf("%s%s%s   ", "\u2593", "\u2593", "\u2593"); RESET; //s
+                            } else {printf("%s         ", "\u2502");} //a
+                        }
+                        
+                        else if(n==1){                            
+                            if(Dir(P).prec == 'a' || Dir(P).succ == 'a'){
+                                printf("%s", "\u2502"); HIJAU; printf("%s%s%s%s", "\u2593", "\u2593", "\u2593", "\u2593"); RESET;
+                            } else {
+                                if(Dir(P).prec == 'x' || Dir(P).succ =='x'){
+                                    printf("%s    ", "\u2502");
+                                } else {printf("%s   ", "\u2502"); HIJAU; printf("%s", "\u2593"); RESET;}
+                            }
+
+                            /* head */
+                            if(Dir(P).prec == 'x'){
+                                KUNING; printf("%c", head); RESET;
+                            } else if(Dir(P).succ =='x'){
+                                HIJAU; printf("%s", "\u2261"); RESET; //tail
+                            } else { HIJAU; printf("%s","\u2593"); RESET;}
+
+                            if(Dir(P).prec == 'd' || Dir(P).succ == 'd'){
+                                HIJAU; printf("%s%s%s%s", "\u2593", "\u2593", "\u2593", "\u2593"); RESET;
+                            } else{                                
+                                if(Dir(P).prec == 'x' || Dir(P).succ =='x'){
+                                    printf("    ");
+                                } else {HIJAU; printf("%s   ", "\u2593"); RESET;}}
+                        }
+                        
+                        else{
+                            if(Dir(P).prec == 's' || Dir(P).succ == 's'){
+                                printf("%s   ", "\u2502"); HIJAU; printf("%s%s%s   ", "\u2593", "\u2593", "\u2593"); RESET;
+                            } else {printf("%s         ", "\u2502");}
+                        }
+                    }
+                }
+                printf("%s\n", "\u2502");
+                }
+                
+            }
+        
+    }
+}
+
+void PrintGaris() {
+    #ifdef _WIN32
+        for (int i = 0; i < 9; i++) {
+            printf("%c", 196);
+        }
+    #else
+        for (int i = 0; i < 9; i++) {
+            printf("%s", "\u2500");
+        }
+    #endif
 }

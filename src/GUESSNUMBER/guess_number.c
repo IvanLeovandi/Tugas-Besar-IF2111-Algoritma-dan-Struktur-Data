@@ -11,7 +11,6 @@ Konsep binary tree:
 */
     /* KAMUS LOKAL */
     BinTree soal, loc;
-    // int cnt = randomNumberMinMax(3, 20);
     int cnt;
     int X, Y, idx, level, nyawa;
     int len_node = 0;
@@ -23,31 +22,31 @@ Konsep binary tree:
     printf("Permainan dimulai.\n\n");
 
     printf("Mau level berapa? (1/2/3): ");
-    scanf("%d", &level);
+    level = StrToInt(Input());
     printf("\n");
 
     while (!(level >= 1 && level <= 3)) {
         ClearScreen();
         printf("Masukkan salah. Silakan input kembali.\n\n");
         printf("Mau level berapa? (1/2/3): ");
-        scanf("%d", &level);
+        level = StrToInt(Input());
         printf("\n");
     }
 
     if (level == 1) {
-        cnt = randomNumberMinMax(3, 10);
+        cnt = randomNumberMinMax(3, 6);
         nyawa = 10;
     } else if (level == 2) {
-        cnt = randomNumberMinMax(11, 15);
+        cnt = randomNumberMinMax(7, 10);
         nyawa = 15;
     } else {
-        cnt = randomNumberMinMax(16, 20);
+        cnt = randomNumberMinMax(11, 13);
         nyawa = 20;
     }
 
     int node[cnt-1];
     
-    X = randomNumberMinMax(lower, upper);
+    X = randomNumberMinMax(lower+1, upper);
     MakeTree(X, Nil, Nil, &soal);
     node[len_node] = X;
     len_node++;
@@ -58,11 +57,17 @@ Konsep binary tree:
         while (isBiner(treeLocation(soal, node[idx])) || node[idx] == lower) {
             idx = randomNumberMinMax(0, len_node-1);
         }
+        
+        Left = randomNumberMinMax(0, 1);
+        while (Left == 0 && node[idx] == upper) {
+            idx = randomNumberMinMax(0, len_node-1);
+        }
         X = node[idx];
+
         loc = treeLocation(soal, X);
         Y = randomNumberMinMax(lower, upper);
+        
         if (isTreeOneElmt(loc)) {
-            Left = randomNumberMinMax(0, 1);
             if (Left) {
                 while (!(Y < X)) {
                     Y = randomNumberMinMax(lower, upper);
@@ -75,7 +80,12 @@ Konsep binary tree:
             addLeaf(&loc, X, Y, Left);
         } else if (isUnerLeft(loc)) {
             while (!(Y > X)) { /* Y menjadi anak kanan dari X */
-                Y = randomNumberMinMax(lower, upper);
+                if (X == upper) {
+                    cnt++;
+                    break;
+                } else {
+                    Y = randomNumberMinMax(lower, upper);
+                }
             }
             RIGHT(loc) = newTreeNode(Y);
         } else {
