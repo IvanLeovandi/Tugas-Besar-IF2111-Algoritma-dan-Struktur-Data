@@ -65,7 +65,7 @@ void Start_RPS(int *score_game)
             printf("\n");
         }
     }
-    printf("Score anda : %d", score);
+    printf("Score anda : %d\n\n", score);
     *score_game = score;
 }
 
