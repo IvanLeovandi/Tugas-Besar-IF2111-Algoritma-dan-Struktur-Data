@@ -78,7 +78,6 @@ int main()
             {
                 STARTGAME(&array_game, &history, &list_name, &scoreboard, true);
                 loaded = true;
-                CreateScoreboard(&list_name, &scoreboard, array_game);
             } else if (compareSTR(command, "QUIT"))
             {
                 quitgame(&queue_game);
