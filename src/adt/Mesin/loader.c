@@ -21,7 +21,7 @@ void IgnoreNewLine() {
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
     // KAMUS LOKAL
     // ALGORITMA
-    while (currentChar == MARK) {
+    while (currentChar == MARK || currentChar == 13) { /* ascii 13 == \r (carriage return) */
         ADVLOAD();
     }
 }
@@ -52,7 +52,7 @@ void CopyWordLOAD() {
     // KAMUS LOKAL
     int i = 0;
     // ALGORITMA
-    while ((currentChar != MARK) && i < NMax && !EOP) {
+    while ((currentChar != MARK && currentChar != 13) && i < NMax && !EOP) { /* ascii 13 == \r (carriage return) */
         currentWord.TabWord[i] = currentChar; 
         ADVLOAD();
         i++;
