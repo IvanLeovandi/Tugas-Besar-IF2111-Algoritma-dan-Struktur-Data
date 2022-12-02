@@ -89,7 +89,7 @@ boolean IsMemberSet(Set S, char* Elmt)
 
 void MakeEmptyArrSet (ArraySet *T) {
 /* I.S. sembarang */
-/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+/* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMaxSet-IdxMinSet+1 */
     // KAMUS LOKAL
     // ALGORITMA
     T->NeffSet = 0;
