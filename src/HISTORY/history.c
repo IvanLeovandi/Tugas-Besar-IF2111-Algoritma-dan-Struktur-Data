@@ -3,10 +3,7 @@
 
 void show_hist(StackHis history, int n)
 {
-    /* Menuliskan seluruh elemen StackHis S ke layar */
-    /* KAMUS LOKAL */
     int i, j;
-    /* ALGORITMA */
     j = 1;
     if(n <= 0)
     {
