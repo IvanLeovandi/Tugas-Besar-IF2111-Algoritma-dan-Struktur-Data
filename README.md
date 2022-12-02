@@ -1,6 +1,6 @@
 # Tubes 2 IF2111 Kelompok 2
 
-Program dibuat dengan menggunakan bahasa C menggunakan ADT Array, Queue, Mesin Karakter, dan Mesin Kata yang sudah dipelajari di kelas IF2111 Algoritma dan Struktur Data. Pada awal permainan, user akan diminta untuk melakukan input command START / LOAD terlebih dahulu. Setelah melakukan command awal pemain dapat melakukan input CREATE GAME, LIST GAME, DELETE GAME, QUEUE GAME, PLAY GAME, SKIP GAME, SAVE, HELP, dan QUIT.
+Program dibuat dengan menggunakan bahasa C menggunakan ADT Array, Queue, Mesin Karakter, Mesin Kata, Set, Map, Stack, Tree, dan Linked List yang sudah dipelajari di kelas IF2111 Algoritma dan Struktur Data. Pada awal permainan, user akan diminta untuk melakukan input command START / LOAD terlebih dahulu. Setelah melakukan command awal pemain dapat melakukan input CREATE GAME, LIST GAME, DELETE GAME, HISTORY <n>, RESET HISTORY, SCOREBOARD, RESET SCOREBOARD, QUEUE GAME, PLAY GAME, SKIP GAME <n>, SAVE <filename>, HELP, dan QUIT.
 <br/><br/>
 Dalam BNMO ini terdapat 7 game yang sudah bisa dimainkan yaitu:
 - RNG
