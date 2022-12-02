@@ -20,7 +20,7 @@ F.S : Queue queue_game menjadi kosong dan keluar dari program
             "                             P7    7G.                                                              \n"
             "                             :P7    ?5:                                                     ..      \n"
             "                              .YY^   ~5?.                                                  ~G~      \n"
-            "                                ^?J7^.^YBJ?JJJYYJJYJJ??!~:.                             .!Y5B7      \n"
+            "                                ^?J7^.^YBJ?JJJYYJJYJJJ?!~:.                             .!Y5B7      \n"
             "                                .:?PGYYJ??77!!!!!!!!!77?JYYY?~:                     .^7J5Y7!G!      \n"
             "                              ~JYY?7!!!!!!!!!!!!!!!!!!!!~~!!?JYY~              :~7JYYJ?7!~~?B:      \n"
             "                             ?G?!~!!!!!!!!!!!!!!!!!!!!!!!!!!!~!?P?           ~5YJ?7!!~!!!!!G?       \n"
