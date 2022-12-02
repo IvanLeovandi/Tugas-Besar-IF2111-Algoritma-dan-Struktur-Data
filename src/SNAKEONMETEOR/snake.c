@@ -42,6 +42,11 @@ void SnakeOnMeteor(int *score_game){
             #endif
         }
         else{
+            #ifdef _WIN32
+                PrintSnake(snake, food, meteor, obstacle);
+            #else
+                PrintSnakeLinux(snake, food, meteor, obstacle);
+            #endif
             printf("\nCommand tidak valid! Silahkan input command menggunakan huruf w/a/s/d\n");
         }
     }
