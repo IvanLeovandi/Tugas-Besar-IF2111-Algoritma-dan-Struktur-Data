@@ -29,16 +29,15 @@ typedef struct {
 	infotype ElementsMap[MaxElMap];
 	int CountMap;
 } Map;
+/* Definisi Map M kosong : M.CountMap = Nil */
+/* M.CountMap = jumlah element Map */
+/* M.Elements = tempat penyimpanan element Map */
 
 typedef struct
 	{
 		Map TIMap [IdxMaxMap-IdxMinMap+1]; /* memori tempat penyimpan elemen (container) */
 		int NeffMap; /* banyaknya elemen efektif */
 	} ArrayMap;
-
-/* Definisi Map M kosong : M.CountMap = Nil */
-/* M.CountMap = jumlah element Map */
-/* M.Elements = tempat penyimpanan element Map */
 
 /* ********* Prototype ********* */
 
